@@ -1,0 +1,22 @@
+{
+  "name": "notes-app",
+  "version": "0.0.0",
+  "description": "Web app for note taking",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/twcus/notes-app.git"
+  },
+  "author": "Thomas Custer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/twcus/notes-app/issues"
+  },
+  "homepage": "https://gitlab.com/twcus/notes-app#README",
+  "devDependencies": {
+    "lerna": "^3.3.0"
+  }
+}
