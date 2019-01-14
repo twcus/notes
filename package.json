@@ -17,6 +17,7 @@
   },
   "homepage": "https://gitlab.com/twcus/notes-app#README",
   "devDependencies": {
+    "eslint": "^5.12.1",
     "lerna": "^3.3.0"
   }
 }

@@ -1,0 +1,2 @@
+CREATE ROLE notes_owner WITH CREATEDB CREATEROLE LOGIN PASSWORD 'seton-owner';
+CREATE ROLE notes_user WITH LOGIN PASSWORD 'seton-user';
