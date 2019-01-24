@@ -1,4 +1,5 @@
-import http from 'http';
+import express from 'express';
+import cors from 'cors';
 import fortune from 'fortune';
 import fortuneHttp from 'fortune-http';
 import jsonApiSerializer from 'fortune-json-api';
@@ -19,7 +20,11 @@ const postgresAdapterOptions = {
 
 const adapter = [postgresAdapter, postgresAdapterOptions];
 
-const store = fortune(models, { adapter });
+const fortuneOptions = {
+    adapter
+};
+
+const store = fortune(models, fortuneOptions);
 
 const serializerOptions = {
     jsonSpaces: 4
@@ -27,17 +32,15 @@ const serializerOptions = {
 
 const listenerOptions = {
     serializers: [
-        // The `options` object here is optional.
         [ jsonApiSerializer, serializerOptions ]
     ]
 };
 
-// `instance` is an instance of Fortune.js.
 const listener = fortuneHttp(store, listenerOptions);
 
-// The listener function may be used as a standalone server, or
-// may be composed as part of a framework.
-const server = http.createServer((request, response) =>
+const server = express();
+server.use(cors());
+server.use((request, response) =>
     listener(request, response)
         .catch(error => {
             console.log(error); // eslint-disable-line no-console

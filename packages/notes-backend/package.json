@@ -11,14 +11,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fortune": "^5.5.15"
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "fortune": "^5.5.15",
+    "fortune-http": "^1.2.25",
+    "fortune-json-api": "^2.1.5",
+    "fortune-postgres": "^1.6.10"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "eslint": "^5.12.1",
-    "fortune-http": "^1.2.25",
-    "fortune-json-api": "^2.1.5",
-    "fortune-postgres": "^1.6.10"
+    "eslint": "^5.12.1"
   }
 }
