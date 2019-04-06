@@ -17,3 +17,10 @@ To setup the notes database, run the shell script.
 ```
 
 This script uses the default Postgres user to create the required roles and database for the notes app.
+
+
+Then run the migrations with sqitch.
+
+```
+sqitch deploy
+```
