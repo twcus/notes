@@ -17,7 +17,9 @@
   },
   "homepage": "https://gitlab.com/twcus/notes-app#README",
   "devDependencies": {
-    "eslint": "^5.12.1",
+    "ember-cli": "^3.9.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-ember": "^6.3.0",
     "lerna": "^3.3.0"
   }
 }
