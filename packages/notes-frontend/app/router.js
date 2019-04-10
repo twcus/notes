@@ -8,6 +8,8 @@ const Router = EmberRouter.extend({
 
 Router.map(function() {
     this.route('notes');
+    this.route('collections');
+    this.route('tags');
 });
 
 export default Router;

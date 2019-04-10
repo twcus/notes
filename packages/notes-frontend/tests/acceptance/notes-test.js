@@ -12,17 +12,22 @@ module('Acceptance | notes', function(hooks) {
     });
 
     test('should show notes as the home page', async function(assert) {
+        assert.equal(true, false);
     });
 
     test('should list notes', async function(assert) {
+        assert.equal(true, false);
     });
 
     test('should search notes', async function(assert) {
+        assert.equal(true, false);
     });
 
     test('should filter notes by tag', async function(assert) {
+        assert.equal(true, false);
     });
 
     test('should show the selected note', async function(assert) {
+        assert.equal(true, false);
     });
 });
