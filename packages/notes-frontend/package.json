@@ -20,6 +20,9 @@
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
+    "@fortawesome/ember-fontawesome": "^0.1.14",
+    "@fortawesome/free-regular-svg-icons": "^5.9.0",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
     "broccoli-asset-rev": "^2.7.0",
     "broccoli-sass": "^0.7.0",
     "ember-ajax": "^5.0.0",
