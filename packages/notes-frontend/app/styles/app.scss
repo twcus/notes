@@ -1,6 +1,7 @@
 $purple: #8B89D6;
 $yellow: #FFB646;
 $black: #1f1f1f;
+$grey: #b5b5b5;
 $white-foreground: #fbfbfb;
 $white-background: #efefef;
 $white: #FFFFFF;
@@ -31,6 +32,16 @@ body {
     background-color: $white-background;
     min-height: 100%;
     padding: 24px;
+}
+
+.dropdown-container {
+    right: 0;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
 }
 
 .nav-wrapper {
@@ -64,32 +75,44 @@ body {
     overflow-y: auto;
 }
 
-.menu-list {
+.nav-menu-list {
     display: flex;
     flex-direction: column;
 }
 
-.menu-item {
+.nav-menu-item {
     display: inline-flex;
-    padding: 0 16px;
     margin: 8px 0;
 
     &:hover {
-        background-color: $white-background;
+        background-color: $primary;
+    }
+
+    .menu-link {
+        color: $white-foreground;
+        width: 100%;
+        padding: 8px 24px;
+
+        &:hover,
+        &.active {
+            border-right: solid 5px $white-background;
+            border-color: $white-background;
+        }
     }
 
     svg {
-        margin: 0 8px;
+        margin-right: 16px;
     }
 }
 
 .toolbar {
     font-size: 1.2rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: $white-foreground;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 16px 48px;
     button {
         font-size: inherit;
         display: inline-flex;
@@ -140,10 +163,6 @@ body {
     }
 }
 
-.toolbar-item {
-    padding: 16px;
-}
-
 @keyframes border-pulsate {
     0%   { border-color: rgba(0, 0, 0, 1); }
     50%  { border-color: rgba(0, 0, 0, 0); }
@@ -153,8 +172,8 @@ body {
 .cards {
     padding: 48px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-auto-rows: 200px;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: 250px;
     grid-gap: 24px;
 }
 
@@ -172,9 +191,9 @@ body {
         box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
     }
 
-    .card-body {
+    .note-card-body {
         position: relative;
-        height: 100%;
+        height: 90%;
         overflow: hidden;
 
         &:before {
@@ -186,5 +205,8 @@ body {
             top: 0;
             background: linear-gradient(transparent 130px, $white-foreground);
         }
+    }
+    .note-card-footer {
+        color: $grey;
     }
 }

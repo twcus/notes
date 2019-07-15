@@ -10,6 +10,7 @@ Router.map(function() {
     this.route('notes');
     this.route('collections');
     this.route('tags');
+    this.route('trash');
 });
 
 export default Router;
