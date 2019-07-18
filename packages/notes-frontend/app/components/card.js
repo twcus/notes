@@ -8,7 +8,7 @@ export default Component.extend({
     click() {
         this.onClick(this.get('note'));
     },
-    mouseleave() {
+    mouseLeave () {
         this.set('isShowingConfirmationPrompt', false);
     },
     toggleConfirmationPrompt: function() {

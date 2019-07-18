@@ -1,35 +1,33 @@
-<section>
-    <div class="toolbar">
-        <div class="toolbar-item">
-            <button>
-                {{fa-icon 'list'}}
-            </button>
+<section class="toolbar">
+    <div class="toolbar-item">
+        <button>
+            {{fa-icon 'list'}}
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <div class="search-container">
+            {{fa-icon 'search'}}
+            <input type="text" placeholder="Search" aria-label="Search notes">
         </div>
-        <div class="toolbar-item">
-            <div class="search-container">
-                {{fa-icon 'search'}}
-                <input type="text" placeholder="Search" aria-label="Search notes">
-            </div>
-        </div>
-        <div class="toolbar-item">
-            <button>
-                {{fa-icon 'filter'}}Filter
-            </button>
-        </div>
-        <div class="toolbar-item">
-            <button>
-                {{fa-icon 'sort'}}Sort
-            </button>
-        </div>
-        <div class="toolbar-item">
-            <button class="is-primary" {{action 'openNewNote'}}>
-                {{fa-icon 'plus'}}Add New Note
-            </button>
-            {{#if isAddingNote}}
-                <NewNote @onCancel={{action "openNewNote"}}
-                         @onSave={{action "createNote"}}/>
-            {{/if}}
-        </div>
+    </div>
+    <div class="toolbar-item">
+        <button>
+            {{fa-icon 'filter'}}Filter
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <button>
+            {{fa-icon 'sort'}}Sort
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <button class="is-primary" {{action 'openNewNote'}}>
+            {{fa-icon 'plus'}}Add New Note
+        </button>
+        {{#if isAddingNote}}
+            <NewNote @onCancel={{action "openNewNote"}}
+                     @onSave={{action "createNote"}}/>
+        {{/if}}
     </div>
 </section>
 <section class="cards">
