@@ -1,0 +1,11 @@
+<div class="note-card-body">
+    {{note.content}}
+</div>
+<div class="note-card-footer">
+    {{note.modifiedDate}}
+    <div class="footer-actions {{if isShowingConfirmationPrompt "confirming"}}">
+        <i onclick={{disable-bubbling (action "showConfirmationPrompt")}}>{{fa-icon 'trash' class="note-delete"}}</i>
+        <i onclick={{disable-bubbling (action "showConfirmationPrompt")}}>{{fa-icon 'check' class="delete-confirm"}}</i>
+        <i onclick={{disable-bubbling (action "showConfirmationPrompt")}}>{{fa-icon 'times' class="delete-cancel"}}</i>
+    </div>
+</div>
