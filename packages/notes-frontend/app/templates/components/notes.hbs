@@ -1,6 +1,27 @@
+{{#if isShowingOverlay}}
+    <Modal @onClose={{action "closeNote"}}>
+        <div class="modal-body">
+            {{activeNote.content}}
+        </div>
+        <div class="modal-footer">
+            <div class="icon-group">
+                <button class="button">
+                    {{fa-icon 'tag'}}
+                </button>
+                <button class="button">
+                    {{fa-icon 'trash'}}
+                </button>
+            </div>
+            <div class="button-group">
+                <button class="button">Close</button>
+                <button class="button is-primary">Save</button>
+            </div>
+        </div>
+    </Modal>
+{{/if}}
 <section class="toolbar">
     <div class="toolbar-item">
-        <button>
+        <button class="button">
             {{fa-icon 'list'}}
         </button>
     </div>
@@ -11,18 +32,19 @@
         </div>
     </div>
     <div class="toolbar-item">
-        <button>
-            {{fa-icon 'filter'}}Filter
+        <button class="button">
+            {{fa-icon 'filter' class="left"}}
+            <span>Filter</span>
         </button>
     </div>
     <div class="toolbar-item">
-        <button>
-            {{fa-icon 'sort'}}Sort
+        <button class="button">
+            {{fa-icon 'sort' class="left"}}Sort
         </button>
     </div>
     <div class="toolbar-item">
-        <button class="is-primary" {{action 'openNewNote'}}>
-            {{fa-icon 'plus'}}Add New Note
+        <button class="button is-primary" {{action 'openNewNote'}}>
+            {{fa-icon 'plus' class="left"}}Add New Note
         </button>
         {{#if isAddingNote}}
             <NewNote @onCancel={{action "openNewNote"}}
@@ -36,11 +58,3 @@
             {{action "openNote"}}/>
     {{/each}}
 </section>
-
-{{#if isShowingOverlay}}
-    <div onclick={{action "closeNote"}} class="overlay {{if isShowingOverlay "visible"}}"></div>
-    <div class="modal-content">
-        {{activeNote.content}}
-    </div>
-{{/if}}
-

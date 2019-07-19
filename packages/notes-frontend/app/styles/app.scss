@@ -4,16 +4,17 @@ $black: #1f1f1f;
 $grey: #b5b5b5;
 $white-foreground: #fbfbfb;
 $white-background: #efefef;
-$white: #FFFFFF;
 $primary: $purple;
 $text: $black;
-$text-invert: $white;
-$menu-item-color: $text-invert;
 
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
 @import 'minireset';
 @import '_variables.scss';
 @import '_base.scss';
+@import '_button.scss';
 @import'_card.scss';
+@import '_modal.scss';
 
 .is-primary {
     color: $primary;
@@ -75,7 +76,7 @@ $menu-item-color: $text-invert;
     }
 
     .menu-link {
-        color: $white-foreground;
+        color: $white;
         width: 100%;
         padding: 8px 24px;
         text-decoration: none;
@@ -101,43 +102,14 @@ $menu-item-color: $text-invert;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: $white-foreground;
+    background-color: $white;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
     padding: 16px 48px;
     z-index: 2;
-    button {
-        font-size: inherit;
-        display: inline-flex;
-        align-items: center;
-        margin: 0;
-        border: 0;
-        padding: 8px;
-        background-color: $white-foreground;
-        border-radius: $border-radius-normal;
-        &:hover {
-            background-color: lighten($black, 80%);
-            cursor: pointer;
-        }
-        &:active {
-            background-color: lighten($black, 75%);
-        }
-        &.is-primary:hover {
-            background-color: lighten($purple, 26%);
-            background-color: lighten($black, 80%);
-            cursor: pointer;
-        }
-        &.is-primary:active  {
-            background-color: lighten($purple, 22%);
-            background-color: lighten($black, 75%);
-        }
-        svg {
-            margin-right: 8px;
-        }
-    }
     input {
         border: none;
         padding: 8px;
-        background-color: $white-foreground;
+        background-color: $white;
         font-size: 1.2rem;
         &:focus {
             outline: none;
