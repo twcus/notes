@@ -14,9 +14,9 @@
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: $border-radius-normal;
     transition: transform 0.2s ease;
-    flex-basis: 33%;
-    overflow: hidden;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
 
     &:hover {
         transform: translateY(-4px);
@@ -24,11 +24,11 @@
     }
 
     .note-card-body {
+        flex: 1 1 auto;
         position: relative;
-        height: 90%;
-        overflow: hidden;
+        overflow-y: hidden;
         word-break: break-all;
-        padding: 16px;
+        padding: 8px;
 
         &:before {
             content: '';
@@ -41,6 +41,8 @@
         }
     }
     .note-card-footer {
+        padding: 8px;
+        flex: 0 0 auto;
         transition: opacity 0.2s ease;
         color: $grey;
         position: relative;
@@ -72,18 +74,18 @@
                 .delete-confirm {
                     transition: all 0.1s ease-in-out;
                     opacity: 1;
-                    transform: translateX(52px);
+                    transform: translateX(40px);
                 }
                 .delete-cancel {
                     transition: all 0.1s ease-in-out;
                     opacity: 1;
-                    transform: translateX(-75px);
+                    transform: translateX(-80px);
                 }
             }
         }
     }
 
-    &:hover svg.note-delete {
+    &:hover .note-delete {
         visibility: visible;
         opacity: 1;
     }
