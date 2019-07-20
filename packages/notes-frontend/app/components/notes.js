@@ -2,13 +2,13 @@ import Component from '@ember/component';
 
 export default Component.extend({
     isAddingNote: false,
-    isShowingOverlay: false,
+    isShowingModal: false,
     activeNote: null,
     toggleNewNote: function() {
         this.toggleProperty('isAddingNote');
     },
-    toggleOverlay: function() {
-        this.toggleProperty('isShowingOverlay');
+    toggleModal: function() {
+        this.toggleProperty('isShowingModal');
     },
     actions: {
         openNewNote() {
@@ -16,15 +16,19 @@ export default Component.extend({
         },
         createNote(note) {
             this.toggleNewNote();
-            this.saveNote(note);
+            //this.saveNote(note);
         },
         openNote(note) {
-            this.toggleOverlay();
+            this.toggleModal();
             this.set('activeNote', note);
             console.log('opening note...' + note);
         },
         closeNote() {
-            this.toggleOverlay();
-        }
+            this.toggleModal();
+        },
+        // saveNote(content) {
+        //     console.log(content);
+        //     this.toggleModal();
+        // }
     }
 });

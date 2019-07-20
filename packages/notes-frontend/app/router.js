@@ -7,7 +7,10 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-    this.route('notes');
+    this.route('notes', function() {
+      this.route('edit', { path: '/:id' });
+      this.route('new');
+    });
     this.route('collections');
     this.route('tags');
     this.route('trash');

@@ -1,7 +1,7 @@
-<div class="note-card-body">
+<div class="card-body">
     {{note.content}}
 </div>
-<div class="note-card-footer">
+<div class="card-footer">
     {{note.modifiedDate}}
     <div class="footer-actions {{if isShowingConfirmationPrompt "confirming"}}">
         <button class="button note-delete" onclick={{disable-bubbling (action "showConfirmationPrompt")}}>{{fa-icon 'trash'}}</button>

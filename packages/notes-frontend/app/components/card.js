@@ -3,11 +3,8 @@ import { inject as service } from '@ember/service';
 
 export default Component.extend({
     store: service(),
-    classNames: ['note-card'],
+    classNames: ['card'],
     isShowingConfirmationPrompt: false,
-    click() {
-        this.onClick(this.get('note'));
-    },
     mouseLeave () {
         this.set('isShowingConfirmationPrompt', false);
     },

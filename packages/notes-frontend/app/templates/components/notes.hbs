@@ -1,7 +1,7 @@
-{{#if isShowingOverlay}}
-    <Modal @onClose={{action "closeNote"}}>
+{{#if isShowingModal}}
+<Modal @focusedElement=".note-textarea" @onClose={{action "closeNote"}} @content={{activeNote.content}} as |mmodal|>
         <div class="modal-body">
-            {{activeNote.content}}
+            <Textarea @autoresize=true class="note-textarea" aria-label="Edit note"  @value={{activeNote.content}} />
         </div>
         <div class="modal-footer">
             <div class="icon-group">
@@ -13,8 +13,8 @@
                 </button>
             </div>
             <div class="button-group">
-                <button class="button">Close</button>
-                <button class="button is-primary">Save</button>
+                <button class="button" {{action "closeNote"}}>Close</button>
+                <button class="button  is-primary" {{action "saveNote"}}>Save</button>
             </div>
         </div>
     </Modal>
@@ -52,9 +52,11 @@
         {{/if}}
     </div>
 </section>
-<section class="cards">
-    {{#each this.notes as |note|}}
-        <Card @note={{note}} @onClick=
-            {{action "openNote"}}/>
-    {{/each}}
+<section class="content">
+    <div class="card-grid">
+        {{#each notes as |note|}}
+            <Card @note={{note}} @onClick=
+                {{action "openNote"}}/>
+        {{/each}}
+    </div>
 </section>

@@ -7,6 +7,6 @@ export default Controller.extend({
         },
         deleteNote(note) {
             note.destroyRecord();
-        }
+        },
     }
 });
