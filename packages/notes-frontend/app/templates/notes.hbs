@@ -25,20 +25,13 @@
         <LinkTo @tagName="button" class="is-primary button" @route="notes.new">
             {{fa-icon 'plus' class="left"}}Add New Note
         </LinkTo>
-<!--        <button class="button is-primary" {{action 'openNewNote'}}>-->
-<!--            {{fa-icon 'plus' class="left"}}Add New Note-->
-<!--        </button>-->
-<!--        {{#if isAddingNote}}-->
-<!--            <NewNote @onCancel={{action "openNewNote"}}-->
-<!--                     @onSave={{action "createNote"}}/>-->
-<!--        {{/if}}-->
     </div>
 </section>
 <section class="content">
     <div class="card-grid">
         {{#each model as |note|}}
             <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}}>
-                <Card @note={{note}}/>
+                <Card @note={{note}} @onClick={{action "openNote" note}} @onConfirm={{action "deleteNote" note}}/>
             </LinkTo>
         {{/each}}
     </div>

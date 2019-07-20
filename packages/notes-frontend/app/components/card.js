@@ -4,25 +4,26 @@ import { inject as service } from '@ember/service';
 export default Component.extend({
     store: service(),
     classNames: ['card'],
-    isShowingConfirmationPrompt: false,
+    isConfirming: false,
     mouseLeave () {
-        this.set('isShowingConfirmationPrompt', false);
+        this.set('isConfirming', false);
     },
-    toggleConfirmationPrompt: function() {
-        this.toggleProperty('isShowingConfirmationPrompt');
+    click() {
+        this.onClick();
+    },
+    toggleIsConfirming: function() {
+        this.toggleProperty('isConfirming');
     },
     actions: {
         confirm() {
-            this.toggleConfirmationPrompt();
-            this.get('note').destroyRecord();
+            this.toggleIsConfirming();
+            this.onConfirm();
         },
-        showConfirmationPrompt() {
-            this.toggleConfirmationPrompt();
-            console.log('showing confirmation prompt...');
+        toggleConfirmationPrompt() {
+            this.toggleIsConfirming();
         },
-        hideConfirmationPrompt() {
-            this.toggleConfirmationPrompt();
-            console.log('hiding confirmation prompt...');
+        openTagSelector() {
+            console.log('opening tag selector...');
         }
     }
 });

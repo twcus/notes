@@ -14,8 +14,9 @@
 }
 
 .content {
-    height: 100vh;
+    height: calc(100vh - 70px);
     margin-top: 70px;
+    overflow-y: auto;
 }
 
 .nav-menu {

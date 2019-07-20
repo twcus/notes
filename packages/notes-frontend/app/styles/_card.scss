@@ -55,7 +55,8 @@
                 margin: 0 4px;
                 opacity: 0;
                 color: #68ab5b;
-                cursor: pointer;
+                cursor: none;
+                pointer-events: none;
             }
             .delete-cancel {
                 position: absolute;
@@ -63,23 +64,29 @@
                 margin: 0 4px;
                 opacity: 0;
                 color: #ff5244;
-                cursor: pointer;
+                cursor: none;
+                pointer-events: none;
             }
             &.confirming {
                 .note-delete {
-                    cursor: default;
                     opacity: 0;
                     transform: translateY(5px);
+                    cursor: none;
+                    pointer-events: none;
                 }
                 .delete-confirm {
                     transition: all 0.1s ease-in-out;
                     opacity: 1;
                     transform: translateX(40px);
+                    cursor: pointer;
+                    pointer-events: auto;
                 }
                 .delete-cancel {
                     transition: all 0.1s ease-in-out;
                     opacity: 1;
                     transform: translateX(-80px);
+                    cursor: pointer;
+                    pointer-events: auto;
                 }
             }
         }
