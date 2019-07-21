@@ -1,0 +1,8 @@
+.note-link {
+    color: $black;
+    width: 100%;
+    text-decoration: none;
+    &.active {
+        visibility: hidden;
+    }
+}

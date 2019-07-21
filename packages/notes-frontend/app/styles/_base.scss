@@ -9,6 +9,18 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+textarea {
+    border-radius: $border-radius-normal;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    background-color: $white;
+    resize: none;
+    &:focus {
+        outline: none;
+    }
+}
+
 //$scrollbar-height: 5px;
 //$scrollbar-padding: 15px;
 

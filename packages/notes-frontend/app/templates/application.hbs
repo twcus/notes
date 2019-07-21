@@ -1,22 +1,4 @@
-<nav class="nav-menu">
-    <img class="nav-logo" alt="Notes logo" src="assets/images/notes-logo.png">
-    <ul class="nav-menu-list">
-        <li class="nav-menu-item">{{#link-to 'notes' class='menu-link'}}{{fa-icon 'file'}}Notes{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'collections' class='menu-link'}}{{fa-icon 'copy'}}Collections{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'tags' class='menu-link'}}{{fa-icon 'tag'}}Tags{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}{{fa-icon 'trash'}}Trash{{/link-to}}</li>
-    </ul>
-    <ul class="nav-menu-list">
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}Most Recent{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}Next Recent{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}Another Recent{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}The Least Recent{{/link-to}}</li>
-    </ul>
-    <ul class="nav-menu-list">
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}{{fa-icon 'cog'}}Settings{{/link-to}}</li>
-        <li class="nav-menu-item">{{#link-to 'trash' class='menu-link'}}{{fa-icon 'sign-out-alt'}}Log Out{{/link-to}}</li>
-    </ul>
-</nav>
+<NavMenu/>
 <main class="main-content">
     {{outlet}}
 </main>

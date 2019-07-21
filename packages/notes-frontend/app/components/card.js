@@ -8,9 +8,6 @@ export default Component.extend({
     mouseLeave () {
         this.set('isConfirming', false);
     },
-    click() {
-        this.onClick();
-    },
     toggleIsConfirming: function() {
         this.toggleProperty('isConfirming');
     },

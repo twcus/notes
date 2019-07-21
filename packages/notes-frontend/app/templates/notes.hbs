@@ -1,11 +1,11 @@
-<section class="toolbar">
+<Toolbar @tagName="section" class="toolbar">
     <div class="toolbar-item">
         <button class="button">
             {{fa-icon 'list'}}
         </button>
     </div>
     <div class="toolbar-item">
-        <div class="search-container">
+        <div class="toolbar-search-container">
             {{fa-icon 'search'}}
             <input type="text" placeholder="Search" aria-label="Search notes">
         </div>
@@ -26,14 +26,14 @@
             {{fa-icon 'plus' class="left"}}Add New Note
         </LinkTo>
     </div>
-</section>
+</Toolbar>
 <section class="content">
     <div class="card-grid">
         {{#each model as |note|}}
-            <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}}>
-                <Card @note={{note}} @onClick={{action "openNote" note}} @onConfirm={{action "deleteNote" note}}/>
+            <LinkTo @tagName="div" class="note-link" @route="notes.edit" @model={{note.id}}>
+                <Card @note={{note}} @onConfirm={{action "deleteNote" note}}/>
             </LinkTo>
         {{/each}}
     </div>
+    {{outlet}}
 </section>
-{{outlet}}

@@ -7,31 +7,25 @@
     padding: 8px;
     background-color: transparent;
     border-radius: $border-radius-normal;
-
     &:hover {
         background-color: lighten($black, 80%);
         cursor: pointer;
     }
-
     &:active {
         background-color: lighten($black, 75%);
     }
-
     &.is-primary {
         color: $primary;
     }
-
     &.is-primary:hover {
         background-color: lighten($purple, 26%);
         background-color: lighten($black, 80%);
         cursor: pointer;
     }
-
     &.is-primary:active {
         background-color: lighten($purple, 22%);
         background-color: lighten($black, 75%);
     }
-
     svg.left {
         margin-right: 8px;
     }
