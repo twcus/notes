@@ -21,6 +21,7 @@ const models = {
         tags: [Array('tag'), 'collections']
     },
     tag: {
+        content: String,
         createdDate: Date,
         modifiedDate: Date,
         user: ['user', 'tags'],

@@ -5,9 +5,86 @@
 @import 'components/_nav-menu.scss';
 @import 'components/_toolbar.scss';
 @import 'components/_button.scss';
+@import 'components/_tag.scss';
 @import'components/_card.scss';
 @import 'components/_modal.scss';
 @import '_note';
+
+// Variables
+
+// Backgrounds
+$ember-power-select-background-color: $white !default;
+$ember-power-select-disabled-background-color: #eeeeee !default;
+$ember-power-select-multiple-selection-background-color: #e4e4e4 !default;
+$ember-power-select-highlighted-background: $white-dark !default;
+$ember-power-select-selected-background: #dddddd !default;
+
+// Texts
+$ember-power-select-text-color: inherit !default;
+$ember-power-select-placeholder-color: #999999 !default;
+$ember-power-select-highlighted-color: $black !default;
+$ember-power-select-disabled-option-color: #999999 !default;
+$ember-power-select-multiple-selection-color: #333333 !default;
+
+// Borders
+$ember-power-select-border-color: #aaaaaa !default;
+$ember-power-select-focus-border-color: $ember-power-select-border-color !default;
+$ember-power-select-default-border: none !default;
+$ember-power-select-default-focus-border: none !default;
+
+$ember-power-select-trigger-border: $ember-power-select-default-border !default;
+$ember-power-select-trigger-border-top: $ember-power-select-trigger-border !default;
+$ember-power-select-trigger-border-bottom: $ember-power-select-trigger-border !default;
+$ember-power-select-trigger-border-right: $ember-power-select-trigger-border !default;
+$ember-power-select-trigger-border-left: $ember-power-select-trigger-border !default;
+$ember-power-select-active-trigger-border: $ember-power-select-default-focus-border !default;
+$ember-power-select-active-trigger-border-top: $ember-power-select-active-trigger-border !default;
+$ember-power-select-active-trigger-border-bottom: $ember-power-select-active-trigger-border !default;
+$ember-power-select-active-trigger-border-right: $ember-power-select-active-trigger-border !default;
+$ember-power-select-active-trigger-border-left: $ember-power-select-active-trigger-border !default;
+$ember-power-select-dropdown-border: $ember-power-select-default-focus-border !default;
+$ember-power-select-search-field-border: $ember-power-select-default-border !default;
+$ember-power-select-search-field-focus-border: $ember-power-select-default-focus-border !default;
+
+$ember-power-select-dropdown-top-border: $ember-power-select-dropdown-border !default;
+$ember-power-select-dropdown-right-border: $ember-power-select-dropdown-border !default;
+$ember-power-select-dropdown-bottom-border: $ember-power-select-dropdown-border !default;
+$ember-power-select-dropdown-left-border: $ember-power-select-dropdown-border !default;
+
+$ember-power-select-dropdown-contiguous-border: none !default;
+
+$ember-power-select-multiple-option-border-color: gray !default;
+$ember-power-select-multiple-option-border: 1px solid $ember-power-select-multiple-option-border-color !default;
+
+// Borders radius
+$ember-power-select-default-border-radius: 4px !default; // General border radius
+$ember-power-select-trigger-default-border-radius: $ember-power-select-default-border-radius !default;
+$ember-power-select-dropdown-default-border-radius: $ember-power-select-default-border-radius !default;
+
+$ember-power-select-opened-border-radius: 0 !default; // Border radius of the side of the dropdown and the trigger where they touch
+
+$ember-power-select-search-input-border-radius: 0 !default;
+$ember-power-select-multiple-option-border-radius: $ember-power-select-default-border-radius !default;
+
+// Other
+$ember-power-select-focus-box-shadow: none !default;
+$ember-power-select-dropdown-margin: 0 !default; // Margin between the dropdown and the trigger
+$ember-power-select-dropdown-box-shadow: none !default;
+$ember-power-select-line-height: 2 !default;
+$ember-power-select-trigger-icon-color: $ember-power-select-border-color !default;
+$ember-power-select-clear-btn-margin: 25px !default;
+$ember-power-select-option-padding: 8px !default;
+$ember-power-select-number-of-visible-options: 7 !default;
+$ember-power-select-focus-outline: null !default;
+$ember-power-select-trigger-ltr-padding: 0 16px 0 0 !default;
+$ember-power-select-trigger-rtl-padding: 0 0 0 16px !default;
+$ember-power-select-multiple-option-padding: 0 4px !default;
+$ember-power-select-multiple-option-line-height: 1.45 !default;
+
+// ember-basic-dropdown
+$ember-basic-dropdown-content-background-color: $ember-power-select-background-color;
+
+@import 'ember-power-select';
 
 .main-content {
     width: calc(100% - 200px);
@@ -21,4 +98,58 @@
     height: calc(100vh - 70px);
     margin-top: 70px;
     overflow-y: auto;
+}
+
+.icon-group,
+.tag-group {
+    display: flex;
+}
+
+.tag-selector {
+    //position: absolute;
+    //bottom: -38px;
+    //right: 0;
+    //left: 0;
+    display: flex;
+    justify-content: space-between;
+    .tag-list {
+        background-color: $white;
+        flex-grow: 1;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+}
+
+.footer-items {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.footer-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ember-basic-dropdown-content {
+    position: relative;
+}
+
+.ember-power-select-options {
+    height: 12.25rem;
+    font-size: 0.75rem;
+}
+
+.ember-power-select-status-icon {
+    display: none;
+}
+
+.ember-power-select-trigger {
+    padding: 4px;
+}
+
+.ember-power-select-multiple-remove-btn {
+   display: none;
 }

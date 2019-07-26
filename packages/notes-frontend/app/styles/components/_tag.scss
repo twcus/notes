@@ -1,25 +1,20 @@
-.button {
+.tag {
     font-family: inherit;
-    font-size: inherit;
+    font-size: 0.75em;
+    text-overflow: ellipsis;
     display: inline-flex;
     align-items: center;
-    margin: 0;
+    margin-right: 8px;
     border: 0;
     padding: 8px;
-    background-color: transparent;
-    border-radius: $border-radius-normal;
+    background-color: lighten($black, 80%);
+    border-radius: 16px;
     &:hover {
-        background-color: lighten($black, 80%);
+        background-color: lighten($black, 70%);
         cursor: pointer;
     }
     &:active {
         background-color: lighten($black, 75%);
-    }
-    &.is-primary {
-        color: $primary;
-    }
-    &.is-grey {
-        background-color: lighten($grey-light, 20%);
     }
     &.is-primary:hover {
         background-color: lighten($purple, 26%);
@@ -30,10 +25,14 @@
         background-color: lighten($purple, 22%);
         background-color: lighten($black, 75%);
     }
-    svg.left {
-        margin-right: 8px;
-    }
-    svg.right {
-        margin-left: 8px;
+    svg {
+        font-size: 0.5rem;
+        color: lighten($black, 50%);
+        &.left {
+            margin-right: 8px;
+        }
+        &.right {
+            margin-left: 8px;
+        }
     }
 }

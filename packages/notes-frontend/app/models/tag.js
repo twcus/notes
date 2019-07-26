@@ -1,9 +1,10 @@
 import DS from 'ember-data';
+const { Model } = DS;
 
-export default DS.Model.extend({
+export default Model.extend({
     user: DS.attr(),
     createdDate: DS.attr('date'),
     modifiedDate: DS.attr('date'),
     content: DS.attr(),
-    tags: DS.hasMany('tag')
+    notes: DS.hasMany('note')
 });

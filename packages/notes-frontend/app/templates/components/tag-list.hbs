@@ -1,0 +1,25 @@
+<div class="tag-list">
+    <Tag><span>Testing</span></Tag>
+    <Tag><span>Testing</span></Tag>
+    <Tag><span>Testing</span></Tag>
+    <Tag><span>Testing</span></Tag>
+    <Tag><span>Testing</span></Tag>
+    <Tag><span>Testing</span></Tag>
+    <Tag><span>Testing</span></Tag>
+
+</div>
+<PowerSelectMultipleWithCreate
+        @options={{optionsPromise}}
+        @onclose={{action "onTagListClose"}}
+        @renderInPlace=true
+        @initiallyOpened=true
+        @searchField="content"
+        @oncreate={{action "createTag"}}
+        @placeholder="Enter tag"
+        @noMatchesMessage="Create tag"
+        @triggerComponent="power-select/trigger"
+        @suggestedOptionComponent="power-select/suggested"
+        @onchange={{action "selectedTag"}} as |tag|>
+    {{tag.content}}
+</PowerSelectMultipleWithCreate>
+<!--        @buildSuggestion={{action "createTagSuggestion"}}-->
