@@ -46,6 +46,9 @@
         display: flex;
         justify-content: flex-end;
         .footer-actions {
+            .tag-group {
+                flex-basis: 60%;
+            }
             .delete-confirm {
                 position: absolute;
                 right: 75px;

@@ -23,7 +23,7 @@
                 </div>
             </div>
             {{#if isShowingTags}}
-                <TagList @tagList={{tagList}} @onSelectTag={{action "addTag" model}} @createTag={{action "createTag" model}} @getAllTags={{action "getAllTags"}}></TagList>
+                <TagList @tagList={{tagList}} @selectedTags={{model.tags}} @onSelectTag={{action "addTag" model}} @createTag={{action "createTag" model}} @getAllTags={{action "getAllTags"}}></TagList>
             {{/if}}
         </div>
     </div>
