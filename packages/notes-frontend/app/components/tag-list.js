@@ -9,10 +9,6 @@ export default Component.extend({
         this.set('optionsPromise', promise);
     },
     actions: {
-        fetchTags() {
-            let promise = this.getAlLTags();
-            this.set('optionsPromise', promise);
-        },
         createTag(content) {
             console.log(`creating new tag ${content}`);
             this.createTag(content);

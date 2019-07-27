@@ -58,22 +58,7 @@ export default @tagName('') @layout(templateLayout) class PowerSelectTrigger ext
             e.stopPropagation();
             return false;
         }
-        if (e.keyCode === 8) {
-            e.stopPropagation();
-            if (isBlank(e.target.value)) {
-                let lastSelection = this.select.selected[this.select.selected.length - 1];
-                if (lastSelection) {
-                    this.select.actions.select(this.buildSelection(lastSelection, this.select), e);
-                    if (typeof lastSelection === 'string') {
-                        this.select.actions.search(lastSelection);
-                    } else {
-                        assert('`<PowerSelectMultiple>` requires a `@searchField` when the options are not strings to remove options using backspace', this.searchField);
-                        this.select.actions.search(get(lastSelection, this.searchField));
-                    }
-                    this.select.actions.open(e);
-                }
-            }
-        } else if (e.keyCode >= 48 && e.keyCode <= 90 || e.keyCode === 32) { // Keys 0-9, a-z or SPACE
+        if (e.keyCode === 8 || (e.keyCode >= 48 && e.keyCode <= 90 || e.keyCode === 32)) {
             e.stopPropagation();
         }
     }

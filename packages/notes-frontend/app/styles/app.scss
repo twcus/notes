@@ -204,4 +204,8 @@ $ember-basic-dropdown-content-background-color: $ember-power-select-background-c
     justify-content: flex-start;
     line-height: 1rem;
     padding: 5px;
+    .create-icon {
+        color: $grey-light;
+        margin-right: 8px;
+    }
 }

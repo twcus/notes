@@ -15,17 +15,17 @@ export default Controller.extend({
             return this.store.findAll('tag');
         },
         createTag(note, content) {
+            debugger;
             let tag = this.store.createRecord('tag', {
                 content
             });
             tag.get('notes').pushObject(note);
             tag.save();
         },
-        addTag(note, tag) {
-            tag = tag[0];
-            note.get('tags').pushObject(tag);
+        addTag(note, tags) {
+            debugger;
+            note.set('tags', tags);
             note.save();
-            console.log(`tag=${tag}    note=${note}`);
         }
     }
 });
