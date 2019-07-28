@@ -1,7 +1,7 @@
 <div class="tag-list">
 </div>
 <div class="tag-search">
-    <PowerSelectMultipleWithCreate
+    <PowerSelectCreate
         @options={{optionsPromise}}
         @selected={{selectedTags}}
         @onclose={{action "onTagListClose"}}
@@ -13,8 +13,9 @@
         @noMatchesMessage="Create tag"
         @triggerComponent="PowerSelectTrigger"
         @suggestedOptionComponent="PowerSelectSuggested"
+        @showCreateWhen={{action "shouldShowCreateOption"}}
         @onchange={{action "selectedTag"}} as |tag|>
         <PowerSelectOption @content={{tag.content}} />
-    </PowerSelectMultipleWithCreate>
+    </PowerSelectCreate>
 </div>
 

@@ -15,17 +15,20 @@ export default Controller.extend({
             return this.store.findAll('tag');
         },
         createTag(note, content) {
-            debugger;
+
             let tag = this.store.createRecord('tag', {
                 content
             });
             tag.get('notes').pushObject(note);
             tag.save();
+            // let input = document.querySelector('.ember-power-select-trigger-multiple-input');
+            // input.value='';
         },
         addTag(note, tags) {
-            debugger;
             note.set('tags', tags);
             note.save();
+            // let input = document.querySelector('.ember-power-select-trigger-multiple-input');
+            // input.value='';
         }
     }
 });

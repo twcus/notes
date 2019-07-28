@@ -5,7 +5,11 @@ export default Component.extend({
     optionsPromise: null,
     init() {
         this._super(...arguments);
-        let promise = this.getAllTags();
+        let promise = this.getAllTags()
+            .then(tags => {
+                this.set('allTags', tags);
+                return tags;
+            });
         this.set('optionsPromise', promise);
     },
     actions: {
@@ -13,7 +17,8 @@ export default Component.extend({
             console.log(`creating new tag ${content}`);
             this.createTag(content);
         },
-        selectedTag(selected) {
+        selectedTag(selected, select) {
+            debugger;
             console.log(selected);
             console.log(`selected ${JSON.stringify(selected)}`);
             this.onSelectTag(selected);
@@ -23,6 +28,9 @@ export default Component.extend({
         },
         createTagSuggestion(tag) {
             return `Create tag ${tag}`;
+        },
+        shouldShowCreateOption(searchText) {
+            return !this.get('allTags').findBy('content', searchText);
         }
     }
 });
