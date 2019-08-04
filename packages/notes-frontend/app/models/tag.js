@@ -6,5 +6,6 @@ export default Model.extend({
     createdDate: DS.attr('date'),
     modifiedDate: DS.attr('date'),
     content: DS.attr(),
-    notes: DS.hasMany('note')
+    notes: DS.hasMany('note'),
+    collections: DS.hasMany('collection')
 });

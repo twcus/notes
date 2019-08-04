@@ -18,12 +18,14 @@
     </div>
     <div class="toolbar-item">
         <button class="button">
-            {{fa-icon 'sort' class="left"}}Sort
+            {{fa-icon 'sort' class="left"}}
+            <span>Sort</span>
         </button>
     </div>
     <div class="toolbar-item">
-        <LinkTo @tagName="button" class="is-primary button" @route="notes.new">
-            {{fa-icon 'plus' class="left"}}Add New Note
+        <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
+            {{fa-icon 'plus' class="left"}}
+            <span>Add New Note</span>
         </LinkTo>
     </div>
 </Toolbar>

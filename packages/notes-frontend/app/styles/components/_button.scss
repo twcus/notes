@@ -15,6 +15,9 @@
     &:active {
         background-color: lighten($black, 75%);
     }
+    &.is-bold {
+        font-weight: 500;
+    }
     &.is-primary {
         color: $primary;
     }

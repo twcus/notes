@@ -1,0 +1,5 @@
+{{#each collections as |collection|}}
+    <LinkTo @tagName="div" class="note-link" @route="collections.edit" @model={{collection.id}}>
+        <Card @note={{note}} @onConfirm={{action "deleteNote" note}}/>
+    </LinkTo>
+{{/each}}
