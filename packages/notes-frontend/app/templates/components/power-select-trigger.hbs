@@ -1,0 +1,32 @@
+<ul
+    id="ember-power-select-multiple-options-{{@select.uniqueId}}"
+    class="ember-power-select-multiple-options"
+    {{on "touchstart" this.chooseOption}}
+    {{on "mousedown" this.chooseOption}}
+    ...attributes>
+    {{#if @searchEnabled}}
+        <div class="power-select-search-container">
+            {{fa-icon "search"}}
+            <input
+                style="width: 100%;"
+                type="search"
+                class="ember-power-select-trigger-multiple-input"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                id="ember-power-select-trigger-multiple-input-{{@select.uniqueId}}"
+                value={{@select.searchText}}
+                aria-controls={{@listboxId}}
+                style={{this.triggerMultipleInputStyle}}
+                placeholder={{this.placeholder}}
+                disabled={{@select.disabled}}
+                tabindex={{@tabindex}}
+                {{on "focus" @onFocus}}
+                {{on "blur" @onBlur}}
+                {{on "input" this.handleInput}}
+                {{on "keydown" this.handleKeydown}}
+                {{did-insert this.storeInputStyles}}>
+        </div>
+    {{/if}}
+</ul>

@@ -1,29 +1,30 @@
 const models = {
     user: {
         name: String,
-        createdAt: Date,
-        updatedAt: Date,
-        notes: [Array('note'), 'creator'],
-        collections: [Array('collection'), 'creator'],
-        tags: [Array('tag'), 'creator']
+        createdDate: Date,
+        modifiedDate: Date,
+        notes: [Array('note'), 'user'],
+        collections: [Array('collection'), 'user'],
+        tags: [Array('tag'), 'user']
     },
     note: {
         content: String,
-        createdAt: Date,
-        updatedAt: Date,
-        creator: ['user', 'notes'],
+        createdDate: Date,
+        modifiedDate: Date,
+        user: ['user', 'notes'],
         tags: [Array('tag'), 'notes']
     },
     collection: {
-        createdAt: Date,
-        updatedAt: Date,
-        creator: ['user', 'collections'],
+        createdDate: Date,
+        modifiedDate: Date,
+        user: ['user', 'collections'],
         tags: [Array('tag'), 'collections']
     },
     tag: {
-        createdAt: Date,
-        updatedAt: Date,
-        creator: ['user', 'tags'],
+        content: String,
+        createdDate: Date,
+        modifiedDate: Date,
+        user: ['user', 'tags'],
         notes: [Array('note'), 'tags'],
         collections: [Array('collection'), 'tags']
     }

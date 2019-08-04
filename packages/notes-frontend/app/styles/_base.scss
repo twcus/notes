@@ -1,0 +1,82 @@
+html,
+body {
+    min-height: 100%;
+    overflow: hidden;
+    background-color: $white-dark;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+input {
+    font-family: inherit;
+}
+
+/* Remove the X button on search inputs for clearing */
+input[type=search]::-ms-clear {  display: none; width : 0; height: 0; }
+input[type=search]::-ms-reveal {  display: none; width : 0; height: 0; }
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+textarea {
+    font-family: inherit;
+    border-radius: $border-radius-normal;
+    padding: 8px;
+    width: 100%;
+    border: none;
+    background-color: $white;
+    resize: none;
+    &:focus {
+        outline: none;
+    }
+}
+
+//$scrollbar-height: 5px;
+//$scrollbar-padding: 15px;
+
+//::-webkit-scrollbar {
+//    width: 6px;
+//    background-color: rgba(255,255,255,0);
+//}
+
+//::-webkit-scrollbar-track,
+//::-webkit-scrollbar-thumb {
+//    border: 48px solid rgba(255,255,255,0);
+//    background-clip: padding-box;
+//}
+//
+//::-webkit-scrollbar-track {
+//        background: rgba(0, 0, 0, 0.5);
+//    border: 2px solid transparent;
+//    border-radius: 8px;
+//    background-clip: content-box;
+//}
+//
+//::-webkit-scrollbar-thumb {
+//    background-color: $primary;
+//    &:hover {
+//        border: 48px solid rgba(255,255,255,0);
+//    }
+//}
+
+
+//::-webkit-scrollbar {
+//    width: 6px;
+//}
+//
+///* Track */
+//::-webkit-scrollbar-track {
+//    background: rgba(0, 0, 0, 0.5);
+//    border: 2px solid transparent;
+//    background-clip: content-box;
+//    border-radius: 10px;
+//}
+//
+///* Handle */
+//::-webkit-scrollbar-thumb {
+//    background: $primary;
+//    border-radius: 10px;
+//}

@@ -1,0 +1,12 @@
+<div class="card-body">
+    {{note.content}}
+</div>
+<div class="card-footer">
+    {{note.modifiedDate}}
+    <div class="footer-actions {{if isConfirming "confirming"}}">
+        <button class="button note-delete" onclick={{disable-bubbling (action "openTagSelector")}}><span>5</span>{{fa-icon 'tag' class="right"}}</button>
+        <button class="button note-delete" onclick={{disable-bubbling (action "toggleConfirmationPrompt")}}>{{fa-icon 'trash'}}</button>
+        <button class="button delete-confirm" onclick={{disable-bubbling (action "confirm")}}>{{fa-icon 'check' }}</button>
+        <button class="button delete-cancel" onclick={{disable-bubbling (action "toggleConfirmationPrompt")}}>{{fa-icon 'times' }}</button>
+    </div>
+</div>

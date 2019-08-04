@@ -1,0 +1,39 @@
+.tag {
+    font-family: inherit;
+    font-size: 0.75em;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    margin-right: 8px;
+    border: 0;
+    padding: 8px;
+    background-color: lighten($black, 80%);
+    border-radius: 16px;
+    &:hover {
+        background-color: lighten($black, 70%);
+        cursor: pointer;
+    }
+    &:active {
+        background-color: lighten($black, 75%);
+    }
+    &.is-primary:hover {
+        background-color: lighten($purple, 26%);
+        background-color: lighten($black, 80%);
+        cursor: pointer;
+    }
+    &.is-primary:active {
+        background-color: lighten($purple, 22%);
+        background-color: lighten($black, 75%);
+    }
+    svg {
+        font-size: 0.5rem;
+        color: lighten($black, 50%);
+        &.left {
+            margin-right: 8px;
+        }
+        &.right {
+            margin-left: 8px;
+        }
+    }
+}
