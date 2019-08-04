@@ -5,6 +5,7 @@ import fortuneHttp from 'fortune-http';
 import jsonApiSerializer from 'fortune-json-api';
 import postgresAdapter from 'fortune-postgres';
 import models from './models';
+import hooks from './hooks';
 
 const user = 'notes_user';
 const password = 'seton-user';
@@ -21,7 +22,8 @@ const postgresAdapterOptions = {
 const adapter = [postgresAdapter, postgresAdapterOptions];
 
 const fortuneOptions = {
-    adapter
+    adapter,
+    hooks
 };
 
 const store = fortune(models, fortuneOptions);

@@ -6,7 +6,6 @@ export default Component.extend({
             this.onSave(note);
         },
         selectTag(tags) {
-            debugger;
             this.onSelectTag(this.get('model'), tags);
         },
         createTag(tag) {
