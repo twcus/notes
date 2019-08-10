@@ -1,0 +1,5 @@
+{{#each notes as |note|}}
+    <LinkTo @tagName="div" class="note-link" @route="notes.edit" @model={{note.id}}>
+        <NoteCard @note={{note}} @onDelete={{action "deleteNote"}} />
+    </LinkTo>
+{{/each}}
