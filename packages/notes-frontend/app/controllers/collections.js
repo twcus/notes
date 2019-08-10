@@ -1,7 +1,7 @@
 import Controller from '@ember/controller';
 
 export default Controller.extend({
-    currentView: null,
+    currentView: 'cards',
     actions: {
         createCollection(tags) {
             let collection = this.store.createRecord('collection', {

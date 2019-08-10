@@ -30,12 +30,6 @@
     </div>
 </Toolbar>
 <section class="content">
-    <div class="card-grid">
-        {{#each model as |note|}}
-            <LinkTo @tagName="div" class="note-link" @route="notes.edit" @model={{note.id}}>
-                <Card @note={{note}} @onConfirm={{action "deleteNote" note}}/>
-            </LinkTo>
-        {{/each}}
-    </div>
+    <NotesListCards @notes={{model}} @deleteNote={{action "deleteNote"}}/>
     {{outlet}}
 </section>
