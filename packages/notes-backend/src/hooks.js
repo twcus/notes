@@ -15,7 +15,7 @@ const updateModifiedDate = update => {
 
 const noteInputHook = (context, record, update) => {
     switch (context.request.method) {
-        case methods.create: return updateModifiedDate(updateCreatedDate(record));
+        case methods.create: return updateCreatedDate(record);
         case methods.update: {
             if (update.replace && update.content !== record.content) {
                 return updateModifiedDate(update);
@@ -29,7 +29,7 @@ const noteInputHook = (context, record, update) => {
 
 const collectionInputHook = (context, record) => {
     switch (context.request.method) {
-        case methods.create: return updateModifiedDate(updateCreatedDate(record));
+        case methods.create: return updateCreatedDate(record);
         case methods.update: return updateModifiedDate(record);
         default: break;
     }
@@ -38,7 +38,7 @@ const collectionInputHook = (context, record) => {
 
 const tagInputHook = (context, record) => {
     switch (context.request.method) {
-        case methods.create: return updateModifiedDate(updateCreatedDate(record));
+        case methods.create: return updateCreatedDate(record);
         case methods.update: return updateModifiedDate(record);
         default: break;
     }

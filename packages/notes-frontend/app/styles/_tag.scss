@@ -1,3 +1,20 @@
+.tag-list-with-selector {
+    display: flex;
+    .tag-list {
+        flex-basis: 60%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+    }
+    .tag-selector {
+        flex-basis: 40%;
+    }
+}
+
+.tag-list {
+
+}
+
 .tag {
     font-family: inherit;
     font-size: 0.75em;
@@ -5,11 +22,12 @@
     display: inline-flex;
     align-items: center;
     white-space: nowrap;
-    margin-right: 8px;
+    margin: 0 8px 8px 0;
     border: 0;
     padding: 8px;
+    height: fit-content;
     background-color: lighten($black, 80%);
-    border-radius: 16px;
+    border-radius: $border-radius-normal;
     &:hover {
         background-color: lighten($black, 70%);
         cursor: pointer;

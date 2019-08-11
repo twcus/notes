@@ -1,4 +1,4 @@
-<Modal @focusedElement=".note-textarea" @onClose={{action "closeNote" model}}>
+<Modal @focusedElement=".note-textarea" @onClickOverlay={{action "closeNote" model}}>
     <div class="modal-body">
         <Textarea @autoresize=true class="note-textarea" aria-label="Edit note" @rows=10 @value={{model.content}} />
     </div>

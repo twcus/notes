@@ -23,13 +23,13 @@
         </button>
     </div>
     <div class="toolbar-item">
-        <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
+        <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
             {{fa-icon 'plus' class="left"}}
             <span>Add New Collection</span>
         </LinkTo>
     </div>
 </Toolbar>
 <section class="content">
-    <CollectionsListCards @collections={{model}} />
+    <CollectionsListCards @collections={{model}} @deleteCollection={{action "deleteCollection"}} />
     {{outlet}}
 </section>

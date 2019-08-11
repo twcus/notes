@@ -3,11 +3,11 @@ import Controller from '@ember/controller';
 export default Controller.extend({
     currentView: 'cards',
     actions: {
-        createCollection(tags) {
-            let collection = this.store.createRecord('collection', {
-                tags
+        createCollection(collection) {
+            let collectionRecord = this.store.createRecord('collection', {
+                tags: collection.tags
             });
-            collection.save();
+            return collectionRecord.save();
         },
         saveCollection(collection)  {
             collection.save();

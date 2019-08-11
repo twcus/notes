@@ -1,0 +1,23 @@
+<Modal @onClickOverlay={{action "saveAndClose"}}>
+    <div class="modal-body">
+        <div class="tag-list-with-selector">
+            <div class="tag-list">
+                {{#each collection.tags as |tag|}}
+                    <Tag>{{tag.content}}</Tag>
+                {{/each}}
+            </div>
+            <TagList @selectedTags={{collection.tags}} @onSelectTag={{action "selectTag"}} @createTag={{action "createTag"}} @getAllTags={{action "getAllTags"}}></TagList>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="footer-items">
+            <div class="footer-actions">
+                <div class="icon-group">
+                    <button {{action "saveAndClose"}} class="button">
+                        {{fa-icon 'trash'}}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</Modal>

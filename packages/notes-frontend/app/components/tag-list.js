@@ -14,8 +14,6 @@ export default Component.extend({
             this.createTag(content);
         },
         selectedTag(selected) {
-            console.log(selected);
-            console.log(`selected ${JSON.stringify(selected)}`);
             this.onSelectTag(selected);
         },
         onTagListClose() {
