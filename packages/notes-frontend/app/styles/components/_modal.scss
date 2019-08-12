@@ -27,19 +27,17 @@
 .modal-header,
 .modal-footer {
     flex: 0 0 auto;
-    border-radius: 5px;
     padding: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.modal-header {
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
-}
-
 .modal-footer {
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+    .footer-actions {
+        align-self: flex-end;
+    }
 }
 
 .modal-body {

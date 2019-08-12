@@ -2,6 +2,6 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
     model() {
-        return {  };
+        return this.store.createRecord('collection');
     }
 });

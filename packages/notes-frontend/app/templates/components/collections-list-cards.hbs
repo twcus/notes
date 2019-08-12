@@ -1,5 +1,5 @@
 {{#each collections as |collection|}}
-    <LinkTo @tagName="div" class="note-link" @route="collections.edit" @model={{collection.id}}>
+    <LinkTo @tagName="div" class="link-card {{if collection.isNew "is-new"}}" @route="collections.edit" @model={{collection.id}}>
         <CollectionCard @collection={{collection}} @onDelete={{action "deleteCollection"}} />
     </LinkTo>
 {{/each}}

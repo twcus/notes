@@ -15,6 +15,7 @@ const models = {
         tags: [Array('tag'), 'notes']
     },
     collection: {
+        name: String,
         createdDate: Date,
         modifiedDate: Date,
         user: ['user', 'collections'],

@@ -1,9 +1,12 @@
 <Modal @onClickOverlay={{action "saveAndClose"}}>
+    <div class="modal-header collection-header">
+        <Content-Editable @value={{collection.name}} placeholder="Enter collection name..." />
+    </div>
     <div class="modal-body">
         <div class="tag-list-with-selector">
             <div class="tag-list">
                 {{#each collection.tags as |tag|}}
-                    <Tag>{{tag.content}}</Tag>
+                    <Tag @content={{tag.content}} />
                 {{/each}}
             </div>
             <TagList @selectedTags={{collection.tags}} @onSelectTag={{action "selectTag"}} @createTag={{action "createTag"}} @getAllTags={{action "getAllTags"}}></TagList>

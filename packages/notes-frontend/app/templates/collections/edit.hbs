@@ -1,1 +1,7 @@
-{{outlet}}
+<CollectionEditModal
+        @collection={{model}}
+        @onSaveAndClose={{action "saveCollection"}}
+        @onSelectTag={{action "addTag"}}
+        @onCreateTag={{action "createTag"}}
+        @onGetAllTags={{action "getAllTags"}}
+/>

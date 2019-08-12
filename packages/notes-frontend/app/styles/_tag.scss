@@ -2,9 +2,6 @@
     display: flex;
     .tag-list {
         flex-basis: 60%;
-        display: flex;
-        flex-wrap: wrap;
-        align-content: flex-start;
     }
     .tag-selector {
         flex-basis: 40%;
@@ -12,7 +9,10 @@
 }
 
 .tag-list {
-
+    flex-basis: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
 }
 
 .tag {

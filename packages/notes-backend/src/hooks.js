@@ -27,19 +27,19 @@ const noteInputHook = (context, record, update) => {
     return record;
 };
 
-const collectionInputHook = (context, record) => {
+const collectionInputHook = (context, record, update) => {
     switch (context.request.method) {
         case methods.create: return updateCreatedDate(record);
-        case methods.update: return updateModifiedDate(record);
+        case methods.update: return updateModifiedDate(update);
         default: break;
     }
     return record;
 };
 
-const tagInputHook = (context, record) => {
+const tagInputHook = (context, record, update) => {
     switch (context.request.method) {
         case methods.create: return updateCreatedDate(record);
-        case methods.update: return updateModifiedDate(record);
+        case methods.update: return updateModifiedDate(update);
         default: break;
     }
     return record;

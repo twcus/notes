@@ -1,11 +1,17 @@
-<div class="card-header">
+<div class="card-header collection-header">
     {{collection.name}}
 </div>
 <div class="card-body">
-    {{collection.tags}}
+        <div class="tag-list">
+            {{#each collection.tags as |tag|}}
+                <Tag @content={{tag.content}} @hasActionButton={{false}} />
+            {{/each}}
+        </div>
 </div>
 <div class="card-footer">
-    <span>{{moment-format note.modifiedDate 'DD MMM YY'}}</span>
+    {{#if collection.modifiedDate}}
+        <span>{{moment-format collection.modifiedDate 'DD MMM YY'}}</span>
+    {{/if}}
     <div class="footer-actions {{if isConfirming "confirming"}}">
         <button class="button note-delete" onclick={{disable-bubbling (action "toggleConfirmationPrompt")}}>{{fa-icon 'trash'}}</button>
         <button class="button delete-confirm" onclick={{disable-bubbling (action "confirmDelete")}}>{{fa-icon 'check' }}</button>

@@ -1,23 +1,9 @@
 import Controller from '@ember/controller';
+import CollectionActionsMixin from '../mixins/collection-actions-mixin';
+import ViewMixin from '../mixins/view-mixin';
 
-export default Controller.extend({
-    currentView: 'cards',
+export default Controller.extend(CollectionActionsMixin, ViewMixin, {
     actions: {
-        createCollection(collection) {
-            let collectionRecord = this.store.createRecord('collection', {
-                tags: collection.tags
-            });
-            return collectionRecord.save();
-        },
-        saveCollection(collection)  {
-            collection.save();
-        },
-        deleteCollection(collection) {
-            collection.destroyRecord();
-        },
-        changeView(view) {
-            this.set('currentView', view);
-        },
         searchCollections(searchText) {
             console.log(searchText);
         },

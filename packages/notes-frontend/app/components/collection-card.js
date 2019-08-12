@@ -1,7 +1,10 @@
 import Component from '@ember/component';
+import { alias } from '@ember/object/computed';
 
 export default Component.extend({
     classNames: ['card'],
+    classNameBindings: ['isNew:is-new'],
+    isNew: alias('collection.isNew'),
     isConfirming: false,
     mouseLeave() {
         this.set('isConfirming', false);
