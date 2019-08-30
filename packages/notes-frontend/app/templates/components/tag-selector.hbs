@@ -1,7 +1,7 @@
 <PowerSelectMultipleWithCreate
     @options={{optionsPromise}}
     @selected={{selectedTags}}
-    @onclose={{action "onTagListClose"}}
+    @onclose={{action "closeTagSelector"}}
     @renderInPlace=true
     @initiallyOpened=true
     @searchField="content"
@@ -10,6 +10,6 @@
     @noMatchesMessage="Create tag"
     @triggerComponent="PowerSelectTrigger"
     @suggestedOptionComponent="PowerSelectSuggested"
-    @onchange={{action "selectedTag"}} as |tag|>
+    @onchange={{action "selectTag"}} as |tag|>
     <PowerSelectOption @content={{tag.content}} />
 </PowerSelectMultipleWithCreate>

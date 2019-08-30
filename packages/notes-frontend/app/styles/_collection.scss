@@ -2,6 +2,7 @@
     justify-content: center;
 }
 
-.is-new {
-    visibility: hidden;
+.collection-modal-body {
+    display: flex;
+    overflow-y: hidden;
 }

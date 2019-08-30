@@ -124,9 +124,6 @@ $ember-basic-dropdown-content-background-color: $ember-power-select-background-c
         flex-wrap: wrap;
         align-content: flex-start;
     }
-    .tag-search {
-        flex-basis: 100%;
-    }
 }
 
 .footer-items {
@@ -211,4 +208,8 @@ $ember-basic-dropdown-content-background-color: $ember-power-select-background-c
         color: $grey-light;
         margin-right: 8px;
     }
+}
+
+.ember-power-select-options[role=listbox] {
+    max-height: unset;
 }

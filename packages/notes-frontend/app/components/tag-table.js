@@ -2,6 +2,7 @@ import Component from '@ember/component';
 import { computed } from '@ember/object';
 
 export default Component.extend({
+    classNames: ['tag-table'],
     page: 0,
     limit: 10,
     dir: 'asc',

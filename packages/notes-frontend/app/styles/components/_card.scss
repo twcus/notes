@@ -116,14 +116,12 @@
     position: relative;
 }
 
-.link-card {
-    .note-link {
-        color: $black;
-        width: 100%;
-        text-decoration: none;
-        &.active,
-        &.is-new {
-            visibility: hidden;
-        }
+.card-link {
+    color: $black;
+    width: 100%;
+    text-decoration: none;
+    &.active,
+    &.is-new {
+        visibility: hidden;
     }
 }

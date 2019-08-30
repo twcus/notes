@@ -14,9 +14,6 @@ export default Mixin.create({
         },
         deleteCollection(collection) {
             return collection.destroyRecord();
-        },
-        trashCollection(collection) {
-            // TODO send collection to trash
         }
     }
 });
