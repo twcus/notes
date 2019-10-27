@@ -2,7 +2,6 @@
     font-weight: 500;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     width: 200px;
     position: fixed;
     top: 0;
@@ -17,6 +16,8 @@
 .nav-menu-group {
     display: flex;
     flex-direction: column;
+    padding: 0;
+    margin: 0;
 }
 
 .nav-menu-item {

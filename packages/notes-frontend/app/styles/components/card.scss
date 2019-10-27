@@ -1,0 +1,31 @@
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-auto-rows: 275px;
+    grid-gap: 24px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px;
+}
+
+.card {
+    background-color: $white;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid #e8e8e8;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    &:hover {
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+    }
+    .card-body {
+        flex: 1 1 auto;
+        position: relative;
+        overflow-y: hidden;
+        word-break: break-all;
+        padding: 8px;
+    }
+}
