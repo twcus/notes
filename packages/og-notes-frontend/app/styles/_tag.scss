@@ -1,0 +1,103 @@
+.tag-list-with-selector {
+    display: flex;
+    .tag-list {
+        flex-basis: 60%;
+    }
+    .tag-selector {
+        flex-basis: 40%;
+    }
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.collection-modal-tag-selector {
+    .ember-basic-dropdown {
+        display: flex;
+        flex-direction: column;
+        .ember-power-select-trigger {
+            display: contents;
+        }
+        .ember-basic-dropdown-content-wormhole-origin {
+            display: contents;
+            .ember-basic-dropdown-content {
+                overflow-y: auto;
+                .ember-power-select-options {
+                    height: unset;
+                }
+            }
+        }
+    }
+
+    .tag-search {
+        width: 100%;
+        .ember-basic-dropdown {
+            height: 100%;
+            .ember-basic-dropdown-content-wormhole-origin {
+                height: 100%;
+                display: block;
+                .ember-basic-dropdown-content {
+                    height: 100%;
+                    .ember-power-select-options {
+                        height: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.collection-modal-tag-list {
+    flex-basis: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.tag {
+    font-family: inherit;
+    font-size: 0.75em;
+    text-overflow: ellipsis;
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    margin: 0 8px 8px 0;
+    border: 0;
+    padding: 8px;
+    height: fit-content;
+    background-color: lighten($black, 80%);
+    border-radius: $border-radius-normal;
+    &:hover {
+        background-color: lighten($black, 70%);
+        cursor: pointer;
+    }
+    &:active {
+        background-color: lighten($black, 75%);
+    }
+    &.is-primary:hover {
+        background-color: lighten($purple, 26%);
+        background-color: lighten($black, 80%);
+        cursor: pointer;
+    }
+    &.is-primary:active {
+        background-color: lighten($purple, 22%);
+        background-color: lighten($black, 75%);
+    }
+    svg {
+        font-size: 0.5rem;
+        color: lighten($black, 50%);
+        &.left {
+            margin-right: 8px;
+        }
+        &.right {
+            margin-left: 8px;
+        }
+    }
+}
+
+.tag-table {
+    height: 100%;
+}

@@ -1,0 +1,17 @@
+<Modal @focusedElement=".note-textarea" @onClickOverlay={{action "closeNote" model}}>
+    <div class="modal-body">
+        <Textarea @autoresize=true class="note-textarea" aria-label="Edit note" @rows=10 @value={{model.content}} />
+    </div>
+    <div class="modal-footer">
+        <div class="icon-group">
+            <button class="button">
+                {{fa-icon 'tag'}}
+            </button>
+        </div>
+        <div class="button-group">
+            <button class="button" {{action "closeNote" model}}>Close</button>
+            <button class="button  is-primary" {{action "saveNote" model}}>Save</button>
+        </div>
+    </div>
+</Modal>
+{{outlet}}

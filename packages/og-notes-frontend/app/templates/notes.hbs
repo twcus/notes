@@ -1,0 +1,35 @@
+<Toolbar @tagName="section" class="toolbar">
+    <div class="toolbar-item">
+        <button class="button">
+            {{fa-icon 'list'}}
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <div class="toolbar-search-container">
+            {{fa-icon 'search'}}
+            <input type="text" placeholder="Search" aria-label="Search notes">
+        </div>
+    </div>
+    <div class="toolbar-item">
+        <button class="button">
+            {{fa-icon 'filter' class="left"}}
+            <span>Filter</span>
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <button class="button">
+            {{fa-icon 'sort' class="left"}}
+            <span>Sort</span>
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
+            {{fa-icon 'plus' class="left"}}
+            <span>Add New Note</span>
+        </LinkTo>
+    </div>
+</Toolbar>
+<section class="content">
+    <NotesListCards @notes={{model}} @deleteNote={{action "deleteNote"}}/>
+    {{outlet}}
+</section>
