@@ -5,8 +5,8 @@
     <div class="card-footer">
         <span>8 Aug 19</span>
         <div class="action-bar">
-            <button {{on "click" this.showDeleteConfirmation}} class="button"><FaIcon @icon="tag" /></button>
-            <button {{on "click" this.showDeleteConfirmation}} class="button"><FaIcon @icon="trash" /></button>
+            <button {{on "click" this.openTagSelector}} class="button"><FaIcon @icon="tag" /></button>
+            <button {{on "click" this.delete}} class="button"><FaIcon @icon="trash" /></button>
         </div>
     </div>
 </div>

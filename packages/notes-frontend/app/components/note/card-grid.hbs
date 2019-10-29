@@ -1,5 +1,8 @@
 <div class="card-grid">
     {{#each @notes as |note|}}
-        <Note::Card @note={{note}}/>
+        <Note::Card
+            @note={{note}}
+            @onDelete={{fn this.deleteNote note}}
+        />
     {{/each}}
 </div>

@@ -2,23 +2,15 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class NoteCardComponent extends Component {
-    isConfirmingDelete = false;
-
     @action
-    showDeleteConfirmation() {
-        console.log('in showDeleteConfirmation in card');
-        this.isConfirmingDelete = true;
+    async delete(note) {
+        console.log('in delete in card' + `${JSON.stringify(note)}`);
+        let result = await this.args.onDelete(note);
+        console.log(`${result}`);
     }
 
     @action
-    cancelDelete() {
-        console.log('in cancelDelete in card');
-        this.isConfirmingDelete = false;
-    }
-
-    @action
-    confirmDelete() {
-        console.log('in confirmDelete in card');
-        this.isConfirmingDelete = false;
+    openTagSelector() {
+        console.log('in openTagSelector in card');
     }
 }

@@ -1,5 +1,8 @@
 <Toolbar />
 <div class="content">
-    <Note::CardGrid @notes={{@model}} />
+    <Note::CardGrid
+        @notes={{@model}}
+        @onDeleteNote={{this.deleteNote}}
+    />
     {{outlet}}
 </div>
