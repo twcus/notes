@@ -1,11 +1,31 @@
-<div class="card">
+<div class="card {{if this.isActive "active"}}">
     <div class="card-body">
         {{@note.content}}
     </div>
     <div class="card-footer">
         <span>8 Aug 19</span>
         <div class="action-bar">
-            <button {{on "click" this.openTagSelector}} class="button"><FaIcon @icon="tag" /></button>
+            <BasicDropdown
+                @onOpen={{this.onTagSelectorOpen}}
+                @onClose={{this.onTagSelectorClose}}
+                as |dd|
+            >
+                <dd.Trigger class="button"><FaIcon @icon="tag" /></dd.Trigger>
+                <dd.Content>
+                    <PowerSelectWithCreate
+                        @options={{this.tags}}
+                        @selected={{this.selectedTags}}
+                        @onChange={{this.selectTag}}
+                        @onCreate={{this.createTag}}
+                        @onClose={{this.preventClose}}
+                        @initiallyOpened=true
+                        @closeOnSelect=false
+                        as |tag|
+                    >
+                        {{tag.content}}
+                    </PowerSelectWithCreate>
+                </dd.Content>
+            </BasicDropdown>
             <button {{on "click" this.delete}} class="button"><FaIcon @icon="trash" /></button>
         </div>
     </div>

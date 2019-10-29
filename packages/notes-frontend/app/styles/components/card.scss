@@ -11,7 +11,7 @@
 .card {
     background-color: $white;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid #e8e8e8;
+    border: 1px solid $white-darker;
     border-radius: 2px;
     transition: all 0.2s ease;
     cursor: pointer;
@@ -19,7 +19,8 @@
     flex-direction: column;
     justify-content: space-between;
     padding: 16px;
-    &:hover {
+    &:hover,
+    &.active {
         box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
         .card-footer .action-bar {
             opacity: 1;
@@ -38,10 +39,11 @@
         justify-content: space-between;
         align-items: center;
         .action-bar {
+            display: flex;
             opacity: 0;
             transition: opacity 0.2s ease;
             button {
-                color: $black-light;
+                color: $grey;
             }
         }
     }

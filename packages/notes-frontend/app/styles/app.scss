@@ -1,10 +1,9 @@
 @import 'vendor/normalize';
-@import 'utils/colors';
+@import 'utils/variables';
 @import 'utils/base';
+@import 'ember-power-select';
 @import 'components/nav-menu';
 @import 'components/toolbar';
 @import 'components/card';
 @import 'components/button';
-@import 'components/confirmation';
-
-
+@import 'components/dropdown';
