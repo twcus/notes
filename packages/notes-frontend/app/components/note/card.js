@@ -3,7 +3,7 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class NoteCardComponent extends Component {
-    @tracked tags = [ {content: 'one'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}];
+    @tracked tags = [ {content: 'onasdfasdfasdfasdfsdfasdfsdgfafasdfe'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}];
     @tracked selectedTags = [];
     @tracked isActive = false;
 
@@ -21,12 +21,19 @@ export default class NoteCardComponent extends Component {
 
     @action
     selectTag(tag) {
+        console.log(this.selectedTags);
         console.log('in selectTag' + ` ${tag}`);
+        this.selectedTags = tag;
     }
 
     @action
     createTag(tag) {
         console.log(`in createTag ${tag}`);
+    }
+
+    @action
+    customSuggestion(term) {
+        return term;
     }
 
     @action
@@ -43,7 +50,7 @@ export default class NoteCardComponent extends Component {
 
     @action
     preventClose() {
-        // Don't allow ember-power-select to be closed inside the ember-basic-dropdown
+        // Prevent ember-power-select from being closed inside the dropdown
         return false;
     }
 }

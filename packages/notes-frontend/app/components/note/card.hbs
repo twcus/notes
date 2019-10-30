@@ -12,18 +12,23 @@
             >
                 <dd.Trigger class="button"><FaIcon @icon="tag" /></dd.Trigger>
                 <dd.Content>
-                    <PowerSelectWithCreate
+                    <PowerSelectMultipleWithCreate
                         @options={{this.tags}}
                         @selected={{this.selectedTags}}
                         @onChange={{this.selectTag}}
                         @onCreate={{this.createTag}}
                         @onClose={{this.preventClose}}
+                        @triggerComponent="select-trigger"
+                        @suggestedOptionComponent="select-suggestion"
+                        @placeholder="Enter tag"
+                        @buildSuggestion={{this.customSuggestion}}
+                        @searchField="content"
                         @initiallyOpened=true
                         @closeOnSelect=false
                         as |tag|
                     >
-                        {{tag.content}}
-                    </PowerSelectWithCreate>
+                        <SelectOption @content={{tag.content}} @icon="check" />
+                    </PowerSelectMultipleWithCreate>
                 </dd.Content>
             </BasicDropdown>
             <button {{on "click" this.delete}} class="button"><FaIcon @icon="trash" /></button>
