@@ -17,8 +17,7 @@
                 id="ember-power-select-trigger-multiple-input-{{@select.uniqueId}}"
                 value={{@select.searchText}}
                 aria-controls={{@listboxId}}
-                style={{this.triggerMultipleInputStyle}}
-                placeholder={{this.maybePlaceholder}}
+                placeholder={{@placeholder}}
                 disabled={{@select.disabled}}
                 tabindex={{@tabindex}}
                 {{on "focus" @onFocus}}

@@ -41,9 +41,11 @@
         color: $grey;
         font-size: 0.8rem;
         margin-left: 8px;
+        cursor: pointer;
     }
 
     .ember-power-select-trigger-multiple-input {
+        width: 100%;
         text-indent: 0;
     }
 }
