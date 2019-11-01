@@ -3,8 +3,11 @@
 @import 'utils/base';
 @import 'utils/modifiers';
 @import 'ember-power-select';
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
 @import 'components/nav-menu';
 @import 'components/toolbar';
 @import 'components/card';
 @import 'components/button';
 @import 'components/dropdown';
+@import 'components/modal';

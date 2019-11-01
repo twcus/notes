@@ -1,4 +1,4 @@
-<div class="card {{if this.isActive "active"}}">
+<LinkTo @tagName="div" @route="notes.edit" @model={{@note.id}} class="card {{if this.isActive "active"}}">
     <div class="card-body">
         {{@note.content}}
     </div>
@@ -14,10 +14,11 @@
                 @onCreate={{this.createTag}}
                 @placeholder="Enter tag"
                 @searchField="content"
+                @stopPropagation=true
             >
                 <FaIcon @icon="tag" />
             </DropdownSelect>
-            <button {{on "click" this.delete}} class="button"><FaIcon @icon="trash" /></button>
+            <button {{on "click" (stop-propagation this.delete)}} class="button"><FaIcon @icon="trash" /></button>
         </div>
     </div>
-</div>
+</LinkTo>
