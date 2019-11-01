@@ -15,14 +15,7 @@ export default class NoteCardComponent extends Component {
     }
 
     @action
-    openTagSelector() {
-        console.log('in openTagSelector in card');
-    }
-
-    @action
     selectTag(tag) {
-        console.log(this.selectedTags);
-        console.log('in selectTag' + ` ${tag}`);
         this.selectedTags = tag;
     }
 

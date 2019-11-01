@@ -1,0 +1,26 @@
+<BasicDropdown
+    @onOpen={{this.open}}
+    @onClose={{this.close}}
+    as |dd|
+>
+    <dd.Trigger class="button">{{yield}}</dd.Trigger>
+    <dd.Content>
+        <PowerSelectMultipleWithCreate
+            @options={{@options}}
+            @selected={{@selected}}
+            @onChange={{this.select}}
+            @onCreate={{this.create}}
+            @onClose={{this.preventSelectClose}}
+            @triggerComponent="select-trigger"
+            @suggestedOptionComponent="select-suggestion"
+            @placeholder={{@placeholder}}
+            @buildSuggestion={{this.customSuggestion}}
+            @searchField={{@searchField}}
+            @initiallyOpened=true
+            @closeOnSelect=false
+            as |tag|
+        >
+            <SelectOption @content={{tag.content}} @icon="check" />
+        </PowerSelectMultipleWithCreate>
+    </dd.Content>
+</BasicDropdown>
