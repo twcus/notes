@@ -1,3 +1,1 @@
-<Note::Editor::Modal @onClose={{this.transitionToNotes}}>
-    {{model.content}}
-</Note::Editor::Modal>
+<Note::Editor::Modal @note={{@model}} @onClose={{this.transitionToNotes}} @onDelete={{this.deleteNote}} @onUpdate={{this.updatedNote}} />

@@ -13,7 +13,7 @@
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
     border: 1px solid $white-darker;
     border-radius: 2px;
-    transition: all 0.2s ease;
+    transition: opacity, box-shadow 0.2s ease;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -25,6 +25,9 @@
         .card-footer .action-bar {
             opacity: 1;
         }
+    }
+    &.hidden {
+        visibility: hidden;
     }
     .card-body {
         height: 100%;

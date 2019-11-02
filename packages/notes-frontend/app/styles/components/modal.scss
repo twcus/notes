@@ -1,3 +1,43 @@
 .ember-modal-overlay.translucent {
     background-color: #0c0c0c2e;
 }
+
+.ember-modal-dialog {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    max-height: 60%;
+    padding: 16px;
+    border-radius: 2px;
+    border: 1px solid $white-darker;
+    background-color: $white;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
+}
+
+.modal-header {
+    margin-bottom: 16px;
+}
+
+.modal-body {
+    height: 100%;
+    overflow-y: auto;
+    .content-editable {
+        padding: 8px 0;
+    }
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    color: $grey;
+    margin-top: 8px;
+    .action-bar {
+        display: flex;
+        button {
+            color: $grey;
+        }
+    }
+}
+

@@ -2,7 +2,7 @@
     {{#each @notes as |note|}}
         <Note::Card
             @note={{note}}
-            @onDelete={{fn this.deleteNote note}}
+            @onDelete={{this.deleteNote}}
         />
     {{/each}}
 </div>

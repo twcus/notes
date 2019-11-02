@@ -6,12 +6,12 @@ export default class NoteCardComponent extends Component {
     @tracked tags = [ {content: 'onasdfasdfasdfasdfsdfasdfsdgfafasdfe'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}];
     @tracked selectedTags = [];
     @tracked isActive = false;
+    @tracked isEditing = false;
 
     @action
-    async delete(note) {
-        console.log('in delete in card' + `${JSON.stringify(note)}`);
-        let result = await this.args.onDelete(note);
-        console.log(`${result}`);
+    async delete() {
+        let result = await this.args.onDelete(this.args.note);
+        console.log(result);
     }
 
     @action
@@ -45,11 +45,5 @@ export default class NoteCardComponent extends Component {
     onTagSelectorClose() {
         console.log('in onTagSelectorClose');
         this.isActive = false;
-    }
-
-    @action
-    preventClose() {
-        // Prevent ember-power-select from being closed inside the dropdown
-        return false;
     }
 }

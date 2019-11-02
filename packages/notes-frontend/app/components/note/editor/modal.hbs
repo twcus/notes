@@ -1,8 +1,31 @@
 <ModalDialog
     @onClose={{this.close}}
     @translucentOverlay=true
-    @targetAttachment="elementCenter"
-    @target="#card-grid"
+    @tetherTarget=".toolbar"
+    @targetAttachment="top center"
+    @targetOffset="200px 0"
+    @attachment="top center"
 >
-    {{yield}}
+    <div class="modal-body">
+        <ContentEditable {{did-update this.updatedNote @note.content}} {{did-insert this.focusElement}} @value={{@note.content}} @placeholder="Write note..." class="content-editable" />
+    </div>
+    <div class="modal-footer">
+        <span>8 Aug 19</span>
+        <div class="action-bar">
+            <DropdownSelect
+                @options={{this.tags}}
+                @selected={{this.selectedTags}}
+                @onOpen={{this.onTagSelectorOpen}}
+                @onClose={{this.onTagSelectorClose}}
+                @onSelect={{this.selectTag}}
+                @onCreate={{this.createTag}}
+                @placeholder="Enter tag"
+                @searchField="content"
+                @stopPropagation=true
+            >
+                <FaIcon @icon="tag" />
+            </DropdownSelect>
+            <button {{on "click" (stop-propagation this.delete)}} class="button"><FaIcon @icon="trash" /></button>
+        </div>
+    </div>
 </ModalDialog>

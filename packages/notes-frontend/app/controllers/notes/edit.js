@@ -1,7 +1,7 @@
-import Controller from '@ember/controller';
+import NotesController from '../notes';
 import { action } from '@ember/object';
 
-export default class NotesEditController extends Controller {
+export default class NotesEditController extends NotesController {
     @action
     transitionToNotes() {
         this.transitionToRoute('notes');
