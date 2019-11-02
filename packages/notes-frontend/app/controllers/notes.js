@@ -1,11 +1,13 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
 
 export default class NotesController extends Controller {
+
     @action
     deleteNote(note) {
         debugger;
@@ -39,4 +41,7 @@ export default class NotesController extends Controller {
         yield timeout(FORCE_TIME);
         this.saveModelTask.perform();
     }).drop()) forceSaveTask;
+
+    @tracked isTaskRunning = this.saveModelTask.isRunning;
+
 }
