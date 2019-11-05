@@ -7,10 +7,8 @@ const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
 
 export default class NotesController extends Controller {
-
     @action
     deleteNote(note) {
-        debugger;
         console.log(`in delete note in notes controller ${note}`);
         return note.destroyRecord();
     }

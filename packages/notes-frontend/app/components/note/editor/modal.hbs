@@ -9,7 +9,7 @@
     <div class="modal-body">
         {{#if @saveTask.last.error}}
             {{!-- TODO real error handling --}}
-            Error saving note!
+            {{@saveTask.last.error}}
         {{/if}}
         <ContentEditable {{did-update this.updatedNote @note.content}} {{did-insert this.focusElement}} @value={{@note.content}} @placeholder="Write note..." class="content-editable" />
     </div>
