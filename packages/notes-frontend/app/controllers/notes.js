@@ -8,9 +8,15 @@ const FORCE_TIME = 5000;
 
 export default class NotesController extends Controller {
     @action
+    transitionToNotes() {
+        this.transitionToRoute('notes');
+    }
+
+    @action
     deleteNote(note) {
         console.log(`in delete note in notes controller ${note}`);
-        return note.destroyRecord();
+        let result = note.destroyRecord();
+        this.transitionToNotes();
     }
 
     @action

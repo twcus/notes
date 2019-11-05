@@ -11,7 +11,6 @@ export default class NotesNewRoute extends Route {
 
     @action
     willTransition() {
-        debugger;
         this.activeNote.note = null;
     }
 }

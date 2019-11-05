@@ -1,4 +1,4 @@
-<LinkTo @tagName="div" @route="notes.edit" @model={{@note.id}} @activeClass="hidden" class="card {{if this.isActive "active"}} {{if @note.isNew "hidden"}} {{if (eq @note.id activeNote.note.id) "hidden" }}" >
+<LinkTo @tagName="div" @route="notes.edit" @model={{@note.id}} @activeClass="hidden" class="card {{if this.isActive "active"}} {{if @note.isNew "hidden"}} {{if (eq @note.id activeNote.note.id) "hidden"}}" >
     <div class="card-body">
         {{@note.content}}
     </div>
