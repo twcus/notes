@@ -12,6 +12,11 @@
             {{@saveTask.last.error}}
         {{/if}}
         <ContentEditable {{did-update this.updatedNote @note.content}} {{did-insert this.focusElement}} @value={{@note.content}} @placeholder="Write note..." class="content-editable" />
+        <div class="tag-list">
+            {{#each this.selectedTags as |tag|}}
+                <Tag @tag={{tag}} @hoverAction="" @hoverActionIcon="times" />
+            {{/each}}
+        </div>
     </div>
     <div class="modal-footer">
         <span>8 Aug 19</span>

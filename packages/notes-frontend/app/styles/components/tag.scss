@@ -1,0 +1,33 @@
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px 0;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8px;
+    margin: 8px 8px 0 0;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    color: $black-light;
+    background-color: $white-darker;
+    &:hover {
+        .tag-text {
+            width: calc(100% - 30px);
+        }
+        .button {
+            visibility: visible;
+            background-color: $white-darker;
+        }
+    }
+    .button {
+        position: absolute;
+        right: 4px;
+        visibility: hidden;
+        padding: 4px;
+        color: $black-light;
+    }
+}
