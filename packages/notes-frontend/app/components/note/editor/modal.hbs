@@ -19,7 +19,13 @@
         </div>
     </div>
     <div class="modal-footer">
-        <span>8 Aug 19</span>
+        <Timestamp
+            @date={{@note.modifiedDate}}
+            @format="MMM DD YYYY"
+            @enableDiff=true
+            @diffPrecision="days"
+            @diffLimit=7
+        />
         <div class="action-bar">
             <DropdownSelect
                 @options={{this.tags}}

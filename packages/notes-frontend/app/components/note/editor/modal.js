@@ -23,7 +23,6 @@ export default class NoteEditorModalComponent extends Component {
 
     @action
     async delete() {
-        debugger;
         let result = await this.args.onDelete(this.args.note);
         console.log(result);
     }
@@ -52,7 +51,6 @@ export default class NoteEditorModalComponent extends Component {
     @action
     onTagSelectorOpen() {
         console.log('in onTagSelectorOpen');
-        debugger;
     }
 
     @action
