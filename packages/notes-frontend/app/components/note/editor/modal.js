@@ -3,9 +3,6 @@ import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class NoteEditorModalComponent extends Component {
-    @tracked tags = [ {content: 'onasdfasdfasdfasdfsdfasdfsdgfafasdfe'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}];
-    @tracked selectedTags = [];
-
     @action
     focusElement(element) {
         element.focus();
@@ -28,8 +25,9 @@ export default class NoteEditorModalComponent extends Component {
     }
 
     @action
-    selectTag(tag) {
-        this.selectedTags = tag;
+    selectTag(tags) {
+        this.args.note.tags = tags;
+        this.args.onUpdate();
     }
 
     @action
@@ -46,15 +44,5 @@ export default class NoteEditorModalComponent extends Component {
     @action
     customSuggestion(term) {
         return term;
-    }
-
-    @action
-    onTagSelectorOpen() {
-        console.log('in onTagSelectorOpen');
-    }
-
-    @action
-    onTagSelectorClose() {
-        console.log('in onTagSelectorClose');
     }
 }

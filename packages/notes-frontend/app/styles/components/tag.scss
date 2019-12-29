@@ -11,17 +11,32 @@
     padding: 8px;
     margin: 8px 8px 0 0;
     border-radius: 2px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     color: $black-light;
     background-color: $white-darker;
+    min-width: 40px;
+    text-align: center;
+    line-height: normal;
     &:hover {
         .tag-text {
-            width: calc(100% - 30px);
+            text-align: left;
+            width: calc(100% - 12px);
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+            overflow: hidden;
         }
         .button {
             visibility: visible;
             background-color: $white-darker;
+            &:hover {
+                color: red;
+            }
         }
+    }
+    .tag-text {
+        width: 100%;
+        text-align: center;
     }
     .button {
         position: absolute;

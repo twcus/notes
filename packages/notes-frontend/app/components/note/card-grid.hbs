@@ -2,7 +2,10 @@
     {{#each @notes as |note|}}
         <Note::Card
             @note={{note}}
+            @tags={{@tags}}
             @onDelete={{this.deleteNote}}
+            @onUpdate={{@onUpdate}}
+            @saveTask={{@saveTask}}
         />
     {{/each}}
 </div>

@@ -6,7 +6,6 @@ import { inject as service } from '@ember/service';
 export default class NoteCardComponent extends Component {
     @service('active-note') activeNote;
 
-    @tracked tags = [ {content: 'onasdfasdfasdfasdfsdfasdfsdgfafasdfe'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}, {content: 'two'}, {content: 'three'}, {content: 'four'}, {content: 'five'}];
     @tracked selectedTags = [];
     @tracked isActive = false;
     @tracked isEditing = false;
@@ -18,8 +17,9 @@ export default class NoteCardComponent extends Component {
     }
 
     @action
-    selectTag(tag) {
-        this.selectedTags = tag;
+    selectTag(tags) {
+        this.args.note.tags = tags;
+        this.args.onUpdate();
     }
 
     @action
@@ -40,13 +40,11 @@ export default class NoteCardComponent extends Component {
 
     @action
     onTagSelectorOpen() {
-        console.log('in onTagSelectorOpen');
         this.isActive = true;
     }
 
     @action
     onTagSelectorClose() {
-        console.log('in onTagSelectorClose');
         this.isActive = false;
     }
 }

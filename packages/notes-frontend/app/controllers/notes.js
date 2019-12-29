@@ -17,6 +17,7 @@ export default class NotesController extends Controller {
         console.log(`in delete note in notes controller ${note}`);
         let result = note.destroyRecord();
         this.transitionToNotes();
+        return result;
     }
 
     @action
@@ -27,25 +28,25 @@ export default class NotesController extends Controller {
 
     @action
     updatedNote() {
-        this.updateModelTask.perform();
+        this.updateNoteTask.perform();
     }
 
     @(task(function *() {
-        yield this.model.save();
-    }).keepLatest()) saveModelTask;
+        debugger;
+        yield this.model.note.save();
+    }).keepLatest()) saveNoteTask;
 
     @(task(function *() {
         this.forceSaveTask.perform();
         yield timeout(DEBOUNCE_TIME);
         this.forceSaveTask.cancelAll();
-        this.saveModelTask.perform();
-    }).restartable()) updateModelTask;
+        this.saveNoteTask.perform();
+    }).restartable()) updateNoteTask;
 
     @(task(function *() {
         yield timeout(FORCE_TIME);
-        this.saveModelTask.perform();
+        this.saveNoteTask.perform();
     }).drop()) forceSaveTask;
 
-    @tracked isTaskRunning = this.saveModelTask.isRunning;
-
+    @tracked isTaskRunning = this.saveNoteTask.isRunning;
 }

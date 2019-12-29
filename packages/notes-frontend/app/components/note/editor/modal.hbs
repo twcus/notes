@@ -13,7 +13,7 @@
         {{/if}}
         <ContentEditable {{did-update this.updatedNote @note.content}} {{did-insert this.focusElement}} @value={{@note.content}} @placeholder="Write note..." class="content-editable" />
         <div class="tag-list">
-            {{#each this.selectedTags as |tag|}}
+            {{#each @note.tags as |tag|}}
                 <Tag @tag={{tag}} @hoverAction="" @hoverActionIcon="times" />
             {{/each}}
         </div>
@@ -28,10 +28,8 @@
         />
         <div class="action-bar">
             <DropdownSelect
-                @options={{this.tags}}
-                @selected={{this.selectedTags}}
-                @onOpen={{this.onTagSelectorOpen}}
-                @onClose={{this.onTagSelectorClose}}
+                @options={{@tags}}
+                @selected={{@note.tags}}
                 @onSelect={{this.selectTag}}
                 @onCreate={{this.createTag}}
                 @placeholder="Enter tag"

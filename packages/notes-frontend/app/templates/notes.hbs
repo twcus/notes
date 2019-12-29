@@ -1,7 +1,10 @@
 <Toolbar />
 <div class="content">
     <Note::CardGrid
-        @notes={{@model}}
+        @notes={{@model.notes}}
+        @tags={{@model.tags}}
         @onDeleteNote={{this.deleteNote}}
+        @onUpdate={{this.updatedNote}}
+        @saveTask={{this.saveNoteTask}}
     />
 </div>
