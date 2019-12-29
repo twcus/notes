@@ -1,7 +1,11 @@
 import Route from '@ember/routing/route';
+import RSVP from 'rsvp';
 
-export default Route.extend({
+export default class NotesRoute extends Route {
     model() {
-        return this.get('store').findAll('note');
+        return RSVP.hash({
+            notes: this.store.findAll('note'),
+            tags: this.store.findAll('tag')
+        });
     }
-});
+}

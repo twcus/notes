@@ -1,11 +1,9 @@
 import DS from 'ember-data';
-const { Model } = DS;
+const { Model, attr, hasMany } = DS;
 
-export default Model.extend({
-    user: DS.attr(),
-    createdDate: DS.attr('date'),
-    modifiedDate: DS.attr('date'),
-    content: DS.attr(),
-    notes: DS.hasMany('note'),
-    collections: DS.hasMany('collection')
-});
+export default class TagModel extends Model {
+    @attr('date') createdDate;
+    @attr('date') modifiedDate;
+    @attr('string') content;
+    @hasMany('note') notes;
+}

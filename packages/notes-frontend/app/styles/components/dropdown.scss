@@ -1,0 +1,92 @@
+.ember-basic-dropdown-content {
+    width: 250px;
+}
+
+.ember-power-select-trigger {
+    padding: 8px;
+    border-bottom: none;
+}
+
+.power-select-suggestion {
+    display: flex;
+    align-items: center;
+
+    .select-suggestion-text {
+        font-weight: 500;
+    }
+
+    .fa-plus {
+        color: $grey;
+        font-size: 0.8rem;
+        margin-right: 8px;
+    }
+}
+
+.power-select-option {
+    display: flex;
+    align-items: center;
+}
+
+.select-trigger-search-container {
+    display: flex;
+    align-items: center;
+
+    .fa-search {
+        color: $grey;
+        font-size: 0.8rem;
+        margin-right: 8px;
+    }
+
+    .fa-times {
+        color: $grey;
+        font-size: 0.8rem;
+        margin-left: 8px;
+        cursor: pointer;
+    }
+
+    .ember-power-select-trigger-multiple-input {
+        width: 100%;
+        text-indent: 0;
+    }
+}
+
+.ember-power-select-options {
+    .ember-power-select-option {
+        padding: 8px;
+    }
+}
+
+.ember-power-select-options[role=listbox] {
+    max-height: 300px;
+}
+
+.select-option-icon {
+    font-size: 0.8rem;
+    color: $grey;
+    margin-right: 8px;
+}
+
+.ember-power-select-option {
+    display: flex;
+    align-items: center;
+    word-break: break-word;
+
+    .select-option-content {
+        line-height: 1.2rem;
+    }
+
+    &[aria-selected=true] {
+        .select-option-icon {
+            visibility: visible;
+            color: $grey-light;
+            margin-right: 8px;
+        }
+    }
+
+    &[aria-selected=false] {
+        .select-option-icon {
+            visibility: hidden;
+            margin-right: 8px;
+        }
+    }
+}

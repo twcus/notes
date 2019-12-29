@@ -1,8 +1,9 @@
 'use strict';
 
 module.exports = {
-    extends: 'recommended',
+    extends: 'octane',
     rules: {
+        'no-implicit-this': true,
         'block-indentation': 4
     }
 };
