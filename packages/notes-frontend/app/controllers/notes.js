@@ -27,25 +27,24 @@ export default class NotesController extends Controller {
     }
 
     @action
-    updatedNote() {
-        this.updateNoteTask.perform();
+    updatedNote(note) {
+        this.updateNoteTask.perform(note);
     }
 
-    @(task(function *() {
-        debugger;
-        yield this.model.note.save();
+    @(task(function *(note) {
+        yield note.save();
     }).keepLatest()) saveNoteTask;
 
-    @(task(function *() {
-        this.forceSaveTask.perform();
+    @(task(function *(note) {
+        this.forceSaveTask.perform(note);
         yield timeout(DEBOUNCE_TIME);
         this.forceSaveTask.cancelAll();
-        this.saveNoteTask.perform();
+        this.saveNoteTask.perform(note);
     }).restartable()) updateNoteTask;
 
-    @(task(function *() {
+    @(task(function *(note) {
         yield timeout(FORCE_TIME);
-        this.saveNoteTask.perform();
+        this.saveNoteTask.perform(note);
     }).drop()) forceSaveTask;
 
     @tracked isTaskRunning = this.saveNoteTask.isRunning;

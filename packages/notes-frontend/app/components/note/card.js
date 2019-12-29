@@ -6,9 +6,7 @@ import { inject as service } from '@ember/service';
 export default class NoteCardComponent extends Component {
     @service('active-note') activeNote;
 
-    @tracked selectedTags = [];
     @tracked isActive = false;
-    @tracked isEditing = false;
 
     @action
     async delete() {
@@ -19,7 +17,7 @@ export default class NoteCardComponent extends Component {
     @action
     selectTag(tags) {
         this.args.note.tags = tags;
-        this.args.onUpdate();
+        this.args.onUpdate(this.args.note);
     }
 
     @action

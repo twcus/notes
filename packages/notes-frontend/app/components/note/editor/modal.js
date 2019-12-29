@@ -1,5 +1,4 @@
 import Component from '@glimmer/component';
-import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 
 export default class NoteEditorModalComponent extends Component {
@@ -15,7 +14,7 @@ export default class NoteEditorModalComponent extends Component {
 
     @action
     updatedNote() {
-        this.args.onUpdate();
+        this.args.onUpdate(this.args.note);
     }
 
     @action
@@ -27,7 +26,7 @@ export default class NoteEditorModalComponent extends Component {
     @action
     selectTag(tags) {
         this.args.note.tags = tags;
-        this.args.onUpdate();
+        this.args.onUpdate(this.args.note);
     }
 
     @action

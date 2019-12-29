@@ -4,12 +4,16 @@ import { action } from '@ember/object';
 export default class DropdownSelectComponent extends Component {
     @action
     open() {
-        this.args.onOpen();
+        if (this.args.onOpen) {
+            this.args.onOpen();
+        }
     }
 
     @action
     close() {
-        this.args.onClose();
+        if (this.args.onClose) {
+            this.args.onClose();
+        }
     }
 
     @action
