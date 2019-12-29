@@ -21,7 +21,7 @@
     padding: 16px;
     &:hover,
     &.active {
-        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+        box-shadow: 0 1px 2px 0 rgba(66, 66, 66, 0.3), 0 1px 3px 1px rgba(80, 80, 80, 0.15);
         .card-footer .action-bar {
             opacity: 1;
         }
