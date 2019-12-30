@@ -1,5 +1,6 @@
 .ember-modal-overlay.translucent {
     background-color: #0c0c0c2e;
+    z-index: $overlay-index;
 }
 
 .ember-modal-dialog {
@@ -12,6 +13,7 @@
     border: 1px solid $white-darker;
     background-color: $white;
     box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.15);
+    z-index: $modal-index;
 }
 
 .modal-header {

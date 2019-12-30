@@ -7,7 +7,7 @@
     width: calc(100vw - 200px);
     background-color: $white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
-    z-index:99;
+    z-index: $topbar-index;
 }
 
 .toolbar-item {

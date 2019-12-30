@@ -14,6 +14,11 @@ $grey-dark: #696969;
 /* Borders */
 $default-radius: 5px;
 
+/* z-index */
+$overlay-index: 99;
+$modal-index: 100;
+$topbar-index: 50;
+
 /* ember-power-select */
 $ember-power-select-background-color: $white;
 $ember-power-select-selected-background: inherit;
