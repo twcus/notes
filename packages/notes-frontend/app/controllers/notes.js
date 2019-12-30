@@ -27,6 +27,16 @@ export default class NotesController extends Controller {
     }
 
     @action
+    createTagAndAddToNote(content, note) {
+        let notes = [note];
+        let tag = this.store.createRecord('tag', {
+            content,
+            notes
+        });
+        return tag.save();
+    }
+
+    @action
     updatedNote(note) {
         this.updateNoteTask.perform(note);
     }

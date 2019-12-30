@@ -1,5 +1,12 @@
 .ember-basic-dropdown-content {
     width: 250px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    .ember-power-select-multiple-trigger {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
 }
 
 .ember-power-select-trigger {

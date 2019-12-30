@@ -21,14 +21,9 @@ export default class NoteCardComponent extends Component {
     }
 
     @action
-    createTag(tag, select) {
-        let newTag = {content: tag};
-        this.selectedTags.push(newTag);
-        this.selectedTags = this.selectedTags;
-        this.tags.push(newTag);
-        this.tags = this.tags;
+    createTag(content, select) {
+        this.args.onTagCreate(content, this.args.note);
         select.actions.search(''); // Clear the search input after creating tag
-        console.log(`in createTag ${tag}`);
     }
 
     @action
