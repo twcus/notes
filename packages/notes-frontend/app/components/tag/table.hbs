@@ -1,0 +1,25 @@
+<EmberTable as |table|>
+    <table.head @columns={{columns}} @enableResize={{false}} @enableReorder={{false}} as |header|>
+        <header.row as |row|>
+            <row.cell class={{row.columnValue.class}} as |column|>
+                {{column.name}}
+            </row.cell>
+        </header.row>
+    </table.head>
+    <table.body @rows={{this.rows}} as |body|>
+        <body.row as |row|>
+            <row.cell class={{row.columnValue.class}} as |cell column|>
+                {{#if column.valuePath}}
+                    <span>{{cell}}</span>
+                {{else}}
+                    <button class="button">
+                        {{fa-icon 'edit'}}
+                    </button>
+                    <button class="button">
+                        {{fa-icon 'trash'}}
+                    </button>
+                {{/if}}
+            </row.cell>
+        </body.row>
+    </table.body>
+</EmberTable>
