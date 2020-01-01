@@ -18,13 +18,12 @@ const noteInputHook = (context, record, update) => {
         case methods.create: return updateCreatedDate(record);
         case methods.update: {
             if (update.replace && update.content !== record.content) {
-                return updateModifiedDate(update);
+                const { replace: { content, tags } } = update;
+                update.replace = { content, tags };
+                updateModifiedDate(update);
             }
-            return update;
         }
-        default: break;
     }
-    return record;
 };
 
 const collectionInputHook = (context, record, update) => {
