@@ -5,11 +5,28 @@ import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
+const VIEW_MODES = {
+    cards: 'list-cards',
+    panes: 'list-pane'
+};
 
 export default class NotesController extends Controller {
+    @tracked viewMode = 'cards';
+    @tracked editMode = 'modal';
+    @tracked isTaskRunning = this.saveNoteTask.isRunning;
+
+    get viewComponent() {
+        return VIEW_MODES[this.viewMode];
+    }
+
     @action
     transitionToNotes() {
         this.transitionToRoute('notes');
+    }
+
+    @action
+    changeViewMode() {
+
     }
 
     @action
@@ -56,6 +73,4 @@ export default class NotesController extends Controller {
         yield timeout(FORCE_TIME);
         this.saveNoteTask.perform(note);
     }).drop()) forceSaveTask;
-
-    @tracked isTaskRunning = this.saveNoteTask.isRunning;
 }

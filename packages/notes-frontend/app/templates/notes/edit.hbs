@@ -1,8 +1,10 @@
-<Note::Editor::Modal
+{{!--<Note::Editor::Modal
     @note={{@model.note}}
     @tags={{@model.tags}}
     @onClose={{this.transitionToNotes}}
     @onDelete={{this.deleteNote}}
     @onUpdate={{this.updatedNote}}
     @onTagCreate={{this.createTagAndAddToNote}}
-/>
+/>--}}
+
+{{component (concat "note/editor/" this.editMode) note=model.note onClose=this.transitionToNotes}}
