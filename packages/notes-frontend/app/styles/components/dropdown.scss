@@ -23,7 +23,7 @@
     }
 
     .fa-plus {
-        color: $grey;
+        color: $grey-dark;
         font-size: 0.8rem;
         margin-right: 8px;
     }
@@ -39,13 +39,13 @@
     align-items: center;
 
     .fa-search {
-        color: $grey;
+        color: $grey-dark;
         font-size: 0.8rem;
         margin-right: 8px;
     }
 
     .fa-times {
-        color: $grey;
+        color: $grey-dark;
         font-size: 0.8rem;
         margin-left: 8px;
         cursor: pointer;
@@ -69,7 +69,7 @@
 
 .select-option-icon {
     font-size: 0.8rem;
-    color: $grey;
+    color: $grey-dark;
     margin-right: 8px;
 }
 
@@ -85,7 +85,7 @@
     &[aria-selected=true] {
         .select-option-icon {
             visibility: visible;
-            color: $grey-light;
+            color: $grey-dark;
             margin-right: 8px;
         }
     }

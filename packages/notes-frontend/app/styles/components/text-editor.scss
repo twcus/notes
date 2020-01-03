@@ -1,0 +1,20 @@
+.pell-actionbar {
+    background-color: $white;
+    border-bottom: 2px solid $white-darker;
+}
+
+.pell-button {
+    color: $black-light;
+    &:hover,
+    &.pell-button-selected {
+        background-color: $white-darker;
+    }
+}
+
+.pell-content {
+    blockquote {
+        padding: 16px;
+        background-color: $white-dark;
+        border-left: 4px solid $primary;
+    }
+}

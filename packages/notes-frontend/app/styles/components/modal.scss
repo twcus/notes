@@ -33,12 +33,12 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    color: $grey;
+    color: $black-light;
     margin-top: 8px;
     .action-bar {
         display: flex;
         button {
-            color: $grey;
+            color: $black-light;
         }
     }
 }

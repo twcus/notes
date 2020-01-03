@@ -36,7 +36,7 @@
     }
     .card-footer {
         position: relative;
-        color: $grey;
+        color: $black-light;
         margin-top: 8px;
         display: flex;
         justify-content: space-between;
@@ -46,7 +46,7 @@
             opacity: 0;
             transition: opacity 0.2s ease;
             button {
-                color: $grey;
+                color: $black-light;
             }
         }
     }

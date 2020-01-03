@@ -11,7 +11,7 @@
             {{!-- TODO real error handling --}}
             {{@saveTask.last.error}}
         {{/if}}
-        <ContentEditable {{did-update this.updatedNote @note.content}} {{did-insert this.focusElement}} @value={{@note.content}} @placeholder="Write note..." class="content-editable" />
+        <TextEditor @content={{@note.content}} @onChange={{this.updatedNote}} />
         <div class="tag-list">
             {{#each @note.tags as |tag|}}
                 <Tag @tag={{tag}} @hoverAction="" @hoverActionIcon="times" />

@@ -13,7 +13,8 @@ export default class NoteEditorModalComponent extends Component {
     }
 
     @action
-    updatedNote() {
+    updatedNote(content) {
+        this.args.note.content = content;
         this.args.onUpdate(this.args.note);
     }
 
