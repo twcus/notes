@@ -1,8 +1,10 @@
-<span class="tag">
-    <span class="tag-text">{{@tag.content}}</span>
-    {{#if @hoverActionIcon }}
-        <button class="button">
-        <FaIcon @icon={{@hoverActionIcon}} />
-    </button>
+<span class="tag {{if @isEditable "card is-editable"}}">
+    {{#if @isEditable}}
+        <Input @class="tag-edit-input" @value={{@tag.content}} />
+        <button class="button tag-edit"><FaIcon @icon="pen" /></button>
+        <button class="button tag-delete"><FaIcon @icon="trash" /></button>
+    {{else}}
+        <span class="tag-text">{{@tag.content}}</span>
+        <button class="button tag-remove"><FaIcon @icon="times" /></button>
     {{/if}}
 </span>

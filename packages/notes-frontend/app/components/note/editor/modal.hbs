@@ -14,7 +14,7 @@
         <TextEditor @content={{@note.content}} @onChange={{this.updatedNote}} />
         <div class="tag-list">
             {{#each @note.tags as |tag|}}
-                <Tag @tag={{tag}} @hoverAction="" @hoverActionIcon="times" />
+                <Tag @tag={{tag}} @hoverAction="" @isEditable={{false}} />
             {{/each}}
         </div>
     </div>

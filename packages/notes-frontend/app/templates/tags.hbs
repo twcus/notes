@@ -1,6 +1,8 @@
 <Toolbar />
 <div class="content">
-    <Tag::Table
-        @tags={{@model}}
-    />
+    <div class="tag-list">
+        {{#each @model as |tag|}}
+            <Tag @tag={{tag}} @isEditable={{true}} />
+        {{/each}}
+    </div>
 </div>

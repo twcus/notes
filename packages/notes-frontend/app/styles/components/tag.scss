@@ -4,6 +4,23 @@
     margin: 16px 0;
 }
 
+.item {
+    background-color: $white;
+    padding: 8px;
+    margin: 8px;
+    display: flex;
+    max-width: 300px;
+    align-items: center;
+}
+
+.edit-tag {
+    width: 175px;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .tag {
     display: flex;
     align-items: center;
@@ -26,7 +43,7 @@
             display: block;
             overflow: hidden;
         }
-        .button {
+        .tag-remove {
             visibility: visible;
             background-color: $white-darker;
             &:hover {
@@ -34,15 +51,52 @@
             }
         }
     }
+    &.is-editable {
+        flex-direction: row;
+        width: 200px;
+        button {
+            display: none;
+        }
+        &:hover {
+            justify-content: flex-start;
+            .tag-edit-input {
+                text-align: left;
+                width: 150px;
+            }
+            button {
+                display: block;
+            }
+        }
+        .tag-edit-input {
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
     .tag-text {
         width: 100%;
         text-align: center;
     }
-    .button {
+    .tag-edit-input {
+        font-size: 1.1rem;
+        padding: 8px;
+        text-align: center;
+        background-color: inherit;
+        border: none;
+        line-height: inherit;
+    }
+    .tag-remove {
         position: absolute;
         right: 4px;
         visibility: hidden;
         padding: 4px;
         color: $black-light;
+    }
+    .tag-edit:hover {
+        color: #3c60b3;
+    }
+    .tag-delete:hover {
+        color: red;
     }
 }
