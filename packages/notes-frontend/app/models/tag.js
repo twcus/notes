@@ -6,4 +6,5 @@ export default class TagModel extends Model {
     @attr('date') modifiedDate;
     @attr('string') content;
     @hasMany('note') notes;
+    @hasMany('collection') collections;
 }

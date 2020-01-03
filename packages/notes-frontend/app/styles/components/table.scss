@@ -1,0 +1,91 @@
+.ember-table {
+    overflow: unset;
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+    border: 1px solid $white-darker;
+    border-radius: $default-radius;
+    table {
+        width: 100%;
+        border-radius: 45px;
+    }
+}
+
+.column {
+    &.actions {
+        .button:hover {
+            background-color: $grey-light;
+        }
+    }
+}
+
+.et-tr {
+    background-color: $white;
+    border-bottom: 1px solid #f0f0f0;
+    &:hover {
+        background-color: $white-darker;
+    }
+    th {
+        background-color: $primary;
+        color: $white;
+        font-weight: 500;
+        padding:16px;
+        &.is-first-column {
+            border-top-left-radius: 5px;
+        }
+        &.is-last-column {
+            border-top-right-radius: 5px;
+        }
+    }
+    td {
+        padding: 8px 16px;
+    }
+}
+
+tbody  {
+    tr:last-of-type{
+        td {
+            &.is-first-column {
+                border-bottom-left-radius: 5px;
+            }
+            &.is-last-column {
+                border-bottom-right-radius: 5px;
+            }
+        }
+    }
+}
+
+//tbody:last-child {
+//    color: red;
+//    td {
+//        &.is-first-column {
+//            color:red;
+//            border-bottom-left-radius: 5px;
+//        }
+//        &.is-last-column {
+//            border-bottom-right-radius: 5px;
+//        }
+//    }
+//}
+
+.et-cell-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tag-column {
+    width: 55% !important;
+}
+
+.num-notes-column,
+.num-collections-column {
+    width: 15% !important;
+}
+
+.tag-actions-column {
+    width: 15% !important;
+}
+
+// Alternating row colors
+//tbody tr:nth-child(odd) {
+//    background: $white-dark;
+//}

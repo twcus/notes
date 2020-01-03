@@ -1,1 +1,8 @@
-{{outlet}}
+<Toolbar />
+<div class="content">
+    <div class="tag-list">
+        {{#each @model as |tag|}}
+            <Tag @tag={{tag}} @isEditable={{true}} />
+        {{/each}}
+    </div>
+</div>
