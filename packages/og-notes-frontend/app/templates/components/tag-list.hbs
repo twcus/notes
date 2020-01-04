@@ -8,8 +8,8 @@
     @oncreate={{action "createTag"}}
     @placeholder="Enter tag"
     @noMatchesMessage="Create tag"
-    @triggerComponent="PowerSelectTrigger"
+    @triggerComponent="PowerSelect::SelectTrigger"
     @suggestedOptionComponent="PowerSelectSuggested"
     @onchange={{action "selectedTag"}} as |tag|>
-    <PowerSelectOption @content={{tag.content}} />
+    <PowerSelect::SelectOption @content={{tag.content}} />
 </PowerSelectMultipleWithCreate>

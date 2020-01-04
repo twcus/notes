@@ -1,24 +1,24 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
-import hbs from 'htmlbars-inline-precompile';
+import { hbs } from 'ember-cli-htmlbars';
 
-module('Integration | Component | notes/card', function(hooks) {
+module('Integration | Component | select-trigger', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
     // Set any properties with this.set('myProperty', 'value');
     // Handle any actions with this.set('myAction', function(val) { ... });
 
-    await render(hbs`<Notes::Card />`);
+    await render(hbs`<Select::SelectTrigger />`);
 
     assert.equal(this.element.textContent.trim(), '');
 
     // Template block usage:
     await render(hbs`
-      <Notes::Card>
+      <Select::SelectTrigger>
         template block text
-      </Notes::Card>
+      </Select::SelectTrigger>
     `);
 
     assert.equal(this.element.textContent.trim(), 'template block text');

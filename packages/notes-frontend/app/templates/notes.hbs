@@ -1,6 +1,6 @@
 <div class="toolbar">
     <div class="toolbar-item">
-            <DropdownSelect
+            <Select::DropdownSelect
                 @options={{this.viewModeOptions}}
                 @selected={{this.selectedViewMode}}
                 @onOpen={{this.onTagSelectorOpen}}
@@ -14,7 +14,7 @@
                 @stopPropagation=true
             >
                 <FaIcon @icon={{this.activeViewMode.icon}} @fixedWidth={{true}} />
-            </DropdownSelect>
+            </Select::DropdownSelect>
     </div>
     <div class="toolbar-item">
         <div class="toolbar-search-container">
@@ -43,7 +43,7 @@
 </div>
 <div class="content">
     {{component
-        (concat "note/mode/" this.activeViewMode.component)
+        (concat "notes/modes/" this.activeViewMode.component)
         notes=model.notes
         tags=model.tags
         onDeleteNote=this.deleteNote

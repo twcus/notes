@@ -13,7 +13,7 @@ import templateLayout from '../templates/components/power-select-trigger';
 const ua = window && window.navigator ? window.navigator.userAgent : '';
 const isIE = ua.indexOf('MSIE ') > -1 || ua.indexOf('Trident/') > -1;
 
-export default @tagName('') @layout(templateLayout) class PowerSelectTrigger extends Component {
+export default @tagName('') @layout(templateLayout) class PowerSelect::SelectTrigger extends Component {
     @service textMeasurer
     _lastIsOpen = false
 

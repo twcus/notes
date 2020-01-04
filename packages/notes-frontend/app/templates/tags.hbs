@@ -1,8 +1,7 @@
-<Toolbar />
 <div class="content">
     <div class="tag-list-editable">
         {{#each @model as |tag|}}
-            <Tag @tag={{tag}} @isEditable={{true}} @onSave={{this.saveTag}} @onDelete={{this.deleteTag}} />
+            <Tags::Tag @tag={{tag}} @isEditable={{true}} @onSave={{this.saveTag}} @onDelete={{this.deleteTag}} />
         {{/each}}
     </div>
 </div>

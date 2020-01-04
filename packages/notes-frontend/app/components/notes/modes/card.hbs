@@ -1,0 +1,11 @@
+<div class="card-grid">
+    {{#each @notes as |note|}}
+        <Notes::Card
+            @note={{note}}
+            @tags={{@tags}}
+            @onDelete={{this.deleteNote}}
+            @onUpdate={{@onUpdate}}
+            @onTagCreate={{@onTagCreate}}
+        />
+    {{/each}}
+</div>

@@ -1,0 +1,33 @@
+<LinkTo @tagName="div" @route="notes.edit" @model={{@note.id}} @activeClass="hidden" class="card {{if this.isActive "active"}} {{if @note.isNew "hidden"}} {{if (eq @note.id activeNote.note.id) "hidden"}}" >
+    <div class="card-body pell-content">
+        {{{@note.content}}}
+    </div>
+    <div class="card-footer">
+        <Utils::Timestamp
+            @date={{@note.modifiedDate}}
+            @format="MMM DD YYYY"
+            @enableDiff=true
+            @diffPrecision="days"
+            @diffLimit=7
+        />
+        <div class="action-bar">
+            <Select::DropdownSelect
+                @isMultiSelect={{true}}
+                @options={{@tags}}
+                @selected={{@note.tags}}
+                @onOpen={{this.onTagSelectorOpen}}
+                @onClose={{this.onTagSelectorClose}}
+                @onSelect={{this.selectTag}}
+                @onCreate={{this.createTag}}
+                @searchEnabled={{true}}
+                @placeholder="Enter tag"
+                @searchMessage="No tags found"
+                @searchField="content"
+                @stopPropagation=true
+            >
+                <FaIcon @icon="tag" />
+            </Select::DropdownSelect>
+            <button {{on "click" (stop-propagation this.delete)}} class="button"><FaIcon @icon="trash" /></button>
+        </div>
+    </div>
+</LinkTo>

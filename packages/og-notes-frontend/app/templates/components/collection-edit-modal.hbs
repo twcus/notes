@@ -5,7 +5,7 @@
     <div class="modal-body collection-modal-body">
         <div class="collection-modal-tag-list">
             {{#each collection.tags as |tag|}}
-                <Tag @content={{tag.content}} />
+                <Tags::Tag @content={{tag.content}} />
             {{/each}}
         </div>
         <TagList class="collection-modal-tag-selector" @selectedTags={{collection.tags}} @onSelectTag={{action "selectTag"}} @createTag={{action "createTag"}} @getAllTags={{action "getAllTags"}}></TagList>
