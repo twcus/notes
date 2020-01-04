@@ -8,4 +8,9 @@ export default class NotesEditRoute extends Route {
             tags: this.store.findAll('tag')
         });
     }
+
+    setupController(controller, model) {
+        super.setupController(controller, model);
+        this.controller.activeViewMode = this.controllerFor('notes').activeViewMode;
+    }
 }

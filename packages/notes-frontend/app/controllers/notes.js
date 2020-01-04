@@ -5,47 +5,36 @@ import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
-const VIEW_MODES = {
-    cards: 'list-cards',
-    panes: 'list-pane'
-};
 
 export default class NotesController extends Controller {
-    viewOptions = [
+    viewModeOptions = [
         {
             content: 'Card',
             icon: 'th',
-            component: 'card'
+            component: 'card',
+            editorComponent: 'modal'
         },
         {
             content: 'List',
             icon: 'bars',
-            component: 'pane'
+            component: 'list',
+            editorComponent: 'pane'
         }
     ];
 
     @tracked viewMode = 'cards';
     @tracked editMode = 'modal';
-    @tracked selectedViewMode = this.viewOptions[0];
+    @tracked activeViewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
-
-    get viewComponent() {
-        return VIEW_MODES[this.viewMode];
-    }
 
     @action
     selectViewMode(mode) {
-        this.selectedViewMode = mode;
+        this.activeViewMode = mode;
     }
 
     @action
     transitionToNotes() {
         this.transitionToRoute('notes');
-    }
-
-    @action
-    changeViewMode() {
-
     }
 
     @action
