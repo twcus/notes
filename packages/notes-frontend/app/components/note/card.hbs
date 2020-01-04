@@ -12,12 +12,14 @@
         />
         <div class="action-bar">
             <DropdownSelect
+                @isMultiSelect={{true}}
                 @options={{@tags}}
                 @selected={{@note.tags}}
                 @onOpen={{this.onTagSelectorOpen}}
                 @onClose={{this.onTagSelectorClose}}
                 @onSelect={{this.selectTag}}
                 @onCreate={{this.createTag}}
+                @searchEnabled={{true}}
                 @placeholder="Enter tag"
                 @searchMessage="No tags found"
                 @searchField="content"

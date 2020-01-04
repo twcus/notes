@@ -28,10 +28,12 @@
         />
         <div class="action-bar">
             <DropdownSelect
+                @isMultiSelect={{true}}
                 @options={{@tags}}
                 @selected={{@note.tags}}
                 @onSelect={{this.selectTag}}
                 @onCreate={{this.createTag}}
+                @searchEnabled={{true}}
                 @placeholder="Enter tag"
                 @searchField="content"
                 @stopPropagation=true

@@ -1,2 +1,7 @@
-<FaIcon @icon={{@icon}} class="select-option-icon" />
-<span class="select-option-content">{{@content}}</span>
+{{#if @selectedIcon}}
+    <FaIcon @icon={{@selectedIcon}} class="select-option-selected-icon" />
+{{/if}}
+{{#if @option.icon}}
+    <FaIcon @icon={{@option.icon}} class="select-option-icon" />
+{{/if}}
+<span class="select-option-content">{{@option.content}}</span>

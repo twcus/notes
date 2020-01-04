@@ -1,4 +1,46 @@
-<Toolbar />
+<div class="toolbar">
+    <div class="toolbar-item">
+            <DropdownSelect
+                @options={{this.viewOptions}}
+                @selected={{this.selectedViewMode}}
+                @onOpen={{this.onTagSelectorOpen}}
+                @onClose={{this.onTagSelectorClose}}
+                @onSelect={{this.selectViewMode}}
+                @onCreate={{this.createTag}}
+                @searchEnabled={{false}}
+                @triggerClass={{"hide-trigger"}}
+                @dropdownClass={{"has-top-border is-small"}}
+                @matchTriggerWidth={{false}}
+                @stopPropagation=true
+            >
+                <FaIcon @icon={{this.selectedViewMode.icon}} />
+            </DropdownSelect>
+    </div>
+    <div class="toolbar-item">
+        <div class="toolbar-search-container">
+            <FaIcon @icon="search" />
+            <input type="text" placeholder="Search" aria-label="Search notes">
+        </div>
+    </div>
+    <div class="toolbar-item">
+        <button class="button">
+            <FaIcon @icon="filter" />
+            <span>Filter</span>
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <button class="button">
+            <FaIcon @icon="sort" />
+            <span>Sort</span>
+        </button>
+    </div>
+    <div class="toolbar-item">
+        <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
+            <FaIcon @icon="plus" />
+            <span>New Note</span>
+        </LinkTo>
+    </div>
+</div>
 <div class="content">
     {{component
         this.viewComponent

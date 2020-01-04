@@ -67,10 +67,16 @@
     max-height: 300px;
 }
 
-.select-option-icon {
+.select-option-selected-icon {
     font-size: 0.8rem;
     color: $grey-dark;
     margin-right: 8px;
+}
+
+.select-option-icon {
+    margin-right: 8px;
+    color: $black-light;
+    font-size: 1rem;
 }
 
 .ember-power-select-option {
@@ -83,7 +89,7 @@
     }
 
     &[aria-selected=true] {
-        .select-option-icon {
+        .select-option-selected-icon {
             visibility: visible;
             color: $grey-dark;
             margin-right: 8px;
@@ -91,9 +97,25 @@
     }
 
     &[aria-selected=false] {
-        .select-option-icon {
+        .select-option-selected-icon {
             visibility: hidden;
             margin-right: 8px;
         }
     }
+}
+
+.ember-basic-dropdown-trigger.hide-trigger {
+    min-height: unset;
+    padding: 0;
+    border: none;
+}
+
+.ember-power-select-dropdown.has-top-border {
+    border-top: 1px solid $white-darker;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.ember-power-select-dropdown.is-small {
+    width: 120px;
 }

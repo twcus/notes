@@ -11,12 +11,31 @@ const VIEW_MODES = {
 };
 
 export default class NotesController extends Controller {
+    viewOptions = [
+        {
+            content: 'Card',
+            icon: 'th',
+            component: 'card'
+        },
+        {
+            content: 'List',
+            icon: 'bars',
+            component: 'pane'
+        }
+    ];
+
     @tracked viewMode = 'cards';
     @tracked editMode = 'modal';
+    @tracked selectedViewMode = this.viewOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
 
     get viewComponent() {
         return VIEW_MODES[this.viewMode];
+    }
+
+    @action
+    selectViewMode(mode) {
+        this.selectedViewMode = mode;
     }
 
     @action

@@ -5,24 +5,47 @@
 >
     <dd.Trigger @stopPropagation={{@stopPropagation}} class="button">{{yield}}</dd.Trigger>
     <dd.Content>
-        <PowerSelectMultipleWithCreate
-            @options={{@options}}
-            @selected={{@selected}}
-            @onChange={{this.select}}
-            @onCreate={{this.create}}
-            @onClose={{this.preventSelectClose}}
-            @triggerComponent="select-trigger"
-            @suggestedOptionComponent="select-suggestion"
-            @placeholder={{@placeholder}}
-            @searchMessage={{@searchMessage}}
-            @buildSuggestion={{this.customSuggestion}}
-            @searchField={{@searchField}}
-            @showCreateWhen={{this.showCreateOption}}
-            @initiallyOpened=true
-            @closeOnSelect=false
-            as |tag|
-        >
-            <SelectOption @content={{tag.content}} @icon="check" />
-        </PowerSelectMultipleWithCreate>
+        {{#if @isMultiSelect}}
+            <PowerSelectMultipleWithCreate
+                @options={{@options}}
+                @selected={{@selected}}
+                @onChange={{this.select}}
+                @onCreate={{this.create}}
+                @onClose={{this.preventSelectClose}}
+                @triggerComponent="select-trigger"
+                @suggestedOptionComponent="select-suggestion"
+                @placeholder={{@placeholder}}
+                @searchMessage={{@searchMessage}}
+                @buildSuggestion={{this.customSuggestion}}
+                @searchField={{@searchField}}
+                @showCreateWhen={{this.showCreateOption}}
+                @searchEnabled={{@searchEnabled}}
+                @triggerClass={{@triggerClass}}
+                @dropdownClass={{@dropdownclass}}
+                @matchTriggerWidth={{@matchTriggerWidth}}
+                @initiallyOpened=true
+                @closeOnSelect=false
+                as |item|
+            >
+                <SelectOption @option={{item}} @selectedIcon="check" />
+            </PowerSelectMultipleWithCreate>
+        {{else}}
+            <PowerSelect
+                @options={{@options}}
+                @selected={{@selected}}
+                @onChange={{this.select}}
+                @onClose={{this.preventSelectClose}}
+                @triggerComponent="select-trigger"
+                @searchEnabled={{@searchEnabled}}
+                @triggerClass={{@triggerClass}}
+                @dropdownClass={{@dropdownClass}}
+                @initiallyOpened=true
+                @matchTriggerWidth={{@matchTriggerWidth}}
+                @closeOnSelect=false
+                as |item|
+            >
+                <SelectOption @option={{item}} @selectedIcon="check" />
+            </PowerSelect>
+        {{/if}}
     </dd.Content>
 </BasicDropdown>

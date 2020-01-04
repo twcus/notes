@@ -1,31 +1,3 @@
 <div class="toolbar">
-    <div class="toolbar-item">
-        <button class="button">
-            <FaIcon @icon="list" />
-        </button>
-    </div>
-    <div class="toolbar-item">
-        <div class="toolbar-search-container">
-            <FaIcon @icon="search" />
-            <input type="text" placeholder="Search" aria-label="Search notes">
-        </div>
-    </div>
-    <div class="toolbar-item">
-        <button class="button">
-            <FaIcon @icon="filter" />
-            <span>Filter</span>
-        </button>
-    </div>
-    <div class="toolbar-item">
-        <button class="button">
-            <FaIcon @icon="sort" />
-            <span>Sort</span>
-        </button>
-    </div>
-    <div class="toolbar-item">
-        <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
-            <FaIcon @icon="plus" />
-            <span>New Note</span>
-        </LinkTo>
-    </div>
+    {{yield}}
 </div>
