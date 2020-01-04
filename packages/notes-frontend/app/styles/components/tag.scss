@@ -48,7 +48,8 @@
         button {
             display: none;
         }
-        &:hover {
+        &:hover,
+        &.is-editing {
             justify-content: flex-start;
             .tag-edit-input {
                 text-align: left;
