@@ -4,21 +4,13 @@
     margin: 16px 0;
 }
 
-.item {
-    background-color: $white;
-    padding: 8px;
-    margin: 8px;
-    display: flex;
-    max-width: 300px;
-    align-items: center;
-}
-
-.edit-tag {
-    width: 175px;
-    text-overflow: ellipsis;
-    word-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
+.tag-list-editable {
+    padding: 32px;
+    width: 100%;
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 50px;
 }
 
 .tag {
@@ -47,13 +39,12 @@
             visibility: visible;
             background-color: $white-darker;
             &:hover {
-                color: red;
+                color: $red;
             }
         }
     }
     &.is-editable {
         flex-direction: row;
-        width: 200px;
         button {
             display: none;
         }
@@ -94,9 +85,9 @@
         color: $black-light;
     }
     .tag-edit:hover {
-        color: #3c60b3;
+        color: $blue;
     }
     .tag-delete:hover {
-        color: red;
+        color: $red;
     }
 }
