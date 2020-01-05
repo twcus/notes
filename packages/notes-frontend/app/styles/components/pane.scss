@@ -1,0 +1,31 @@
+.list-pane {
+    width: 350px;
+    background-color: $white-dark;
+    overflow-y: auto;
+    flex-shrink: 0; // without this, the list disappears/shrinks when opening the editor, not sure why
+    .list-item {
+        cursor: pointer;
+        padding: 16px;
+        height: 100px;
+        border-bottom: 1px solid #d1d1d1;
+        border-right: 1px solid #d1d1d1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        &:hover {
+            background-color: $white-darker;
+        }
+    }
+}
+
+.pane-editor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: $white;
+    flex-grow: 1;
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    padding: 36px;
+}

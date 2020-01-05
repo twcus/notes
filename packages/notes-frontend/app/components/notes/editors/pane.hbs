@@ -1,5 +1,10 @@
 <div class="pane-editor">
-    WOOHOO
+    <Utils::TextEditor @content={{@note.content}} @onChange={{this.updatedNote}} />
+    <Notes::Footer
+        @note={{@note}}
+        @tags={{@tags}}
+        @onTagSelect={{this.selectTag}}
+        @onTagCreate={{this.createTag}}
+        @onNoteDelete={{this.delete}}
+    />
 </div>
-
-

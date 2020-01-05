@@ -24,12 +24,13 @@ export default class NotesController extends Controller {
 
     @tracked viewMode = 'cards';
     @tracked editMode = 'modal';
-    @tracked activeViewMode = this.viewModeOptions[0];
+    @tracked activeViewMode = this.viewModeOptions[1];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
 
     @action
     selectViewMode(mode) {
         this.activeViewMode = mode;
+        this.transitionToNotes();
     }
 
     @action

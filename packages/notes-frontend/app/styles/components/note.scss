@@ -1,0 +1,20 @@
+.note-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 2px solid #e1e1e1;
+    .tag-list {
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+    }
+    .action-bar {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .actions {
+            display: flex;
+        }
+    }
+}

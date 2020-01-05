@@ -1,0 +1,32 @@
+<div class="note-footer">
+    <div class="tag-list">
+        {{#each @note.tags as |tag|}}
+            <Tags::Tag @tag={{tag}} @isEditable={{false}} />
+        {{/each}}
+    </div>
+    <div class="action-bar">
+        <Utils::Timestamp
+            @date={{@note.modifiedDate}}
+            @format="MMM DD YYYY"
+            @enableDiff=true
+            @diffPrecision="days"
+            @diffLimit=7
+        />
+        <div class="actions">
+            <Select::DropdownSelect
+                @isMultiSelect={{true}}
+                @options={{@tags}}
+                @selected={{@note.tags}}
+                @onSelect={{@onTagSelect}}
+                @onCreate={{@onTagCreate}}
+                @searchEnabled={{true}}
+                @placeholder="Enter tag"
+                @searchField="content"
+                @stopPropagation=true
+            >
+                <FaIcon @icon="tag" />
+            </Select::DropdownSelect>
+            <button {{on "click" (stop-propagation @onNoteDelete)}} class="button"><FaIcon @icon="trash" /></button>
+        </div>
+    </div>
+</div>

@@ -11,7 +11,12 @@
 
 .ember-power-select-trigger {
     padding: 8px;
-    border-bottom: none;
+    &.ember-basic-dropdown-trigger--below  {
+        border-bottom: none;
+    }
+    &.ember-basic-dropdown-trigger--above {
+        border-top: none;
+    }
 }
 
 .power-select-suggestion {

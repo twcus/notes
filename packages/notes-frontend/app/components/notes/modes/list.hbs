@@ -1,7 +1,7 @@
 <div class="list-pane">
     {{#each @notes as |note|}}
-        <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}} class="list-item {{if this.isActive "active"}}">
-            {{note.content}}
+        <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}} class="list-item pell-content {{if this.isActive "active"}}">
+            {{{note.content}}}
         </LinkTo>
     {{/each}}
 </div>

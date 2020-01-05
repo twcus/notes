@@ -5,6 +5,7 @@
 
 .pell-button {
     color: $black-light;
+    width: 32px;
     &:hover,
     &.pell-button-selected {
         background-color: $white-darker;
