@@ -1,7 +1,7 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
-export default class NoteEditorModalComponent extends Component {
+export default class NotesEditorsModalComponent extends Component {
     @action
     focusElement(element) {
         element.focus();

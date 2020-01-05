@@ -1,4 +1,4 @@
 import Component from '@glimmer/component';
 
-export default class NoteModeCardComponent extends Component {
+export default class NotesModesCardComponent extends Component {
 }

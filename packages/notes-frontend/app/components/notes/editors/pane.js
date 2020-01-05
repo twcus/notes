@@ -1,4 +1,4 @@
 import Component from '@glimmer/component';
 
-export default class NoteEditorPaneComponent extends Component {
+export default class NotesEditorsPaneComponent extends Component {
 }
