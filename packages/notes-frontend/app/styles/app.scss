@@ -15,11 +15,3 @@
 @import 'components/text-editor';
 @import 'components/note';
 @import 'components/pane';
-
-.content {
-    display: flex;
-    padding: 0;
-    overflow: hidden;
-    width: calc(100vw - 200px);
-    height: calc(100vh - 70px);
-}

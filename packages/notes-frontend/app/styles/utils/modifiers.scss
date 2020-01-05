@@ -2,3 +2,15 @@
 .is-bold {
     font-weight: 600;
 }
+
+/* Margin */
+.has-margin-right {
+    margin-right: 8px;
+}
+
+/* Display */
+.is-flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

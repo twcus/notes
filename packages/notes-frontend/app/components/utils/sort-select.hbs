@@ -1,0 +1,27 @@
+<div class="is-flex-row">
+    <span class="has-margin-right">Sort By</span>
+    <Select::DropdownSelect
+        @options={{@sortPropertyOptions}}
+        @selected={{@selectedSortProperty}}
+        @onSelect={{@onSelectSortProperty}}
+        @searchEnabled={{false}}
+        @triggerClass={{"hide-trigger"}}
+        @dropdownClass={{"has-top-border"}}
+        @displayProperty="name"
+        @stopPropagation=true
+    >
+        <span>{{@selectedSortProperty.name}}</span>
+    </Select::DropdownSelect>
+    <Select::DropdownSelect
+        @options={{this.sortOrderOptions}}
+        @selected={{this.selectedSortOrder}}
+        @onSelect={{this.selectSortOrder}}
+        @searchEnabled={{false}}
+        @triggerClass={{"hide-trigger"}}
+        @dropdownClass={{"has-top-border"}}
+        @displayProperty="name"
+        @stopPropagation=true
+    >
+        <FaIcon @icon={{selectedSortOrder.icon}} />
+    </Select::DropdownSelect>
+</div>

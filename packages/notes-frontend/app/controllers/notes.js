@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { sort } from '@ember/object/computed';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
@@ -7,29 +8,58 @@ const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
 
 export default class NotesController extends Controller {
+    defaultSortOrder = 'desc';
     viewModeOptions = [
         {
-            content: 'Card',
+            name: 'Card',
             icon: 'th',
             component: 'card',
             editorComponent: 'modal'
         },
         {
-            content: 'List',
+            name: 'List',
             icon: 'bars',
             component: 'list',
             editorComponent: 'pane'
         }
     ];
 
-    @tracked viewMode = 'cards';
-    @tracked editMode = 'modal';
-    @tracked activeViewMode = this.viewModeOptions[1];
+    sortOptions = [
+        {
+            property: 'modifiedDate',
+            name: 'Last Modified Date'
+        },
+        {
+            property: 'createdDate',
+            name: 'Created Date'
+        }
+    ];
+
+    @tracked viewMode = this.viewModeOptions[1];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
+    @tracked sortProperty = this.sortOptions[0];
+    @tracked sortOrder;
+
+    @sort('model.notes', 'sortPropertyWithOrder') sortedNotes;
+
+    get sortPropertyWithOrder() {
+        let order = this.sortOrder ? this.sortOrder.order : this.defaultSortOrder;
+        return [`${this.sortProperty.property}:${order}`];
+    }
+
+    @action
+    selectSortProperty(property) {
+        this.sortProperty = property;
+    }
+
+    @action
+    selectSortOrder(order) {
+        this.sortOrder = order;
+    }
 
     @action
     selectViewMode(mode) {
-        this.activeViewMode = mode;
+        this.viewMode = mode;
         this.transitionToNotes();
     }
 

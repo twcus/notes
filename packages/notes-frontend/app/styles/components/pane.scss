@@ -24,8 +24,10 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: $white;
-    flex-grow: 1;
     overflow-x: hidden;
     overflow-wrap: break-word;
     padding: 36px;
+    .pane-body {
+        overflow-y: auto;
+    }
 }

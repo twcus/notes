@@ -11,6 +11,6 @@ export default class NotesEditRoute extends Route {
 
     setupController(controller, model) {
         super.setupController(controller, model);
-        this.controller.activeViewMode = this.controllerFor('notes').activeViewMode;
+        this.controller.viewMode = this.controllerFor('notes').viewMode;
     }
 }

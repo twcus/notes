@@ -1,4 +1,6 @@
 .pell-actionbar {
+    position: sticky;
+    top: 0;
     background-color: $white;
     border-bottom: 2px solid $white-darker;
 }
@@ -13,6 +15,7 @@
 }
 
 .pell-content {
+    height: unset;
     blockquote {
         padding: 16px;
         margin: 16px;

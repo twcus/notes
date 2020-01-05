@@ -4,4 +4,4 @@
 {{#if @option.icon}}
     <FaIcon @icon={{@option.icon}} class="select-option-icon" />
 {{/if}}
-<span class="select-option-content">{{@option.content}}</span>
+<span class="select-option-content">{{get @option @displayProperty}}</span>

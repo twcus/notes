@@ -27,7 +27,7 @@
                 @closeOnSelect=false
                 as |item|
             >
-                <Select::SelectOption @option={{item}} @selectedIcon="check" />
+                <Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" />
             </PowerSelectMultipleWithCreate>
         {{else}}
             <PowerSelect
@@ -44,7 +44,7 @@
                 @closeOnSelect=false
                 as |item|
             >
-                <Select::SelectOption @option={{item}} @selectedIcon="check" />
+                <Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" />
             </PowerSelect>
         {{/if}}
     </dd.Content>

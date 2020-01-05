@@ -30,6 +30,10 @@ input[type="search"]::-webkit-search-results-decoration {
 }
 
 .content {
-    padding: 24px 48px;
     margin-top: 70px;
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+    width: calc(100vw - 200px);
+    height: calc(100vh - 70px);
 }

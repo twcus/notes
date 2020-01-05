@@ -2,7 +2,7 @@
     <div class="toolbar-item">
             <Select::DropdownSelect
                 @options={{this.viewModeOptions}}
-                @selected={{this.activeViewMode}}
+                @selected={{this.viewMode}}
                 @onOpen={{this.onTagSelectorOpen}}
                 @onClose={{this.onTagSelectorClose}}
                 @onSelect={{this.selectViewMode}}
@@ -11,9 +11,10 @@
                 @triggerClass={{"hide-trigger"}}
                 @dropdownClass={{"has-top-border is-small"}}
                 @matchTriggerWidth={{false}}
+                @displayProperty="name"
                 @stopPropagation=true
             >
-                <FaIcon @icon={{this.activeViewMode.icon}} @fixedWidth={{true}} />
+                <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
             </Select::DropdownSelect>
     </div>
     <div class="toolbar-item">
@@ -23,16 +24,16 @@
         </div>
     </div>
     <div class="toolbar-item">
-        <button class="button">
-            <FaIcon @icon="filter" />
-            <span>Filter</span>
-        </button>
+        <button class="button"><FaIcon @icon="filter" /><span>Filter</span></button>
     </div>
     <div class="toolbar-item">
-        <button class="button">
-            <FaIcon @icon="sort" />
-            <span>Sort</span>
-        </button>
+        <Utils::SortSelect
+            @sortPropertyOptions={{this.sortOptions}}
+            @selectedSortProperty={{this.sortProperty}}
+            @onSelectSortProperty={{this.selectSortProperty}}
+            @onSelectSortOrder={{this.selectSortOrder}}
+            @defaultSortOrder={{this.defaultSortOrder}}
+        />
     </div>
     <div class="toolbar-item">
         <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
@@ -43,8 +44,8 @@
 </div>
 <div class="content">
     {{component
-        (concat "notes/modes/" this.activeViewMode.component)
-        notes=model.notes
+        (concat "notes/modes/" this.viewMode.component)
+        notes=sortedNotes
         tags=model.tags
         onDeleteNote=this.deleteNote
         onUpdate=this.updatedNote
