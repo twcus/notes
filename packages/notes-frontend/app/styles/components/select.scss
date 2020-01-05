@@ -62,8 +62,10 @@
     }
 }
 
-.ember-power-select-options {
-    .ember-power-select-option {
+.ember-power-select-options .ember-power-select-option {
+    padding: 0;
+    .option-wrapper {
+        width: 100%;
         padding: 8px;
     }
 }

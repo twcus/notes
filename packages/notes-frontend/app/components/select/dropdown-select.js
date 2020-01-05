@@ -17,6 +17,11 @@ export default class DropdownSelectComponent extends Component {
     }
 
     @action
+    closeDropdown(dropdown) {
+        dropdown.actions.close();
+    }
+
+    @action
     customSuggestion(term) {
         return term;
     }

@@ -27,7 +27,7 @@
                 @closeOnSelect=false
                 as |item|
             >
-                <Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" />
+                <span class="option-wrapper"><Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" /></span>
             </PowerSelectMultipleWithCreate>
         {{else}}
             <PowerSelect
@@ -44,7 +44,7 @@
                 @closeOnSelect=false
                 as |item|
             >
-                <Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" />
+                <span class="option-wrapper" {{on "click" (fn this.closeDropdown dd)}} ><Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" /></span>
             </PowerSelect>
         {{/if}}
     </dd.Content>
