@@ -10,10 +10,16 @@
         border-bottom: 1px solid #d1d1d1;
         border-right: 1px solid #d1d1d1;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        word-break: break-all;
         overflow: hidden;
         &:hover {
             background-color: $white-darker;
+        }
+        &.active {
+            background-color: $white-darker;
+        }
+        blockquote {
+            background-color: $white;
         }
     }
 }

@@ -14,13 +14,15 @@ export default class NotesController extends Controller {
             name: 'Card',
             icon: 'th',
             component: 'card',
-            editorComponent: 'modal'
+            editorComponent: 'modal',
+            isEditorOpen: false
         },
         {
             name: 'List',
             icon: 'bars',
             component: 'list',
-            editorComponent: 'pane'
+            editorComponent: 'pane',
+            isEditorOpen: true
         }
     ];
 
@@ -60,7 +62,11 @@ export default class NotesController extends Controller {
     @action
     selectViewMode(mode) {
         this.viewMode = mode;
-        this.transitionToNotes();
+        if (mode.isEditorOpen) {
+            this.transitionToRoute('notes.edit', this.sortedNotes[0].id);
+        } else {
+            this.transitionToNotes();
+        }
     }
 
     @action
