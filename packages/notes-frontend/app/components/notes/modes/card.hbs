@@ -3,8 +3,8 @@
         <Notes::Card
             @note={{note}}
             @tags={{@tags}}
-            @onDelete={{this.deleteNote}}
-            @onUpdate={{@onUpdate}}
+            @onDelete={{@onNoteDelete}}
+            @onNoteUpdate={{@onNoteUpdate}}
             @onTagCreate={{@onTagCreate}}
         />
     {{/each}}

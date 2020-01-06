@@ -1,7 +1,9 @@
 <div class="list-pane">
     {{#each @notes as |note|}}
-        <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}} class="list-item pell-content {{if this.isActive "active"}} {{if note.isNew "is-not-displayed"}}">
-            {{{note.content}}}
-        </LinkTo>
+        <Link @route="notes.edit" @models={{array note.id}} as |link|>
+            <div class="list-item pell-content {{if note.isNew "new"}} {{if link.isActive "active"}}" {{on "click" link.transitionTo}}>
+                {{{note.content}}}
+            </div>
+        </Link>
     {{/each}}
 </div>

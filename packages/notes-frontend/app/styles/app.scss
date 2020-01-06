@@ -15,3 +15,11 @@
 @import 'components/text-editor';
 @import 'components/note';
 @import 'components/pane';
+
+.test {
+    height: 150px;
+    background-color: red;
+    &.active {
+        background-color: blue;
+    }
+}

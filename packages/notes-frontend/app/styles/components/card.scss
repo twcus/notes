@@ -6,6 +6,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     padding: 32px;
+    width: 100%;
 }
 
 .card {
@@ -25,6 +26,13 @@
         .card-footer .action-bar {
             opacity: 1;
         }
+    }
+    &.open {
+        visibility: hidden;
+    }
+    &.new {
+        display: none;
+        position: absolute; // Ensures the new note is not added to the grid
     }
     .card-body {
         height: 100%;

@@ -47,8 +47,8 @@
         (concat "notes/modes/" this.viewMode.component)
         notes=sortedNotes
         tags=model.tags
-        onDeleteNote=this.deleteNote
-        onUpdate=this.updatedNote
+        onNoteDelete=this.deleteNote
+        onNoteUpdate=this.updatedNote
         onTagCreate=this.createTagAndAddToNote
     }}
     {{outlet}}

@@ -14,7 +14,7 @@ export default class NoteCardComponent extends Component {
     @action
     selectTag(tags) {
         this.args.note.tags = tags;
-        this.args.onUpdate(this.args.note);
+        this.args.onNoteUpdate(this.args.note);
     }
 
     @action

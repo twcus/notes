@@ -15,19 +15,18 @@ export default class NotesEditorsPaneComponent extends Component {
     @action
     updatedNote(content) {
         this.args.note.content = content;
-        this.args.onUpdate(this.args.note);
+        this.args.onNoteUpdate(this.args.note);
     }
 
     @action
     async delete() {
-        let result = await this.args.onDelete(this.args.note);
-        console.log(result);
+        await this.args.onDelete(this.args.note);
     }
 
     @action
     selectTag(tags) {
         this.args.note.tags = tags;
-        this.args.onUpdate(this.args.note);
+        this.args.onNoteUpdate(this.args.note);
     }
 
     @action

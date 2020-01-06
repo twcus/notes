@@ -20,8 +20,7 @@ export default class NotesRoute extends Route {
     @action
     willTransition(transition) {
         if (transition.targetName === 'notes.index' && this.controller.viewMode.isEditorOpen) {
-            transition.abort();
+            this.transitionTo('notes.edit', this.controllerFor('notes').sortedNotes[0].id);
         }
-        return true;
     }
 }

@@ -77,8 +77,10 @@ export default class NotesController extends Controller {
     @action
     deleteNote(note) {
         console.log(`in delete note in notes controller ${note}`);
-        let result = note.destroyRecord();
-        this.transitionToNotes();
+        let result = note.destroyRecord()
+            .then(() => {
+                this.transitionToNotes();
+            });
         return result;
     }
 
