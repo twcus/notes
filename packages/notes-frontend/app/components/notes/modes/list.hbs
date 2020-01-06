@@ -1,6 +1,6 @@
 <div class="list-pane">
     {{#each @notes as |note|}}
-        <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}} class="list-item pell-content {{if this.isActive "active"}}">
+        <LinkTo @tagName="div" @route="notes.edit" @model={{note.id}} class="list-item pell-content {{if this.isActive "active"}} {{if note.isNew "is-not-displayed"}}">
             {{{note.content}}}
         </LinkTo>
     {{/each}}

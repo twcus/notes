@@ -37,7 +37,7 @@ export default class NotesController extends Controller {
         }
     ];
 
-    @tracked viewMode = this.viewModeOptions[1];
+    @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
     @tracked sortOrder;
