@@ -1,6 +1,7 @@
 .pell-actionbar {
     position: sticky;
     top: 0;
+    height: 30px;
     background-color: $white;
     border-bottom: 2px solid $white-darker;
 }
@@ -15,7 +16,7 @@
 }
 
 .pell-content {
-    height: unset;
+    height: calc(100% - 32px);
     min-height: 200px;
     blockquote {
         padding: 16px;

@@ -3,11 +3,6 @@ import { action } from '@ember/object';
 
 export default class NotesEditorsModalComponent extends Component {
     @action
-    focusElement(element) {
-        element.focus();
-    }
-
-    @action
     close() {
         this.args.onClose();
     }

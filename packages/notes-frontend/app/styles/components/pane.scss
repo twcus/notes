@@ -36,6 +36,7 @@
     overflow-wrap: break-word;
     padding: 36px;
     .pane-body {
+        height: 100%;
         overflow-y: auto;
     }
 }
