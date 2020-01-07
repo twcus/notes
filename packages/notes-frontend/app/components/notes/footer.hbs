@@ -1,7 +1,7 @@
 <div class="note-footer">
     <div class="tag-list">
         {{#each @note.tags as |tag|}}
-            <Tags::Tag @tag={{tag}} @isEditable={{false}} />
+            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{@onTagRemove}} />
         {{/each}}
     </div>
     <div class="action-bar">

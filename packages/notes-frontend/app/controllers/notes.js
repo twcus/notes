@@ -101,6 +101,12 @@ export default class NotesController extends Controller {
     }
 
     @action
+    removeTagFromNote(tag, note) {
+        note.tags.removeObject(tag);
+        return note.save();
+    }
+
+    @action
     updatedNote(note) {
         this.updateNoteTask.perform(note);
     }

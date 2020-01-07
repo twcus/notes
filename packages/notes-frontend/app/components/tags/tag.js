@@ -24,7 +24,7 @@ export default class TagComponent extends Component {
     }
 
     undoChanges() {
-        // TODO revert changes
+        this.args.tag.rollbackAttributes();
         this.disableEditing();
     }
 
@@ -50,6 +50,11 @@ export default class TagComponent extends Component {
     @action
     delete() {
         this.args.onDelete(this.args.tag);
+    }
+
+    @action
+    remove() {
+        this.args.onRemove(this.args.tag);
     }
 
     @action

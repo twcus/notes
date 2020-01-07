@@ -11,6 +11,6 @@
         <button class="button tag-delete" {{on "click" this.delete}}><FaIcon @icon="trash" /></button>
     {{else}}
         <span class="tag-text">{{@tag.content}}</span>
-        <button class="button tag-remove"><FaIcon @icon="times" /></button>
+        <button class="button tag-remove" {{on "click" this.remove}}><FaIcon @icon="times" /></button>
     {{/if}}
 </span>

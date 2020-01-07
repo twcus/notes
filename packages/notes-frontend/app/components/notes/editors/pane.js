@@ -31,6 +31,11 @@ export default class NotesEditorsPaneComponent extends Component {
     }
 
     @action
+    removeTagFromNote(tag) {
+        this.args.onTagRemove(tag, this.args.note);
+    }
+
+    @action
     customSuggestion(term) {
         return term;
     }

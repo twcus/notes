@@ -6,7 +6,7 @@
     .list-item {
         cursor: pointer;
         padding: 16px;
-        height: 100px;
+        height: 150px;
         border-bottom: 1px solid #d1d1d1;
         text-overflow: ellipsis;
         word-break: break-all;
@@ -19,6 +19,9 @@
         }
         &.new {
             display: none;
+        }
+        &.pell-content {
+            min-height: unset;
         }
         blockquote {
             background-color: $white;
