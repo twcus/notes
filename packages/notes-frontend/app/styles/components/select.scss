@@ -1,5 +1,4 @@
 .ember-basic-dropdown-content {
-    width: 250px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 
@@ -64,7 +63,7 @@
 }
 
 .ember-power-select-options .ember-power-select-option {
-    padding: 0;
+    padding-right: 16px;
     .option-wrapper {
         width: 100%;
         padding: 8px;
@@ -124,8 +123,4 @@
     border-top: 1px solid $white-darker;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-}
-
-.ember-power-select-dropdown.is-small {
-    width: 120px;
 }

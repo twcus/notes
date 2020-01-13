@@ -27,19 +27,3 @@
         padding: 8px 0;
     }
 }
-
-.modal-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-    color: $black-light;
-    margin-top: 8px;
-    .action-bar {
-        display: flex;
-        button {
-            color: $black-light;
-        }
-    }
-}
-

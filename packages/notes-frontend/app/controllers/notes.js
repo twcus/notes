@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { sort } from '@ember/object/computed';
+import { sort, filter } from '@ember/object/computed';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
@@ -41,8 +41,21 @@ export default class NotesController extends Controller {
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
     @tracked sortOrder;
+    @tracked searchQuery;
 
-    @sort('model.notes', 'sortPropertyWithOrder') sortedNotes;
+    get searchedNotes() {
+        if (this.searchQuery) {
+            return this.model.notes.filter(note => {
+                if (note.content) {
+                    return note.content.includes(this.searchQuery);
+                }
+                return false;
+            });
+        }
+        return this.model.notes;
+    }
+
+    @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
 
     get sortPropertyWithOrder() {
         let order = this.sortOrder ? this.sortOrder.order : this.defaultSortOrder;

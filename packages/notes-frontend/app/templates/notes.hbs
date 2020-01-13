@@ -18,9 +18,9 @@
             </Select::DropdownSelect>
     </div>
     <div class="toolbar-item">
-        <div class="toolbar-search-container">
+        <div class="search-container">
             <FaIcon @icon="search" />
-            <input type="text" placeholder="Search" aria-label="Search notes">
+            <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
         </div>
     </div>
     <div class="toolbar-item">
