@@ -1,15 +1,27 @@
 .toolbar {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     top: 0;
-    padding: 0 32px;
+    padding: 8px 32px;
     width: calc(100vw - 264px);
-    height: 70px;
+    min-height: 70px;
     background-color: $white;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
     z-index: $topbar-index;
+    .toolbar-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-grow: 1;
+        width: 100%;
+    }
+    .tag-list {
+        max-height: 100px;
+        overflow: auto;
+    }
 }
 
 .toolbar-item {

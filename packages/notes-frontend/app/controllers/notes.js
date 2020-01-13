@@ -1,6 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
-import { sort, filter } from '@ember/object/computed';
+import { sort } from '@ember/object/computed';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
@@ -40,22 +40,30 @@ export default class NotesController extends Controller {
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
+    @tracked tagFilters = [];
     @tracked sortOrder;
     @tracked searchQuery;
+    @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
+
+    get filteredNotes() {
+        if (this.tagFilters) {
+            return this.model.notes.filter(note => this.tagFilters.every(tag => note.tags.includes(tag)));
+        }
+        return this.model.notes;
+    }
 
     get searchedNotes() {
         if (this.searchQuery) {
-            return this.model.notes.filter(note => {
+            return this.filteredNotes.filter(note => {
                 if (note.content) {
                     return note.content.includes(this.searchQuery);
                 }
                 return false;
             });
         }
-        return this.model.notes;
+        return this.filteredNotes;
     }
 
-    @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
 
     get sortPropertyWithOrder() {
         let order = this.sortOrder ? this.sortOrder.order : this.defaultSortOrder;
@@ -117,6 +125,16 @@ export default class NotesController extends Controller {
     removeTagFromNote(tag, note) {
         note.tags.removeObject(tag);
         return note.save();
+    }
+
+    @action
+    updatetagFilters(tags) {
+        this.tagFilters = tags;
+    }
+
+    @action
+    removeFilteredTag(tag) {
+        this.tagFilters.removeObject(tag);
     }
 
     @action

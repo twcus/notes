@@ -29,7 +29,7 @@ export default class DropdownSelectComponent extends Component {
     @action
     showCreateOption(term) {
         // Don't show the create option if there is an exact match for the search term
-        return !this.args.options.find(({ content }) => content === term);
+        return !this.args.showCreateOption && !this.args.options.find(({ content }) => content === term);
     }
 
     @action

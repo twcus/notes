@@ -1,52 +1,72 @@
 <div class="toolbar">
-    <div class="toolbar-item">
+    <div class="toolbar-actions">
+        <div class="toolbar-item">
             <Select::DropdownSelect
-                @options={{this.viewModeOptions}}
-                @selected={{this.viewMode}}
-                @onOpen={{this.onTagSelectorOpen}}
-                @onClose={{this.onTagSelectorClose}}
-                @onSelect={{this.selectViewMode}}
-                @onCreate={{this.createTag}}
-                @searchEnabled={{false}}
-                @triggerClass={{"hide-trigger"}}
-                @dropdownClass={{"has-top-border is-small"}}
-                @matchTriggerWidth={{false}}
-                @displayProperty="name"
-                @stopPropagation=true
+                    @options={{this.viewModeOptions}}
+                    @selected={{this.viewMode}}
+                    @onOpen={{this.onTagSelectorOpen}}
+                    @onClose={{this.onTagSelectorClose}}
+                    @onSelect={{this.selectViewMode}}
+                    @onCreate={{this.createTag}}
+                    @searchEnabled={{false}}
+                    @triggerClass={{"hide-trigger"}}
+                    @dropdownClass={{"has-top-border is-small"}}
+                    @matchTriggerWidth={{false}}
+                    @displayProperty="name"
+                    @stopPropagation=true
             >
                 <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
             </Select::DropdownSelect>
-    </div>
-    <div class="toolbar-item">
-        <div class="search-container">
-            <FaIcon @icon="search" />
-            <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
+        </div>
+        <div class="toolbar-item">
+            <div class="search-container">
+                <FaIcon @icon="search" />
+                <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
+            </div>
+        </div>
+        <div class="toolbar-item">
+            <Select::DropdownSelect
+                    @isMultiSelect={{true}}
+                    @options={{this.model.tags}}
+                    @selected={{this.tagFilters}}
+                    @onSelect={{this.updatetagFilters}}
+                    @searchEnabled={{true}}
+                    @displayProperty="content"
+                    @placeholder="Enter tag"
+                    @searchField="content"
+                    @stopPropagation=true
+                    @showCreateOption={{true}}
+            >
+                <FaIcon @icon="filter" /><span>Filter</span>
+            </Select::DropdownSelect>
+        </div>
+        <div class="toolbar-item">
+            <Utils::SortSelect
+                    @sortPropertyOptions={{this.sortOptions}}
+                    @selectedSortProperty={{this.sortProperty}}
+                    @onSelectSortProperty={{this.selectSortProperty}}
+                    @onSelectSortOrder={{this.selectSortOrder}}
+                    @defaultSortOrder={{this.defaultSortOrder}}
+            />
+        </div>
+        <div class="toolbar-item">
+            <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
+                <FaIcon @icon="plus" />
+                <span>New Note</span>
+            </LinkTo>
         </div>
     </div>
-    <div class="toolbar-item">
-        <button class="button"><FaIcon @icon="filter" /><span>Filter</span></button>
-    </div>
-    <div class="toolbar-item">
-        <Utils::SortSelect
-            @sortPropertyOptions={{this.sortOptions}}
-            @selectedSortProperty={{this.sortProperty}}
-            @onSelectSortProperty={{this.selectSortProperty}}
-            @onSelectSortOrder={{this.selectSortOrder}}
-            @defaultSortOrder={{this.defaultSortOrder}}
-        />
-    </div>
-    <div class="toolbar-item">
-        <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
-            <FaIcon @icon="plus" />
-            <span>New Note</span>
-        </LinkTo>
+    <div class="tag-list">
+        {{#each this.tagFilters as |tag|}}
+            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
+        {{/each}}
     </div>
 </div>
 <div class="content">
     {{component
         (concat "notes/modes/" this.viewMode.component)
         notes=sortedNotes
-        tags=model.tags
+        tags=this.model.tags
         onNoteDelete=this.deleteNote
         onNoteUpdate=this.updatedNote
         onTagCreate=this.createTagAndAddToNote
