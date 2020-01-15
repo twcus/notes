@@ -29,7 +29,7 @@
                     @isMultiSelect={{true}}
                     @options={{this.model.tags}}
                     @selected={{this.tagFilters}}
-                    @onSelect={{this.updatetagFilters}}
+                    @onSelect={{this.updateTagFilters}}
                     @searchEnabled={{true}}
                     @displayProperty="content"
                     @placeholder="Enter tag"
@@ -64,13 +64,19 @@
 
 </div>
 <div class="content">
-    {{component
-        (concat "notes/modes/" this.viewMode.component)
-        notes=sortedNotes
-        tags=this.model.tags
-        onNoteDelete=this.deleteNote
-        onNoteUpdate=this.updatedNote
-        onTagCreate=this.createTagAndAddToNote
-    }}
+    {{#if this.firstNoteInOrder}}
+        {{component
+                (concat "notes/modes/" this.viewMode.component)
+                notes=sortedNotes
+                tags=this.model.tags
+                onNoteDelete=this.deleteNote
+                onNoteUpdate=this.updatedNote
+                onTagCreate=this.createTagAndAddToNote
+        }}
+    {{else}}
+        <NoResultsMessage>
+            <span>No Notes Found</span>
+        </NoResultsMessage>
+    {{/if}}
     {{outlet}}
 </div>

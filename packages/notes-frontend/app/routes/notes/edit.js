@@ -17,11 +17,12 @@ export default class NotesEditRoute extends Route {
 
     @action
     willTransition(transition) {
+        let notesController = this.controllerFor('notes');
         if (this.controller.model.note.hasDirtyAttributes) {
             this.controller.saveNoteTask.perform(this.controller.model.note);
         }
-        if (transition.targetName === 'notes.index' && this.controllerFor('notes').viewMode.isEditorOpen) {
-            this.transitionTo('notes.edit', this.controllerFor('notes').sortedNotes[0].id);
+        if (transition.targetName === 'notes.index' && notesController.viewMode.isEditorOpen && notesController.firstNoteInOrder) {
+            this.transitionTo('notes.edit', notesController.firstNoteInOrder.id);
         }
     }
 }

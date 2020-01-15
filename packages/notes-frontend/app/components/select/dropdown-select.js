@@ -1,9 +1,13 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class DropdownSelectComponent extends Component {
+    @tracked isOpen;
+
     @action
     open() {
+        this.isOpen = true;
         if (this.args.onOpen) {
             this.args.onOpen();
         }
@@ -11,6 +15,7 @@ export default class DropdownSelectComponent extends Component {
 
     @action
     close() {
+        this.isOpen = false;
         if (this.args.onClose) {
             this.args.onClose();
         }

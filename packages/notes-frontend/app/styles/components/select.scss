@@ -113,10 +113,15 @@
     }
 }
 
-.ember-basic-dropdown-trigger.hide-trigger {
-    min-height: unset;
-    padding: 0;
-    border: none;
+.ember-basic-dropdown-trigger {
+    &.active {
+        background-color: $white-darker;
+    }
+    &.hide-trigger {
+        min-height: unset;
+        padding: 0;
+        border: none;
+    }
 }
 
 .ember-power-select-dropdown.has-top-border {

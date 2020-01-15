@@ -37,6 +37,14 @@ export default class NotesController extends Controller {
         }
     ];
 
+    transitionWithEditorOpen() {
+        if (this.firstNoteInOrder) {
+            this.transitionToRoute('notes.edit', this.firstNoteInOrder.id);
+        } else {
+            this.transitionToNotes();
+        }
+    }
+
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
@@ -64,10 +72,13 @@ export default class NotesController extends Controller {
         return this.filteredNotes;
     }
 
-
     get sortPropertyWithOrder() {
         let order = this.sortOrder ? this.sortOrder.order : this.defaultSortOrder;
         return [`${this.sortProperty.property}:${order}`];
+    }
+
+    get firstNoteInOrder() {
+        return this.sortedNotes[0];
     }
 
     @action
@@ -84,7 +95,7 @@ export default class NotesController extends Controller {
     selectViewMode(mode) {
         this.viewMode = mode;
         if (mode.isEditorOpen) {
-            this.transitionToRoute('notes.edit', this.sortedNotes[0].id);
+            this.transitionWithEditorOpen();
         } else {
             this.transitionToNotes();
         }
@@ -128,13 +139,19 @@ export default class NotesController extends Controller {
     }
 
     @action
-    updatetagFilters(tags) {
+    updateTagFilters(tags) {
         this.tagFilters = tags;
+        if (this.viewMode.isEditorOpen) {
+            this.transitionWithEditorOpen();
+        }
     }
 
     @action
     removeFilteredTag(tag) {
         this.tagFilters.removeObject(tag);
+        if (this.viewMode.isEditorOpen) {
+            this.transitionWithEditorOpen();
+        }
     }
 
     @action
