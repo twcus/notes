@@ -24,4 +24,13 @@
     .button {
         padding: 16px;
     }
+    .button-group {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        border-radius: $default-radius;
+        &:hover {
+            background-color: $white-dark;
+        }
+    }
 }

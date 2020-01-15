@@ -1,5 +1,5 @@
 .list-pane {
-    width: 350px;
+    flex-basis: 350px;
     background-color: $white-dark;
     overflow-y: auto;
     flex-shrink: 0; // without this, the list disappears/shrinks when opening the editor, not sure why

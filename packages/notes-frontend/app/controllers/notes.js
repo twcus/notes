@@ -113,7 +113,6 @@ export default class NotesController extends Controller {
             .then(() => {
                 this.transitionToNotes();
             });
-        return result;
     }
 
     @action
