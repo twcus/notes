@@ -45,6 +45,7 @@ export default class NotesController extends Controller {
         }
     }
 
+    @tracked allNotes = this.model.notes;
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
@@ -55,9 +56,9 @@ export default class NotesController extends Controller {
 
     get filteredNotes() {
         if (this.tagFilters) {
-            return this.model.notes.filter(note => this.tagFilters.every(tag => note.tags.includes(tag)));
+            return this.allNotes.filter(note => this.tagFilters.every(tag => note.tags.includes(tag)));
         }
-        return this.model.notes;
+        return this.allNotes;
     }
 
     get searchedNotes() {
@@ -108,16 +109,15 @@ export default class NotesController extends Controller {
 
     @action
     deleteNote(note) {
-        console.log(`in delete note in notes controller ${note}`);
-        let result = note.destroyRecord()
+        return note.destroyRecord()
             .then(() => {
+                this.model.notes.removeObject(note);
                 this.transitionToNotes();
             });
     }
 
     @action
     saveNote(note) {
-        console.log('in save note in notes controller');
         note.save();
     }
 

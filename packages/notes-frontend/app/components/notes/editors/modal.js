@@ -15,8 +15,7 @@ export default class NotesEditorsModalComponent extends Component {
 
     @action
     async delete() {
-        let result = await this.args.onDelete(this.args.note);
-        console.log(result);
+        await this.args.onDelete(this.args.note);
     }
 
     @action
