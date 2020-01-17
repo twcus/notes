@@ -49,6 +49,31 @@
                     @defaultSortOrder={{this.defaultSortOrder}}
             />
         </div>
+        {{#if this.showNewCollectionButton}}
+            <div class="toolbar-item">
+                <button class="button"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>Save Collection</span></button>
+                <AttachPopover
+                    @animation="shift"
+                    @hideDelay=0
+                    @hideDuration=300
+                    @hideOn="click"
+                    @interactive={{false}}
+                    @isShown={{false}}
+                    @placement="bottom"
+                    @showDelay=0
+                    @showDuration=300
+                    @showOn="click"
+                    @class="popover-container"
+                >
+                    <span class="title">Save this collection</span>
+                    <Input />
+                    <div class="action-bar">
+                        <button class="button">Save</button>
+                        <button class="button">Cancel</button>
+                    </div>
+                </AttachPopover>
+            </div>
+        {{/if}}
         <div class="toolbar-item">
             <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
                 <FaIcon class="has-margin-right" @icon="plus" />

@@ -1,0 +1,41 @@
+.popover-container {
+    display: flex;
+    flex-direction: column;
+    background-color: $white;
+    border: 1px solid $white-darker;
+    border-radius: $default-radius;
+    padding: 16px;
+    .title {
+        margin-bottom: 16px;
+    }
+    .action-bar {
+        margin-top: 8px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
+    :after,
+    :before {
+        bottom: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    :after {
+        border-color: rgba(255, 255, 255, 0);
+        border-bottom-color: $white;
+        border-width: 9px;
+        left: 50%;
+        margin-left: -9px;
+    }
+    :before {
+        border-color: rgba(113, 158, 206, 0);
+        border-bottom-color: $white-darker;
+        border-width: 10px;
+        left: 50%;
+        margin-left: -10px;
+    }
+}

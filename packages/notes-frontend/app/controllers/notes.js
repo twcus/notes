@@ -85,6 +85,10 @@ export default class NotesController extends Controller {
         return this.sortedNotes[0];
     }
 
+    get showNewCollectionButton() {
+        return true;
+    }
+
     @action
     selectSortProperty(property) {
         this.sortProperty = property;
