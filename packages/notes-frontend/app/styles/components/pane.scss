@@ -4,6 +4,9 @@
     overflow-y: auto;
     flex-shrink: 0; // without this, the list disappears/shrinks when opening the editor, not sure why
     .list-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         cursor: pointer;
         padding: 16px;
         height: 150px;
@@ -20,11 +23,17 @@
         &.new {
             display: none;
         }
-        &.pell-content {
+        .pell-content {
             min-height: unset;
+            overflow: hidden;
+            padding: 0;
+            blockquote {
+                background-color: $white;
+            }
         }
-        blockquote {
-            background-color: $white;
+        .timestamp {
+            color: $grey-dark;
+            font-size: 0.8rem;
         }
     }
 }

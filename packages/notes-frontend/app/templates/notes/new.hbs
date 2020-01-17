@@ -1,6 +1,6 @@
 {{component (concat "notes/editors/" this.viewMode.editorComponent)
             note=model.note
-            tags=model.tags
+            tags=sortedTags
             onClose=this.transitionToNotes
             onDelete=this.deleteNote
             onNoteUpdate=this.updatedNote

@@ -1,5 +1,5 @@
 {{#if (and @enableDiff (lt (moment-diff @date (now) precision=@diffPrecision) @diffLimit))}}
-    <span>{{moment-from-now @date}}</span>
+    <span class="timestamp">{{moment-from-now @date}}</span>
 {{else}}
-    <span>{{moment-format @date @format}}</span>
+    <span class="timestamp">{{moment-format @date @format}}</span>
 {{/if}}

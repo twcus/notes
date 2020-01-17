@@ -1,8 +1,17 @@
 <div class="list-pane">
     {{#each @notes as |note|}}
         <Link @route="notes.edit" @models={{array note.id}} as |link|>
-            <div class="list-item pell-content {{if note.isNew "new"}} {{if link.isActive "active"}}" {{on "click" link.transitionTo}}>
-                {{{note.content}}}
+            <div class="list-item {{if note.isNew "new"}} {{if link.isActive "active"}}"  {{on "click" link.transitionTo}}>
+                <div class="pell-content">
+                    {{{note.content}}}
+                </div>
+                <Utils::Timestamp
+                        @date={{@note.modifiedDate}}
+                        @format="MMM DD YYYY"
+                        @enableDiff=true
+                        @diffPrecision="days"
+                        @diffLimit=7
+                />
             </div>
         </Link>
     {{/each}}

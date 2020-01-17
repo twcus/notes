@@ -37,6 +37,8 @@ export default class NotesController extends Controller {
         }
     ];
 
+    tagSortKey = ['content:asc'];
+
     transitionWithEditorOpen() {
         if (this.firstNoteInOrder) {
             this.transitionToRoute('notes.edit', this.firstNoteInOrder.id);
@@ -53,6 +55,7 @@ export default class NotesController extends Controller {
     @tracked sortOrder;
     @tracked searchQuery;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
+    @sort('model.tags', 'tagSortKey') sortedTags;
 
     get filteredNotes() {
         if (this.tagFilters) {

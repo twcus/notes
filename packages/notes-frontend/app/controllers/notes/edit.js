@@ -1,5 +1,6 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { sort } from '@ember/object/computed';
 import { tracked } from '@glimmer/tracking';
 import {task, timeout} from 'ember-concurrency';
 
@@ -7,7 +8,10 @@ const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
 
 export default class NotesEditController extends Controller {
+    tagSortKey = ['content:asc'];
+
     @tracked viewMode;
+    @sort('model.tags', 'tagSortKey') sortedTags;
 
     @action
     transitionToNotes() {
