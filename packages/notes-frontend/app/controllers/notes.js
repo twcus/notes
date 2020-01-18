@@ -54,6 +54,7 @@ export default class NotesController extends Controller {
     @tracked tagFilters = [];
     @tracked sortOrder;
     @tracked searchQuery;
+    @tracked collectionName;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
     @sort('model.tags', 'tagSortKey') sortedTags;
 
@@ -158,6 +159,16 @@ export default class NotesController extends Controller {
         if (this.viewMode.isEditorOpen) {
             this.transitionWithEditorOpen();
         }
+    }
+
+    @action
+    saveCollection(args) {
+        let collection = this.store.createRecord('collection', {
+            name: this.collectionName,
+            tags: this.tagFilters
+        });
+        args();
+        return collection.save();
     }
 
     @action

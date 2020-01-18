@@ -1,1 +1,10 @@
-{{outlet}}
+{{#each this.model as |collection|}}
+    <div class="card">
+        <h2>{{collection.name}}</h2>
+        <ul>
+            {{#each collection.tags as |tag|}}
+                <li>{{tag.content}}</li>
+            {{/each}}
+        </ul>
+    </div>
+{{/each}}

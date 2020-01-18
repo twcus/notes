@@ -56,19 +56,20 @@
                     @animation="shift"
                     @hideDelay=0
                     @hideDuration=300
-                    @hideOn="click"
-                    @interactive={{false}}
+                    @hideOn="click clickout escapekey"
+                    @interactive={{true}}
                     @isShown={{false}}
                     @placement="bottom"
                     @showDelay=0
                     @showDuration=300
                     @showOn="click"
                     @class="popover-container"
+                    as |popover|
                 >
-                    <span class="title">Save this collection</span>
-                    <Input />
+                    <span class="title">Save as new collection</span>
+                    <Input @placeholder="Collection name" aria-label="Search notes" @value={{this.collectionName}} />
                     <div class="action-bar">
-                        <button class="button">Save</button>
+                        <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
                         <button class="button">Cancel</button>
                     </div>
                 </AttachPopover>
