@@ -14,11 +14,12 @@
         text-overflow: ellipsis;
         word-break: break-all;
         overflow: hidden;
-        &:hover {
-            background-color: $white-darker;
-        }
+        &:hover,
         &.active {
             background-color: $white-darker;
+            .pell-content blockquote {
+                background-color: $grey-light;
+            }
         }
         &.new {
             display: none;
@@ -28,7 +29,7 @@
             overflow: hidden;
             padding: 0;
             blockquote {
-                background-color: $white;
+                background-color: $white-darker;
             }
         }
         .timestamp {
