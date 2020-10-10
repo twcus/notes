@@ -1,7 +1,73 @@
-<div class="content">
-    <div class="tag-list-editable">
-        {{#each @model as |tag|}}
-            <Tags::Tag @tag={{tag}} @isEditable={{true}} @onSave={{this.saveTag}} @onDelete={{this.deleteTag}} />
+<div class="toolbar">
+    <div class="toolbar-actions">
+        <div class="toolbar-item">
+            <div class="search-container">
+                <FaIcon @icon="search" />
+                <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
+            </div>
+        </div>
+        <div class="toolbar-item">
+            <Select::DropdownSelect
+                @isMultiSelect={{true}}
+                @options={{this.model.tags}}
+                @selected={{this.tagFilters}}
+                @onSelect={{this.updateTagFilters}}
+                @searchEnabled={{true}}
+                @displayProperty="content"
+                @placeholder="Enter tag"
+                @searchField="content"
+                @stopPropagation=true
+                @showCreateOption={{true}}
+            >
+                <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
+            </Select::DropdownSelect>
+        </div>
+        <div class="toolbar-item fixed-width-225">
+            <Utils::SortSelect
+                @sortPropertyOptions={{this.sortOptions}}
+                @selectedSortProperty={{this.sortProperty}}
+                @onSelectSortProperty={{this.selectSortProperty}}
+                @onSelectSortOrder={{this.selectSortOrder}}
+                @defaultSortOrder={{this.defaultSortOrder}}
+            />
+        </div>
+        <div class="toolbar-item">
+            <button class="is-primary is-bold button">
+                <FaIcon class="has-margin-right" @icon="plus" />
+                <span>New Tag</span>
+            </button>
+        </div>
+    </div>
+    <div class="tag-list">
+        {{#each this.tagFilters as |tag|}}
+            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
         {{/each}}
     </div>
+</div>
+<div class="content">
+    <table class="table">
+        <colgroup>
+            <col style="width: 70%">
+            <col style="width: 30%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th style="text-align: left">Name</th>
+                <th style="text-align: right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each @model as |tag|}}
+                <tr>
+                    <td>{{tag.content}}</td>
+                    <td>
+                        <div class="action-bar">
+                            <button class="button" {{on "click" (fn this.saveTag tag)}}><FaIcon @icon="edit" /></button>
+                            <button class="button" {{on "click" (fn this.deleteTag tag)}}><FaIcon @icon="trash" /></button>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
 </div>

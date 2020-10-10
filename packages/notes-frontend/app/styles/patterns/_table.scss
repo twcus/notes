@@ -1,91 +1,38 @@
-.ember-table {
-    overflow: unset;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
-    border: 1px solid $white-darker;
-    border-radius: $base-border-radius;
-    table {
-        width: 100%;
-        border-radius: 45px;
-    }
-}
-
-.column {
-    &.actions {
-        .button:hover {
-            background-color: $grey-light;
-        }
-    }
-}
-
-.et-tr {
+.table {
+    width: 80%;
+    margin: 24px auto;
     background-color: $white;
-    border-bottom: 1px solid #f0f0f0;
-    &:hover {
-        background-color: $white-darker;
+    border-collapse: collapse;
+    border-radius: $base-border-radius;
+    //border: 1px solid $grey-light;
+    box-shadow: 0 1px 2px 0 rgba(66, 66, 66, 0.3), 0 1px 3px 1px rgba(80, 80, 80, 0.15);
+    th, td {
+        padding: 16px;
     }
-    th {
-        background-color: $primary;
-        color: $white;
-        font-weight: 500;
-        padding:16px;
-        &.is-first-column {
-            border-top-left-radius: 5px;
+    thead {
+        th {
+            color: $white;
+            background-color: $primary;
         }
-        &.is-last-column {
-            border-top-right-radius: 5px;
+        th:first-of-type, {
+            border-top-left-radius: $base-border-radius;
+        }
+        th:last-of-type, {
+            border-top-right-radius: $base-border-radius;
         }
     }
-    td {
-        padding: 8px 16px;
-    }
-}
-
-tbody  {
-    tr:last-of-type{
+    tbody {
+        tr {
+            border-bottom: 1px solid $grey-light;
+            &:last-child {
+                border-bottom: 0;
+            }
+        }
         td {
-            &.is-first-column {
-                border-bottom-left-radius: 5px;
-            }
-            &.is-last-column {
-                border-bottom-right-radius: 5px;
+            .action-bar {
+                display: flex;
+                justify-content: flex-end;
             }
         }
     }
 }
-
-//tbody:last-child {
-//    color: red;
-//    td {
-//        &.is-first-column {
-//            color:red;
-//            border-bottom-left-radius: 5px;
-//        }
-//        &.is-last-column {
-//            border-bottom-right-radius: 5px;
-//        }
-//    }
-//}
-
-.et-cell-content {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.tag-column {
-    width: 55% !important;
-}
-
-.num-notes-column,
-.num-collections-column {
-    width: 15% !important;
-}
-
-.tag-actions-column {
-    width: 15% !important;
-}
-
-// Alternating row colors
-//tbody tr:nth-child(odd) {
-//    background: $white-dark;
-//}
