@@ -1,5 +1,5 @@
 import DS from 'ember-data';
 
 export default class ApplicationAdapter extends DS.JSONAPIAdapter {
-    host = 'http://localhost:8080';
+    // host = 'http://localhost:8080';
 }
