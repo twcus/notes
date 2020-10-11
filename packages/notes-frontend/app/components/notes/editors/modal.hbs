@@ -6,7 +6,7 @@
     @targetOffset="100px 0"
     @attachment="top center"
 >
-    <div class="modal-body">
+    <div class="modal-body" {{on "keydown" this.handleKeydown}}>
         {{#if @saveTask.last.error}}
             {{!-- TODO real error handling --}}
             {{@saveTask.last.error}}

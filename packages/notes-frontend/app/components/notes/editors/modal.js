@@ -1,10 +1,20 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
+// TODO move constants to own file to import
+const ESCAPE_CODE = 27;
+
 export default class NotesEditorsModalComponent extends Component {
     @action
     close() {
         this.args.onClose();
+    }
+
+    @action
+    handleKeydown(event) {
+        if (event.keyCode === ESCAPE_CODE) {
+            this.args.onClose();
+        }
     }
 
     @action
