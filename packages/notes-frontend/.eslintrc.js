@@ -1,7 +1,6 @@
 'use strict';
 
 module.exports = {
-<<<<<<< HEAD
     root: true,
     parser: 'babel-eslint',
     parserOptions: {
