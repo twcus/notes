@@ -62,8 +62,8 @@
                     <td>{{tag.content}}</td>
                     <td>
                         <div class="action-bar">
-                            <button class="button" {{on "click" (fn this.saveTag tag)}}><FaIcon @icon="edit" /></button>
-                            <button class="button" {{on "click" (fn this.deleteTag tag)}}><FaIcon @icon="trash" /></button>
+                            <button type="button" class="button" {{on "click" (fn this.saveTag tag)}}><FaIcon @icon="edit" /></button>
+                            <button type="button" class="button" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
                         </div>
                     </td>
                 </tr>
@@ -71,3 +71,16 @@
         </tbody>
     </table>
 </div>
+
+{{#if this.isConfirmingDelete}}
+    <ConfirmModal
+            @class="small"
+            @item={{this.tagForDeletion}}
+            @header="Delete Tag"
+            @buttonLabel="Delete"
+            @onClose={{fn this.onDeleteClose false}}
+            @onConfirm={{fn this.onDeleteClose true}} as |item|
+    >
+        Are you sure you want to delete Tag "{{item.content}}"?
+    </ConfirmModal>
+{{/if}}

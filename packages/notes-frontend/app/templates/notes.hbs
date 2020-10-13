@@ -49,32 +49,30 @@
                     @defaultSortOrder={{this.defaultSortOrder}}
             />
         </div>
-        {{#if this.showNewCollectionButton}}
-            <div class="toolbar-item">
-                <button class="button"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>Save Collection</span></button>
-                <AttachPopover
-                    @animation="shift"
-                    @hideDelay=0
-                    @hideDuration=300
-                    @hideOn="click clickout escapekey"
-                    @interactive={{true}}
-                    @isShown={{false}}
-                    @placement="bottom"
-                    @showDelay=0
-                    @showDuration=300
-                    @showOn="click"
-                    @class="popover-container"
-                    as |popover|
-                >
-                    <span class="title">Save as new collection</span>
-                    <Input @placeholder="Collection name" aria-label="Search notes" @value={{this.collectionName}} />
-                    <div class="action-bar">
-                        <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
-                        <button class="button">Cancel</button>
-                    </div>
-                </AttachPopover>
-            </div>
-        {{/if}}
+        <div class="toolbar-item">
+            <button class="button"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>Save Collection</span></button>
+            <AttachPopover
+                @animation="shift"
+                @hideDelay=0
+                @hideDuration=300
+                @hideOn="click clickout escapekey"
+                @interactive={{true}}
+                @isShown={{false}}
+                @placement="bottom"
+                @showDelay=0
+                @showDuration=300
+                @showOn="click"
+                @class="popover-container"
+                as |popover|
+            >
+                <span class="title">Save as new collection</span>
+                <Input @placeholder="Collection name" aria-label="Search notes" @value={{this.collectionName}} />
+                <div class="action-bar">
+                    <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
+                    <button class="button">Cancel</button>
+                </div>
+            </AttachPopover>
+        </div>
         <div class="toolbar-item">
             <LinkTo @tagName="button" class="is-primary is-bold button" @route="notes.new">
                 <FaIcon class="has-margin-right" @icon="plus" />
@@ -92,9 +90,9 @@
     {{#if this.firstNoteInOrder}}
         {{component
                 (concat "notes/modes/" this.viewMode.component)
-                notes=sortedNotes
-                tags=sortedTags
-                onNoteDelete=this.deleteNote
+                notes=this.sortedNotes
+                tags=this.sortedTags
+                onNoteDelete=this.onDeleteOpen
                 onNoteUpdate=this.updatedNote
                 onTagCreate=this.createTagAndAddToNote
         }}
@@ -105,3 +103,16 @@
     {{/if}}
     {{outlet}}
 </div>
+
+{{#if this.isConfirmingDelete}}
+    <ConfirmModal
+            @class="small"
+            @item={{this.noteForDeletion}}
+            @header="Delete Collection"
+            @buttonLabel="Delete"
+            @onClose={{fn this.onDeleteClose false}}
+            @onConfirm={{fn this.onDeleteClose true}}
+    >
+        Are you sure you want to delete this note?
+    </ConfirmModal>
+{{/if}}

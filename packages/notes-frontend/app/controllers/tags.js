@@ -1,14 +1,28 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class TagsController extends Controller {
+    @tracked isConfirmingDelete;
+    @tracked tagForDeletion;
+
     @action
-    saveTag(tag) {
-        return tag.save();
+    onDeleteOpen(tag) {
+        this.isConfirmingDelete = true;
+        this.tagForDeletion = tag;
     }
 
     @action
-    deleteTag(tag) {
-        return tag.destroyRecord();
+    onDeleteClose(shouldDelete) {
+        this.isConfirmingDelete = false;
+        if (shouldDelete) {
+            return this.tagForDeletion.destroyRecord();
+        }
+        this.tagForDeletion = null;
+    }
+
+    @action
+    saveTag(tag) {
+        return tag.save();
     }
 }

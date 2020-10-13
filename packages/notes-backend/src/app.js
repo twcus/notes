@@ -12,9 +12,10 @@ const password = 'seton-user';
 const host = 'localhost';
 const port = 5432;
 const db = 'notes';
+const testdb = 'test';
 
 const postgresAdapterOptions = {
-    url: `postgres://${user}:${password}@${host}:${port}/${db}`,
+    url: `postgres://${user}:${password}@${host}:${port}/${testdb}`,
     primaryKeyType: 'serial',
     generatePrimaryKey: null
 };

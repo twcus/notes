@@ -4,5 +4,5 @@ export default class CollectionModel extends Model {
     @attr('date') createdDate;
     @attr('date') modifiedDate;
     @attr('string') name;
-    @hasMany('tag') tags;
+    @hasMany('tag', { async: false }) tags;
 }

@@ -55,6 +55,8 @@ export default class NotesController extends Controller {
     @tracked sortOrder;
     @tracked searchQuery;
     @tracked collectionName;
+    @tracked isConfirmingDelete = false;
+    @tracked noteForDeletion;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
     @sort('model.tags', 'tagSortKey') sortedTags;
 
@@ -84,10 +86,6 @@ export default class NotesController extends Controller {
 
     get firstNoteInOrder() {
         return this.sortedNotes[0];
-    }
-
-    get showNewCollectionButton() {
-        return true;
     }
 
     @action
@@ -175,6 +173,21 @@ export default class NotesController extends Controller {
     updatedNote(note) {
         this.updateNoteTask.perform(note);
     }
+    @action
+    onDeleteOpen(note) {
+        this.isConfirmingDelete = true;
+        this.noteForDeletion = note;
+    }
+
+    @action
+    onDeleteClose(shouldDelete) {
+        this.isConfirmingDelete = false;
+        if (shouldDelete) {
+            return this.noteForDeletion.destroyRecord();
+        }
+        this.noteForDeletion = null;
+    }
+
 
     @(task(function *(note) {
         yield note.save();
