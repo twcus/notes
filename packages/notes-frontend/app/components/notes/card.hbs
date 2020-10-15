@@ -1,4 +1,4 @@
-<Link @route="notes.edit" @models={{array @note.id}} as |link|>
+<Link @route={{this.editRoute}} @models={{this.editModels}} as |link|>
     <div class="card {{if @note.isNew "new"}} {{if link.isActive "open"}} {{if this.isActive "active"}}" {{on "click" link.transitionTo}}>
         <div class="card-body pell-content">
             {{{@note.content}}}

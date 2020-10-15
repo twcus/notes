@@ -1,7 +1,7 @@
 <div class="list-pane">
     {{#each @notes as |note|}}
-        <Link @route="notes.edit" @models={{array note.id}} as |link|>
-            <div class="list-item {{if note.isNew "new"}} {{if link.isActive "active"}}"  {{on "click" link.transitionTo}}>
+        <Link @route={{this.editRoute}} @models={{if this.collection (array note.id this.collection.id) (array note.id)}} as |link|>
+            <div class="list-item {{if note.isNew "new"}} {{if link.isActive "active"}}" {{on "click" link.transitionTo}}>
                 <div class="pell-content">
                     {{{note.content}}}
                 </div>

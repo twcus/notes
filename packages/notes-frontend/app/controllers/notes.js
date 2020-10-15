@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { sort } from '@ember/object/computed';
+import { isNone } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
 import { task, timeout } from 'ember-concurrency';
 
@@ -41,13 +42,13 @@ export default class NotesController extends Controller {
 
     transitionWithEditorOpen() {
         if (this.firstNoteInOrder) {
-            this.transitionToRoute('notes.edit', this.firstNoteInOrder.id);
+            this.transitionToRoute(`${this.baseNotesRoute}.edit`, this.firstNoteInOrder.id);
         } else {
             this.transitionToNotes();
         }
     }
 
-    @tracked allNotes = this.model.notes;
+    // @tracked allNotes = this.model.notes;
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
@@ -59,6 +60,10 @@ export default class NotesController extends Controller {
     @tracked noteForDeletion;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
     @sort('model.tags', 'tagSortKey') sortedTags;
+
+    get allNotes() {
+        return this.model.notes;
+    }
 
     get filteredNotes() {
         if (this.tagFilters) {
@@ -88,6 +93,14 @@ export default class NotesController extends Controller {
         return this.sortedNotes[0];
     }
 
+    get isCollection() {
+        return !isNone(this.model.collection);
+    }
+
+    get baseNotesRoute() {
+        return this.isCollection ? 'collections.notes' : 'notes';
+    }
+
     @action
     selectSortProperty(property) {
         this.sortProperty = property;
@@ -110,7 +123,8 @@ export default class NotesController extends Controller {
 
     @action
     transitionToNotes() {
-        this.transitionToRoute('notes');
+        debugger;
+        this.transitionToRoute(this.baseNotesRoute);
     }
 
     @action

@@ -1,9 +1,19 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { isNone } from '@ember/utils';
 
 export default class NoteCardComponent extends Component {
     @tracked isActive = false;
+
+    get editRoute() {
+        return isNone(this.args.collection) ? 'notes.edit' : 'collections.notes.edit';
+    }
+
+    get editModels() {
+        let noteId = this.args.note.id;
+        return isNone(this.args.collection) ? [noteId] : [this.args.collection.id, noteId];
+    }
 
     @action
     async delete() {

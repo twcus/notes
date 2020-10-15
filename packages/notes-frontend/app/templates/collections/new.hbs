@@ -1,0 +1,55 @@
+<ModalDialog
+        @containerClass="small"
+        @onClose={{this.onClose}}
+        @translucentOverlay={{true}}
+        @tetherTarget=".toolbar"
+        @targetAttachment="top center"
+        @targetOffset="100px 0"
+        @attachment="top center"
+>
+    <div class="modal-header">
+        <h1>Create New Collection</h1>
+        <FaIcon class="close-icon" @icon="times" {{on "click" this.onClose}} />
+    </div>
+    <div class="modal-body">
+        <div class="form">
+            {{#if this.errorMessage}}
+                <span class="error">
+                    {{this.errorMessage}}
+                </span>
+            {{/if}}
+            <div class="form-field full-width">
+                <label for="name">Name</label>
+                <Input name="name" type="text" aria-label="Collection Name" @value={{this.model.collection.name}} />
+            </div>
+            <div class="form-field">
+                <Select::DropdownSelect
+                        @isMultiSelect={{true}}
+                        @options={{this.model.tags}}
+                        @selected={{this.model.collection.tags}}
+                        @onSelect={{this.selectTag}}
+                        @onCreate={{this.createTag}}
+                        @displayProperty="content"
+                        @searchEnabled={{true}}
+                        @placeholder="Enter tag"
+                        @searchMessage="No tags found"
+                        @searchField="content"
+                        @stopPropagation=true
+                >
+                    <span class="select-trigger">Select Tags <FaIcon @icon="tag" /></span>
+                </Select::DropdownSelect>
+            </div>
+        </div>
+    </div>
+    <div class="tag-list">
+        {{#each this.model.collection.tags as |tag|}}
+            <span class="tag">{{tag.content}}</span>
+        {{/each}}
+    </div>
+    <div class="modal-footer">
+        <div class="button-container">
+            <button type="button" class="cancel-button" {{on "click" this.onClose}}>Cancel</button>
+            <button type="button" class="confirm-button" {{on "click" this.onSave}}>Create Collection</button>
+        </div>
+    </div>
+</ModalDialog>

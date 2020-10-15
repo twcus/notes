@@ -1,0 +1,24 @@
+<ModalDialog
+    @containerClass={{@class}}
+    @onClose={{@onClose}}
+    @translucentOverlay={{true}}
+    @tetherTarget=".toolbar"
+    @targetAttachment="top center"
+    @targetOffset="100px 0"
+    @attachment="top center"
+>
+    <div class="modal-header">
+        <h1>{{@header}}</h1>
+        <FaIcon class="close-icon" @icon="times" {{on "click" @onClose}} />
+    </div>
+    <div class="modal-body">
+        {{yield @item}}
+    </div>
+    <div class="modal-footer">
+        <div class="button-container">
+            {{!-- TODO Make button color a configurable property on the component --}}
+            <button type="button" class="cancel-button" {{on "click" @onClose}}>Cancel</button>
+            <button type="button" class="confirm-button" {{on "click" @onConfirm}}>{{@buttonLabel}}</button>
+        </div>
+    </div>
+</ModalDialog>

@@ -1,18 +1,27 @@
 import Route from '@ember/routing/route';
-import { action } from '@ember/object';
 import RSVP from 'rsvp';
+import { action } from '@ember/object';
 
-export default class NotesNewRoute extends Route {
+export default class CollectionsNotesNewRoute extends Route {
+    controllerName = 'notes.new';
+
     model() {
         return RSVP.hash({
             note: this.store.createRecord('note'),
-            tags: this.store.query('tag', { sort: 'content' })
+            tags: this.store.findAll('tag'),
+            collection: this.modelFor('collections.notes').collection
         });
     }
 
     setupController(controller, model) {
         super.setupController(controller, model);
         this.controller.viewMode = this.controllerFor('notes').viewMode;
+    }
+
+    renderTemplate(controller, model) {
+        this.render('notes.new', {
+            controller
+        })
     }
 
     @action
