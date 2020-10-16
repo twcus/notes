@@ -5,17 +5,6 @@ import { tracked } from '@glimmer/tracking';
 export default class TagsNewController extends Controller {
     @tracked errorMessage;
 
-    validate() {
-        if (!this.model.tag.content) {
-            this.errorMessage = `Please enter tag text.`
-        } else if (this.model.tags.without(this.model.tag).any(t => t.content === this.model.tag.content)) {
-           this.errorMessage = `Tag "${this.model.tag.content}" already exists.`
-        } else {
-            this.errorMessage = null;
-        }
-        return !this.errorMessage;
-    }
-
     @action
     onClose() {
         this.transitionToRoute('tags');
@@ -23,7 +12,9 @@ export default class TagsNewController extends Controller {
 
     @action
     onSave() {
-        if (this.validate()) {
+        let tagValidation = this.model.tag.validate(this.model.tags.without(this.model.tag));
+        if (tagValidation.status) {
+            this.errorMessage = null;
             return this.model.tag.save()
                 .then(() => {
                     this.transitionToRoute('tags');
@@ -31,6 +22,8 @@ export default class TagsNewController extends Controller {
                 .catch(res => {
                     this.errorMessage = res;
                 });
+        } else {
+            this.errorMessage = tagValidation.message;
         }
     }
 

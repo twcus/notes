@@ -6,4 +6,17 @@ export default class TagModel extends Model {
     @attr('string') content;
     @hasMany('note') notes;
     @hasMany('collection') collections;
+
+    validate(tags) {
+        let result = { status: false }
+        if (!this.content) {
+            result.message = `Please enter tag text.`
+        } else if (tags.without(this).any(t => t.content === this.content)) {
+            result.message = `Tag "${this.content}" already exists.`
+        } else {
+            result.status = true;
+            result.message = null;
+        }
+        return result;
+    }
 }

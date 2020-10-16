@@ -6,20 +6,6 @@ export default class CollectionsNewController extends Controller {
     @tracked errorMessage;
     @tracked selectedTags = [];
 
-    validate() {
-        if (!this.model.collection.name) {
-            this.errorMessage = 'Please enter a name for this collection.';
-        } else if (this.model.collections.without(this.model.collection)
-            .any(c => c.name === this.model.collection.name)) {
-            this.errorMessage = `Collection "${this.model.collection.name}" already exists.`;
-        } else if (!this.model.collection.tags.length) {
-            this.errorMessage = 'Please select tags for this collection.';
-        } else {
-            this.errorMessage = null;
-        }
-        return !this.errorMessage;
-    }
-
     @action
     onClose() {
         this.transitionToRoute('collections');
@@ -27,7 +13,9 @@ export default class CollectionsNewController extends Controller {
 
     @action
     onSave() {
-        if (this.validate()) {
+        let collectionValidation = this.model.collection.validate(this.model.collections.without(this.model.collection))
+        if (collectionValidation.status) {
+            this.errorMessage = null;
             return this.model.collection.save()
                 .then(() => {
                     this.transitionToRoute('collections')
@@ -35,6 +23,8 @@ export default class CollectionsNewController extends Controller {
                 .catch(res => {
                     this.errorMessage = res;
                 });
+        } else {
+            this.errorMessage = collectionValidation.message;
         }
     }
 

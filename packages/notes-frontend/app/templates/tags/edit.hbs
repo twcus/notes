@@ -1,1 +1,33 @@
-{{outlet}}
+<ModalDialog
+        @containerClass="small"
+        @onClose={{this.onClose}}
+        @translucentOverlay={{true}}
+        @tetherTarget=".toolbar"
+        @targetAttachment="top center"
+        @targetOffset="100px 0"
+        @attachment="top center"
+>
+    <div class="modal-header">
+        <h1>Edit Tag "{{@model.tag.content}}"</h1>
+        <FaIcon class="close-icon" @icon="times" {{on "click" this.onClose}} />
+    </div>
+    <div class="modal-body">
+        <div class="form">
+            {{#if this.errorMessage}}
+                <span class="error">
+                    {{this.errorMessage}}
+                </span>
+            {{/if}}
+            <div class="form-field full-width">
+                <label for="name">Tag</label>
+                <Input name="name" type="text" aria-label="Tag Content" @value={{this.model.tag.content}} />
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="button-container">
+            <button type="button" class="cancel-button" {{on "click" this.onClose}}>Cancel</button>
+            <button type="button" class="confirm-button" {{on "click" this.onSave}}>Save Tag</button>
+        </div>
+    </div>
+</ModalDialog>

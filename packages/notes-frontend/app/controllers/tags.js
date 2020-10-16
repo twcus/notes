@@ -22,7 +22,7 @@ export default class TagsController extends Controller {
     }
 
     @action
-    saveTag(tag) {
-        return tag.save();
+    onEdit(tag) {
+        this.transitionToRoute('tags.edit', tag.id);
     }
 }

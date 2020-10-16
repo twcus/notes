@@ -13,15 +13,19 @@ export default class CollectionsEditController extends Controller {
 
     @action
     onSave() {
-        if (!this.model.collection.name) {
-            this.errorMessage = 'Please enter a name for the collection.';
-            return;
+        let collectionValidation = this.model.collection.validate(this.model.collections.without(this.model.collection))
+        if (collectionValidation.status) {
+            this.errorMessage = null;
+            return this.model.collection.save()
+                .then(() => {
+                    this.transitionToRoute('collections')
+                })
+                .catch(res => {
+                    this.errorMessage = res;
+                });
+        } else {
+            this.errorMessage = collectionValidation.message;
         }
-        return this.model.collection.save()
-            .then(this.transitionToRoute('collections'))
-            .catch(res => {
-                this.errorMessage = res;
-            });
     }
 
     @action
