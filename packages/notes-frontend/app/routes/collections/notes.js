@@ -2,7 +2,7 @@ import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 import RSVP from 'rsvp';
 
-export default class CollectionsNotesRoute extends Route {
+export default class CollectionNotesRoute extends Route {
     controllerName = 'notes';
 
     model(params) {
@@ -31,8 +31,8 @@ export default class CollectionsNotesRoute extends Route {
 
     @action
     willTransition(transition) {
-        if (transition.targetName === 'collections.notes.index' && this.controller.viewMode.isEditorOpen) {
-            this.transitionTo('collections.notes.edit', this.controllerFor('notes').sortedNotes[0].id);
+        if (transition.targetName === 'collection-notes.index' && this.controller.viewMode.isEditorOpen) {
+            this.transitionTo('collection-notes.edit', this.controllerFor('notes').sortedNotes[0].id);
         }
     }
 }

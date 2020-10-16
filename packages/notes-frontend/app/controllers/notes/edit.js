@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { sort } from '@ember/object/computed';
+import { isNone } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
 import {task, timeout} from 'ember-concurrency';
 
@@ -13,9 +14,17 @@ export default class NotesEditController extends Controller {
     @tracked viewMode;
     @sort('model.tags', 'tagSortKey') sortedTags;
 
+    get isCollection() {
+        return !isNone(this.model.collection);
+    }
+
+    get baseNotesRoute() {
+        return this.isCollection ? 'collection-notes' : 'notes';
+    }
+
     @action
     transitionToNotes() {
-        this.transitionToRoute('notes');
+        this.transitionToRoute(this.baseNotesRoute);
     }
 
     @action

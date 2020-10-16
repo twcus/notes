@@ -2,14 +2,14 @@ import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { action } from '@ember/object';
 
-export default class CollectionsNotesNewRoute extends Route {
+export default class CollectionNotesNewRoute extends Route {
     controllerName = 'notes.new';
 
     model() {
         return RSVP.hash({
             note: this.store.createRecord('note'),
             tags: this.store.findAll('tag'),
-            collection: this.modelFor('collections.notes').collection
+            collection: this.modelFor('collection-notes').collection
         });
     }
 

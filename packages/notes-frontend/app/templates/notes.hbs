@@ -76,7 +76,7 @@
             </div>
         {{/unless}}
         <div class="toolbar-item">
-            <LinkTo @tagName="button" class="is-primary is-bold button" @route={{if this.isCollection "collections.notes.new" "notes.new"}}>
+            <LinkTo @tagName="button" class="is-primary is-bold button" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
                 <FaIcon class="has-margin-right" @icon="plus" />
                 <span>New Note</span>
             </LinkTo>

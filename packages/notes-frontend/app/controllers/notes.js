@@ -98,7 +98,7 @@ export default class NotesController extends Controller {
     }
 
     get baseNotesRoute() {
-        return this.isCollection ? 'collections.notes' : 'notes';
+        return this.isCollection ? 'collection-notes' : 'notes';
     }
 
     @action

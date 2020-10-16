@@ -1,4 +1,4 @@
 import Controller from '@ember/controller';
 
-export default class CollectionsNotesController extends Controller {
+export default class CollectionNotesController extends Controller {
 }

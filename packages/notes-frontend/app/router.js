@@ -13,19 +13,12 @@ Router.map(function() {
     });
     this.route('tags');
     this.route('collections', function() {
-      this.route('edit', { path: '/:collection_id' });
-      this.route('new');
-      this.route('notes', { path: '/:collection_id/notes' }, function() {
-        this.route('index', function() {
-           this.route('new');
-        });
-        this.route('edit', { path: '/:note_id' });
-        // this.route('new');
-      });
-
-      this.route('index', function() {
         this.route('new');
-      });
+        this.route('edit', { path: '/:collection_id' });
+    });
+    this.route('collection-notes', { path: '/collections/:collection_id/notes' }, function() {
+        this.route('new');
+        this.route('edit', { path: '/:note_id' });
     });
     this.route('trash');
 });

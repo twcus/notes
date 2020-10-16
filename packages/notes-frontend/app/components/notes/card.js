@@ -7,7 +7,7 @@ export default class NoteCardComponent extends Component {
     @tracked isActive = false;
 
     get editRoute() {
-        return isNone(this.args.collection) ? 'notes.edit' : 'collections.notes.edit';
+        return isNone(this.args.collection) ? 'notes.edit' : 'collection-notes.edit';
     }
 
     get editModels() {

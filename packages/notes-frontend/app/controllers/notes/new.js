@@ -22,7 +22,7 @@ export default class NotesEditController extends Controller {
     }
 
     get baseNotesRoute() {
-        return this.isCollection ? 'collections.notes' : 'notes';
+        return this.isCollection ? 'collection-notes' : 'notes';
     }
 
     @action
@@ -68,8 +68,8 @@ export default class NotesEditController extends Controller {
         yield note.save()
             .then(note => {
                 // Don't transition if the user has already navigated away from the notes.new route by the time this callback is reached
-                if (this.router.isActive('collections.notes.new')) {
-                    this.transitionToRoute('collections.notes.edit', note.id);
+                if (this.router.isActive('collection-notes.new')) {
+                    this.transitionToRoute('collection-notes.edit', note.id);
                 }
             });
     }).keepLatest()) saveNoteTask;
