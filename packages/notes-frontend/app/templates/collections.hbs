@@ -53,33 +53,33 @@
                 <col style="width: 10%">
             </colgroup>
             <thead>
-            <tr>
-                <th class="align-left">Name</th>
-                <th class="align-center">Tags</th>
-                <th class="align-right">Actions</th>
-            </tr>
+                <tr>
+                    <th class="align-left">Name</th>
+                    <th class="align-center">Tags</th>
+                    <th class="align-right">Actions</th>
+                </tr>
             </thead>
             <tbody>
-            {{#each this.model.collections as |collection|}}
-                {{#unless collection.isNew}}
-                    <tr>
-                        <td><LinkTo @route="collection-notes" @model={{collection.id}}>{{collection.name}}</LinkTo></td>
-                        <td>
-                            <div class="tag-list justify-center">
-                                {{#each collection.tags as |tag|}}
-                                    <span class="tag">{{tag.content}}</span>
-                                {{/each}}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="action-bar">
-                                <button type="button" class="button" {{on "click" (fn this.onEdit collection)}}><FaIcon @icon="edit" /></button>
-                                <button type="button" class="button" {{on "click" (fn this.onDeleteOpen collection)}}><FaIcon @icon="trash" /></button>
-                            </div>
-                        </td>
-                    </tr>
-                {{/unless}}
-            {{/each}}
+                {{#each this.model.collections as |collection|}}
+                    {{#unless collection.isNew}}
+                        <tr>
+                            <td><LinkTo @route="collection-notes" @model={{collection.id}}>{{collection.name}}</LinkTo></td>
+                            <td>
+                                <div class="tag-list justify-center">
+                                    {{#each collection.tags as |tag|}}
+                                        <span class="tag">{{tag.content}}</span>
+                                    {{/each}}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="action-bar">
+                                    <button type="button" class="button" {{on "click" (fn this.onEdit collection)}}><FaIcon @icon="edit" /></button>
+                                    <button type="button" class="button" {{on "click" (fn this.onDeleteOpen collection)}}><FaIcon @icon="trash" /></button>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/unless}}
+                {{/each}}
             </tbody>
         </table>
     </div>
@@ -97,4 +97,5 @@
         Are you sure you want to delete Collection "{{item.name}}"?
     </ConfirmModal>
 {{/if}}
+
 {{outlet}}

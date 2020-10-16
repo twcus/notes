@@ -11,7 +11,10 @@ Router.map(function() {
         this.route('new');
         this.route('edit', { path: '/:note_id' });
     });
-    this.route('tags');
+    this.route('tags', function() {
+      this.route('new');
+      this.route('edit');
+    });
     this.route('collections', function() {
         this.route('new');
         this.route('edit', { path: '/:collection_id' });

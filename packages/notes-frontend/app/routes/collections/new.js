@@ -6,6 +6,7 @@ export default class CollectionsNewRoute extends Route {
     model() {
         return RSVP.hash({
             collection: this.store.createRecord('collection'),
+            collections: this.modelFor('collections').collections,
             tags: this.store.findAll('tag')
         });
     }

@@ -32,10 +32,10 @@
             />
         </div>
         <div class="toolbar-item">
-            <button class="is-primary is-bold button">
+            <LinkTo @tagName="button" class="is-primary is-bold button" @route="tags.new">
                 <FaIcon class="has-margin-right" @icon="plus" />
                 <span>New Tag</span>
-            </button>
+            </LinkTo>
         </div>
     </div>
     <div class="tag-list">
@@ -45,31 +45,35 @@
     </div>
 </div>
 <div class="content">
-    <table class="table">
-        <colgroup>
-            <col style="width: 70%">
-            <col style="width: 30%">
-        </colgroup>
-        <thead>
-            <tr>
-                <th style="text-align: left">Name</th>
-                <th style="text-align: right">Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each @model as |tag|}}
+    <div class="table-container">
+        <table class="table">
+            <colgroup>
+                <col style="width: 70%">
+                <col style="width: 30%">
+            </colgroup>
+            <thead>
                 <tr>
-                    <td>{{tag.content}}</td>
-                    <td>
-                        <div class="action-bar">
-                            <button type="button" class="button" {{on "click" (fn this.saveTag tag)}}><FaIcon @icon="edit" /></button>
-                            <button type="button" class="button" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
-                        </div>
-                    </td>
+                    <th style="text-align: left">Name</th>
+                    <th style="text-align: right">Actions</th>
                 </tr>
-            {{/each}}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {{#each @model as |tag|}}
+                    {{#unless tag.isNew}}
+                        <tr>
+                            <td>{{tag.content}}</td>
+                            <td>
+                                <div class="action-bar">
+                                    <button type="button" class="button" {{on "click" (fn this.saveTag tag)}}><FaIcon @icon="edit" /></button>
+                                    <button type="button" class="button" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/unless}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {{#if this.isConfirmingDelete}}
@@ -84,3 +88,5 @@
         Are you sure you want to delete Tag "{{item.content}}"?
     </ConfirmModal>
 {{/if}}
+
+{{outlet}}
