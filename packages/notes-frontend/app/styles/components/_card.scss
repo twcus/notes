@@ -11,9 +11,11 @@
 
 .card {
     background-color: $white;
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 2.5px rgba(125, 125, 125, 0.08),
+        0 4px 5px rgba(125, 125, 125, 0.10),
+        0 8px 10px rgba(125, 125, 125, 0.05);
     border: 1px solid $white-darker;
-    border-radius: $base-border-radius;
+    border-radius: 2px;
     transition: opacity, box-shadow 0.2s ease;
     cursor: pointer;
     display: flex;
@@ -54,8 +56,8 @@
             display: flex;
             opacity: 0;
             transition: opacity 0.2s ease;
-            button {
-                color: $black-light;
+            .button {
+                padding: 0.25em;
             }
         }
     }

@@ -3,7 +3,7 @@
     @onClose={{this.close}}
     as |dd|
 >
-    <dd.Trigger @stopPropagation={{@stopPropagation}} class="button {{if this.isOpen "active"}}">{{yield}}</dd.Trigger>
+    <dd.Trigger @stopPropagation={{@stopPropagation}} class="button text {{if this.isOpen "active"}}">{{yield}}</dd.Trigger>
     <dd.Content>
         {{#if @isMultiSelect}}
             <PowerSelectMultipleWithCreate

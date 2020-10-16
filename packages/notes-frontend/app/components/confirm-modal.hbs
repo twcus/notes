@@ -17,8 +17,8 @@
     <div class="modal-footer">
         <div class="button-container">
             {{!-- TODO Make button color a configurable property on the component --}}
-            <button type="button" class="cancel-button" {{on "click" @onClose}}>Cancel</button>
-            <button type="button" class="confirm-button" {{on "click" @onConfirm}}>{{@buttonLabel}}</button>
+            <button type="button" class="button text" {{on "click" @onClose}}>Cancel</button>
+            <button type="button" class="button" {{on "click" @onConfirm}}>{{@buttonLabel}}</button>
         </div>
     </div>
 </ModalDialog>

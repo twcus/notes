@@ -64,8 +64,8 @@
                             <td>{{tag.content}}</td>
                             <td>
                                 <div class="action-bar">
-                                    <button type="button" class="button" {{on "click" (fn this.onEdit tag)}}><FaIcon @icon="edit" /></button>
-                                    <button type="button" class="button" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
+                                    <button type="button" class="button text" {{on "click" (fn this.onEdit tag)}}><FaIcon @icon="edit" /></button>
+                                    <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
                                 </div>
                             </td>
                         </tr>

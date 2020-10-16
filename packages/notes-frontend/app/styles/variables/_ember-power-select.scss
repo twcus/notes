@@ -3,6 +3,12 @@ $ember-power-select-background-color: $white;
 $ember-power-select-selected-background: inherit;
 $ember-power-select-highlighted-background: $white-darker;
 $ember-power-select-highlighted-color: inherit;
-$ember-power-select-border-color: $white-darker;
-$ember-power-select-default-border-radius: $base-border-radius;
-$ember-power-select-dropdown-box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+$ember-power-select-border-color: $grey-light;
+$ember-power-select-default-border-radius: 2px;
+$ember-power-select-dropdown-box-shadow: 0 2px 2.5px rgba(125, 125, 125, 0.08),
+0 4px 5px rgba(125, 125, 125, 0.10),
+0 8px 10px rgba(125, 125, 125, 0.05);
+
+.ember-power-select-dropdown {
+    border-radius: 2px !important;
+}

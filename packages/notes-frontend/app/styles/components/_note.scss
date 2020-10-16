@@ -16,6 +16,9 @@
         margin-top: 8px;
         .actions {
             display: flex;
+            .button {
+                padding: 0.5em;
+            }
         }
     }
 }
