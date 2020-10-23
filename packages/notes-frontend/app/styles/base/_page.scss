@@ -33,6 +33,14 @@ input[type="search"]::-webkit-search-results-decoration {
     display: none;
 }
 
+a {
+    color: #1479d2;
+    text-decoration: none;
+    &:visited {
+        color: #1479d2;
+    }
+}
+
 .content {
     flex-grow: 1;
     display: flex;

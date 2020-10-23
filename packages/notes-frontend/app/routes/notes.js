@@ -6,7 +6,8 @@ export default class NotesRoute extends Route {
     model() {
         return RSVP.hash({
             notes: this.store.findAll('note'),
-            tags: this.store.findAll('tag')
+            tags: this.store.findAll('tag'),
+            collections: this.store.findAll('collection')
         });
     }
 

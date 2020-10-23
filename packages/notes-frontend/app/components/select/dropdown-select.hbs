@@ -1,10 +1,11 @@
 <BasicDropdown
     @onOpen={{this.open}}
     @onClose={{this.close}}
+    @animationEnabled={{false}}
     as |dd|
 >
-    <dd.Trigger @stopPropagation={{@stopPropagation}} class="button text {{if this.isOpen "active"}}">{{yield}}</dd.Trigger>
-    <dd.Content>
+    <dd.Trigger @animationEnabled={{false}} @stopPropagation={{@stopPropagation}} class="button text {{if this.isOpen "active"}}">{{yield}}</dd.Trigger>
+    <dd.Content @animationEnabled={{false}}>
         {{#if @isMultiSelect}}
             <PowerSelectMultipleWithCreate
                 @options={{@options}}
@@ -23,6 +24,7 @@
                 @triggerClass={{@triggerClass}}
                 @dropdownClass={{@dropdownclass}}
                 @matchTriggerWidth={{@matchTriggerWidth}}
+                @animationEnabled={{false}}
                 @initiallyOpened=true
                 @closeOnSelect=false
                 as |item|
@@ -41,6 +43,7 @@
                 @dropdownClass={{@dropdownClass}}
                 @initiallyOpened=true
                 @matchTriggerWidth={{@matchTriggerWidth}}
+                @animationEnabled={{false}}
                 @closeOnSelect=false
                 as |item|
             >

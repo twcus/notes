@@ -67,10 +67,13 @@
                         as |popover|
                 >
                     <span class="title">Save as new collection</span>
+                    {{#if this.collectionError}}
+                        <span class="error">{{this.collectionError}}</span>
+                    {{/if}}
                     <Input @placeholder="Collection name" aria-label="Search notes" @value={{this.collectionName}} />
                     <div class="action-bar">
+                        <button class="button text">Cancel</button>
                         <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
-                        <button class="button">Cancel</button>
                     </div>
                 </AttachPopover>
             </div>

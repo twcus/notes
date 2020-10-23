@@ -13,7 +13,7 @@ export default class CollectionsEditController extends Controller {
 
     @action
     onSave() {
-        let collectionValidation = this.model.collection.validate(this.model.collections.without(this.model.collection))
+        let collectionValidation = this.model.collection.validate(this.model.collections.without(this.model.collection));
         if (collectionValidation.status) {
             this.errorMessage = null;
             return this.model.collection.save()

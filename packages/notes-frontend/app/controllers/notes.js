@@ -56,6 +56,7 @@ export default class NotesController extends Controller {
     @tracked sortOrder;
     @tracked searchQuery;
     @tracked collectionName;
+    @tracked collectionError;
     @tracked isConfirmingDelete = false;
     @tracked noteForDeletion;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
@@ -123,7 +124,6 @@ export default class NotesController extends Controller {
 
     @action
     transitionToNotes() {
-        debugger;
         this.transitionToRoute(this.baseNotesRoute);
     }
 
@@ -174,13 +174,20 @@ export default class NotesController extends Controller {
     }
 
     @action
-    saveCollection(args) {
+    saveCollection() {
         let collection = this.store.createRecord('collection', {
             name: this.collectionName,
             tags: this.tagFilters
         });
-        args();
-        return collection.save();
+        let collectionValidation = collection.validate(this.model.collections);
+        if (collectionValidation.status) {
+            this.collectionError = null;
+            this.collectionName = null;
+            return collection.save();
+        } else {
+            collection.destroyRecord();
+            this.collectionError = collectionValidation.message;
+        }
     }
 
     @action
