@@ -18,7 +18,7 @@ export default class CollectionNotesRoute extends Route {
 
     setupController(controller, model, _transition) {
         super.setupController(controller, model, _transition);
-        if (this.controller.viewMode.isEditorOpen) {
+        if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length) {
             this.transitionTo('collection-notes.edit', this.controller.sortedNotes[0].id);
         }
     }

@@ -1,7 +1,10 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 export default class NotesEditorsPaneComponent extends Component {
+    @tracked isConfirmingDelete = false;
+
     @action
     close() {
         this.args.onClose();
@@ -11,11 +14,6 @@ export default class NotesEditorsPaneComponent extends Component {
     updatedNote(content) {
         this.args.note.content = content;
         this.args.onNoteUpdate(this.args.note);
-    }
-
-    @action
-    async delete() {
-        await this.args.onDelete(this.args.note);
     }
 
     @action
@@ -38,5 +36,18 @@ export default class NotesEditorsPaneComponent extends Component {
     @action
     customSuggestion(term) {
         return term;
+    }
+
+    @action
+    onDeleteOpen() {
+        this.isConfirmingDelete = true;
+    }
+
+    @action
+    onDeleteClose(shouldDelete) {
+        this.isConfirmingDelete = false;
+        if (shouldDelete) {
+            return this.args.onDelete(this.args.note);
+        }
     }
 }

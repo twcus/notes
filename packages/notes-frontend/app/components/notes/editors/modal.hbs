@@ -18,7 +18,20 @@
         @tags={{@tags}}
         @onTagSelect={{this.selectTag}}
         @onTagCreate={{this.createTag}}
-        @onNoteDelete={{this.delete}}
+        @onNoteDelete={{this.onDeleteOpen}}
         @onTagRemove={{this.removeTagFromNote}}
     />
 </ModalDialog>
+
+{{#if this.isConfirmingDelete}}
+    <ConfirmModal
+            @class="small"
+            @item={{this.noteForDeletion}}
+            @header="Delete Collection"
+            @buttonLabel="Delete"
+            @onClose={{fn this.onDeleteClose false}}
+            @onConfirm={{fn this.onDeleteClose true}}
+    >
+        Are you sure you want to delete this note?
+    </ConfirmModal>
+{{/if}}

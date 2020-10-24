@@ -1,10 +1,13 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
 // TODO move constants to own file to import
 const ESCAPE_CODE = 27;
 
 export default class NotesEditorsModalComponent extends Component {
+    @tracked isConfirmingDelete = false;
+
     @action
     close() {
         this.args.onClose();
@@ -48,5 +51,19 @@ export default class NotesEditorsModalComponent extends Component {
     @action
     customSuggestion(term) {
         return term;
+    }
+
+    @action
+    onDeleteOpen(note) {
+        this.isConfirmingDelete = true;
+        this.noteForDeletion = note;
+    }
+
+    @action
+    onDeleteClose(shouldDelete) {
+        this.isConfirmingDelete = false;
+        if (shouldDelete) {
+            return this.args.onDelete(this.args.note);
+        }
     }
 }

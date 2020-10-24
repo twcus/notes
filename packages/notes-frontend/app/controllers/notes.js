@@ -48,7 +48,6 @@ export default class NotesController extends Controller {
         }
     }
 
-    // @tracked allNotes = this.model.notes;
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
@@ -194,6 +193,7 @@ export default class NotesController extends Controller {
     updatedNote(note) {
         this.updateNoteTask.perform(note);
     }
+
     @action
     onDeleteOpen(note) {
         this.isConfirmingDelete = true;
@@ -208,7 +208,6 @@ export default class NotesController extends Controller {
         }
         this.noteForDeletion = null;
     }
-
 
     @(task(function *(note) {
         yield note.save();
