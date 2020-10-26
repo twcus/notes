@@ -29,17 +29,17 @@ export default class CollectionsNewController extends Controller {
     }
 
     @action
-    selectTag(tags) {
-        this.model.collection.tags = tags;
+    selectTag(tag) {
+        let collectionTags = this.model.collection.tags;
+        collectionTags.includes(tag) ? collectionTags.removeObject(tag) : collectionTags.pushObject(tag);
     }
 
     @action
-    createTag(content, select) {
+    createTag(content) {
         let tag = this.store.createRecord('tag', {
             content,
             collections: [this.model.collection]
         });
         tag.save();
-        select.actions.search('');
     }
 }

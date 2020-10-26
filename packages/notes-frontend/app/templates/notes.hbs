@@ -7,13 +7,9 @@
                     @onOpen={{this.onTagSelectorOpen}}
                     @onClose={{this.onTagSelectorClose}}
                     @onSelect={{this.selectViewMode}}
-                    @onCreate={{this.createTag}}
                     @searchEnabled={{false}}
-                    @triggerClass={{"hide-trigger"}}
-                    @dropdownClass={{"has-top-border is-small"}}
-                    @matchTriggerWidth={{false}}
                     @displayProperty="name"
-                    @stopPropagation=true
+                    @stopPropagation={{true}}
             >
                 <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
             </Select::DropdownSelect>

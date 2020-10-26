@@ -14,16 +14,19 @@
         />
         <div class="actions">
             <Select::DropdownSelect
-                @isMultiSelect={{true}}
                 @options={{@tags}}
                 @selected={{@note.tags}}
                 @onSelect={{@onTagSelect}}
                 @onCreate={{@onTagCreate}}
                 @searchEnabled={{true}}
+                @createEnabled={{true}}
                 @displayProperty="content"
+                @isMultiselect={{true}}
                 @placeholder="Enter tag"
+                @searchMessage="No tags found"
+                @emptyMessage="No tags found"
                 @searchField="content"
-                @stopPropagation=true
+                @stopPropagation={{true}}
             >
                 <FaIcon @icon="tag" />
             </Select::DropdownSelect>

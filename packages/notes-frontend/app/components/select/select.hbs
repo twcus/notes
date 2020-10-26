@@ -1,0 +1,40 @@
+<div class="select-container">
+    {{#if @searchEnabled}}
+        <div class="select-search-container">
+            <FaIcon @icon="search" />
+            <Input aria-label="Search" @type="text" @value={{this.searchText}} placeholder={{@searchPlaceholder}} />
+        </div>
+        {{#if this.showNoSearchResultsMessage}}
+            <div class="select-empty-container">
+                <span>{{@noSearchResultsMessage}}</span>
+            </div>
+        {{/if}}
+        {{#if this.showCreateOption}}
+            <div class="select-create-container">
+                <div class="select-option" {{on "click" this.onCreate}}>
+                    <FaIcon @icon="plus" />
+                    <span>Create "<span class="is-bold">{{this.searchText}}</span>"</span>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+    {{#if this.showNoOptionsMessage}}
+        <div class="select-empty-container">
+            <span>{{@noOptionsMessage}}</span>
+        </div>
+    {{/if}}
+    {{#if this.options.length}}
+        <div class="select-options-container">
+            <ul class="select-options">
+                {{#each this.options as |option|}}
+                    {{!-- if selected, add selected class and aria-selected  (helper? utility function?) --}}
+                    <li class="select-option {{if (is-selected @isMultiselect @selected option) "selected"}}"
+                        {{on "click" (fn this.onChange option)}}
+                    >
+                        {{yield option}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    {{/if}}
+</div>

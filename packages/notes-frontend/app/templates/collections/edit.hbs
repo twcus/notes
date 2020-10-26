@@ -29,12 +29,15 @@
                         @selected={{this.model.collection.tags}}
                         @onSelect={{this.selectTag}}
                         @onCreate={{this.createTag}}
-                        @displayProperty="content"
                         @searchEnabled={{true}}
+                        @createEnabled={{true}}
+                        @displayProperty="content"
+                        @isMultiselect={{true}}
                         @placeholder="Enter tag"
                         @searchMessage="No tags found"
+                        @emptyMessage="No tags found"
                         @searchField="content"
-                        @stopPropagation=true
+                        @stopPropagation={{true}}
                 >
                     <span class="select-trigger">Select Tags <FaIcon @icon="tag" /></span>
                 </Select::DropdownSelect>

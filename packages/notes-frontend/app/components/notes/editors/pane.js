@@ -17,15 +17,15 @@ export default class NotesEditorsPaneComponent extends Component {
     }
 
     @action
-    selectTag(tags) {
-        this.args.note.tags = tags;
+    selectTag(tag) {
+        let noteTags = this.args.note.tags;
+        noteTags.includes(tag) ? noteTags.removeObject(tag) : noteTags.pushObject(tag);
         this.args.onNoteUpdate(this.args.note);
     }
 
     @action
-    createTag(content, select) {
+    createTag(content) {
         this.args.onTagCreate(content, this.args.note);
-        select.actions.search(''); // Clear the search input after creating tag
     }
 
     @action
