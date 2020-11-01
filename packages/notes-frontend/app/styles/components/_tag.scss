@@ -1,6 +1,10 @@
 .tag-list {
     display: flex;
     flex-wrap: wrap;
+    &.collection-tags .tag {
+        background-color: $grey;
+        color: $white;
+    }
 }
 
 .tag-list-editable {
@@ -27,20 +31,22 @@
     min-width: 40px;
     text-align: center;
     line-height: normal;
-    &:hover {
-        .tag-text {
-            text-align: left;
-            width: calc(100% - 12px);
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            display: block;
-            overflow: hidden;
-        }
-        .tag-remove {
-            visibility: visible;
-            background-color: $white-darker;
-            &:hover {
-                color: $red;
+    &.removeable{
+        &:hover {
+            .tag-text {
+                text-align: left;
+                width: calc(100% - 12px);
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                display: block;
+                overflow: hidden;
+            }
+            .tag-remove {
+                visibility: visible;
+                background-color: $white-darker;
+                &:hover {
+                    color: $red;
+                }
             }
         }
     }

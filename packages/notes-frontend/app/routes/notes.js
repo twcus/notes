@@ -11,8 +11,14 @@ export default class NotesRoute extends Route {
         });
     }
 
+    afterModel() {
+        this.controllerFor('application').navSubtitle = 'All Notes';
+    }
+
     setupController(controller, model, _transition) {
         super.setupController(controller, model, _transition);
+        this.controller.tagFilters = [];
+        this.controller.collectionTags = [];
         if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length) {
             this.transitionTo('notes.edit', this.controller.sortedNotes[0].id);
         }

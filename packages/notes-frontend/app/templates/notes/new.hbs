@@ -1,9 +1,10 @@
 {{component (concat "notes/editors/" this.viewMode.editorComponent)
-            note=model.note
-            tags=sortedTags
-            onClose=this.transitionToNotes
-            onDelete=this.deleteNote
-            onNoteUpdate=this.updatedNote
-            onTagCreate=this.createTagAndAddToNote
-            onTagRemove=this.removeTagFromNote
+    note=this.model.note
+    tags=this.sortedTags
+    collectionTags=this.collectionTags
+    onClose=this.transitionToNotes
+    onDelete=this.deleteNote
+    onNoteUpdate=this.updatedNote
+    onTagCreate=this.createTagAndAddToNote
+    onTagRemove=this.removeTagFromNote
 }}

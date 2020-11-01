@@ -8,13 +8,14 @@ export default class CollectionNotesNewRoute extends Route {
     model() {
         return RSVP.hash({
             note: this.store.createRecord('note'),
-            tags: this.store.findAll('tag'),
+            tags: this.modelFor('collection-notes').tags,
             collection: this.modelFor('collection-notes').collection
         });
     }
 
     setupController(controller, model) {
         super.setupController(controller, model);
+        controller.collectionTags = model.collection.tags;
         this.controller.viewMode = this.controllerFor('notes').viewMode;
     }
 

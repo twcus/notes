@@ -51,7 +51,8 @@ export default class NotesController extends Controller {
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
-    @tracked tagFilters = [];
+    @tracked tagFilters;
+    @tracked collectionTags;
     @tracked sortOrder;
     @tracked searchQuery;
     @tracked collectionName;
@@ -157,8 +158,8 @@ export default class NotesController extends Controller {
     }
 
     @action
-    updateTagFilters(tags) {
-        this.tagFilters = tags;
+    updateTagFilters(tag) {
+        this.tagFilters.includes(tag) ? this.tagFilters.removeObject(tag) : this.tagFilters.pushObject(tag);
         if (this.viewMode.isEditorOpen) {
             this.transitionWithEditorOpen();
         }

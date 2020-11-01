@@ -16,8 +16,16 @@ export default class CollectionNotesRoute extends Route {
         });
     }
 
+    afterModel(model) {
+        this.controllerFor('application').navSubtitle = model.collection.name;
+        model.tags = model.tags.reject(t => model.collection.tags.includes(t));
+        return model;
+    }
+
     setupController(controller, model, _transition) {
         super.setupController(controller, model, _transition);
+        this.controller.tagFilters = [];
+        this.controller.collectionTags = model.collection.tags;
         if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length) {
             this.transitionTo('collection-notes.edit', this.controller.sortedNotes[0].id);
         }

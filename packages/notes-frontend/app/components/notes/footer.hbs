@@ -1,4 +1,9 @@
 <div class="note-footer">
+    <div class="tag-list collection-tags">
+        {{#each @collectionTags as |tag|}}
+            <Tags::Tag @tag={{tag}} />
+        {{/each}}
+    </div>
     <div class="tag-list">
         {{#each this.sortedTags as |tag|}}
             <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{@onTagRemove}} />

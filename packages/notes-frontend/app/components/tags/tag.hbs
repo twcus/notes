@@ -1,4 +1,4 @@
-<span class="tag {{if @isEditable "card is-editable"}} {{if this.isEditing "is-editing"}}">
+<span class="tag {{if @isEditable "card is-editable"}} {{if this.isEditing "is-editing"}} {{if @onRemove "removeable"}}">
     {{#if @isEditable}}
         <Input id={{inputId}} @class="tag-edit-input" @value={{@tag.content}} {{on "blur" this.save}} {{on "keydown" this.handleKeydown}} disabled={{true}} />
         {{!-- There is some kind of weird race condition or something happening when trying to use an inline if helper to set the action for this button click, so
@@ -11,6 +11,8 @@
         <button class="button tag-delete" {{on "click" this.delete}}><FaIcon @icon="trash" /></button>
     {{else}}
         <span class="tag-text">{{@tag.content}}</span>
-        <button class="button tag-remove" {{on "click" this.remove}}><FaIcon @icon="times" /></button>
+        {{#if @onRemove}}
+            <button class="button tag-remove" {{on "click" this.remove}}><FaIcon @icon="times" /></button>
+        {{/if}}
     {{/if}}
 </span>

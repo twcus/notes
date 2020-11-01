@@ -12,6 +12,7 @@ export default class NotesNewRoute extends Route {
 
     setupController(controller, model) {
         super.setupController(controller, model);
+        controller.collectionTags = [];
         this.controller.viewMode = this.controllerFor('notes').viewMode;
     }
 

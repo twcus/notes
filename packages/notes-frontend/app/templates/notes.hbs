@@ -22,7 +22,7 @@
         </div>
         <div class="toolbar-item">
             <Select::DropdownSelect
-                    @isMultiSelect={{true}}
+                    @isMultiselect={{true}}
                     @options={{this.model.tags}}
                     @selected={{this.tagFilters}}
                     @onSelect={{this.updateTagFilters}}
@@ -47,7 +47,7 @@
         </div>
         {{#unless this.isCollection}}
             <div class="toolbar-item">
-                <button class="button outline fill"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>Save Collection</span></button>
+                <button class="button outline fill"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>New Collection</span></button>
                 <AttachPopover
                         @animation="shift"
                         @hideDelay=0
@@ -68,7 +68,7 @@
                     {{/if}}
                     <Input @placeholder="Collection name" aria-label="Search notes" @value={{this.collectionName}} />
                     <div class="action-bar">
-                        <button class="button text">Cancel</button>
+                        <button class="button text" {{on "click" popover.hide}}>Cancel</button>
                         <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
                     </div>
                 </AttachPopover>
@@ -81,9 +81,14 @@
             </LinkTo>
         </div>
     </div>
+    <div class="tag-list collection-tags">
+        {{#each this.collectionTags as |tag|}}
+            <Tags::Tag @tag={{tag}} />
+        {{/each}}
+    </div>
     <div class="tag-list">
         {{#each this.tagFilters as |tag|}}
-            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
+            <Tags::Tag @tag={{tag}} @onRemove={{this.removeFilteredTag}} />
         {{/each}}
     </div>
 </div>

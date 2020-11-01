@@ -15,6 +15,7 @@ export default class NotesEditController extends Controller {
     @service router;
 
     @tracked viewMode;
+    @tracked collectionTags;
     @sort('model.tags', 'tagSortKey') sortedTags;
 
     get isCollection() {

@@ -9,4 +9,8 @@ export default class CollectionsRoute extends Route {
             tags: this.store.query('tag', { sort: 'content' })
         });
     }
+
+    afterModel() {
+        this.controllerFor('application').navSubtitle = 'Collections';
+    }
 }
