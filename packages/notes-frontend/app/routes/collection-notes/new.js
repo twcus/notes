@@ -1,6 +1,7 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
-import { action } from '@ember/object';
+import { action } from '@ember/object'
+import { inject as service } from '@ember/service';
 
 export default class CollectionNotesNewRoute extends Route {
     controllerName = 'notes.new';
@@ -11,6 +12,10 @@ export default class CollectionNotesNewRoute extends Route {
             tags: this.modelFor('collection-notes').tags,
             collection: this.modelFor('collection-notes').collection
         });
+    }
+
+    afterModel(model) {
+        model.note.tags = model.collection.tags;
     }
 
     setupController(controller, model) {
@@ -33,6 +38,9 @@ export default class CollectionNotesNewRoute extends Route {
                 this.controller.model.note.destroyRecord();
             } else {
                 this.controller.saveNoteTask.perform(note);
+                // Not sure if this is best practice, but couldn't figure out another way to refresh the collection notes,
+                // which weren't refreshing after a new note was created.
+                this.send('reload');
             }
         }
     }

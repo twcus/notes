@@ -43,4 +43,9 @@ export default class CollectionNotesRoute extends Route {
             this.transitionTo('collection-notes.edit', this.controllerFor('notes').sortedNotes[0].id);
         }
     }
+
+    @action
+    reload() {
+        this.refresh();
+    }
 }
