@@ -25,9 +25,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        border-radius: $base-border-radius;
-        &:hover {
-            background-color: $white-dark;
+        .button {
+            margin: 0;
         }
     }
 }
