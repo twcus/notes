@@ -7,6 +7,7 @@
                     @onOpen={{this.onTagSelectorOpen}}
                     @onClose={{this.onTagSelectorClose}}
                     @onSelect={{this.selectViewMode}}
+                    @closeOnSelect={{true}}
                     @searchEnabled={{false}}
                     @displayProperty="name"
                     @stopPropagation={{true}}
@@ -17,7 +18,7 @@
         <div class="toolbar-item">
             <div class="search-container">
                 <FaIcon @icon="search" />
-                <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
+                <Input type="text" placeholder="Search Notes" aria-label="Search notes" @value={{this.searchQuery}} />
             </div>
         </div>
         <div class="toolbar-item">
@@ -30,7 +31,7 @@
                     @displayProperty="content"
                     @placeholder="Enter tag"
                     @searchField="content"
-                    @stopPropagation=true
+                    @stopPropagation={{true}}
                     @showCreateOption={{true}}
             >
                 <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
@@ -47,7 +48,7 @@
         </div>
         {{#unless this.isCollection}}
             <div class="toolbar-item">
-                <button class="button outline fill"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>New Collection</span></button>
+                <button class="button outline fill has-side-margins-large"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>New Collection</span></button>
                 <AttachPopover
                         @animation="shift"
                         @hideDelay=0
@@ -72,14 +73,12 @@
                         <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
                     </div>
                 </AttachPopover>
+                <LinkTo @tagName="button" class="is-primary is-bold button has-side-margins-large" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
+                    <FaIcon class="has-margin-right" @icon="plus" />
+                    <span>New Note</span>
+                </LinkTo>
             </div>
         {{/unless}}
-        <div class="toolbar-item">
-            <LinkTo @tagName="button" class="is-primary is-bold button" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
-                <FaIcon class="has-margin-right" @icon="plus" />
-                <span>New Note</span>
-            </LinkTo>
-        </div>
     </div>
     <div class="tag-list collection-tags">
         {{#each this.collectionTags as |tag|}}

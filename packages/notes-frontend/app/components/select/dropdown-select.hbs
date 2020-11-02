@@ -3,12 +3,12 @@
     @onClose={{this.close}}
     as |dd|
 >
-    <dd.Trigger @stopPropagation={{@stopPropagation}} class="button text {{if this.isOpen "active"}}">{{yield}}</dd.Trigger>
+    <dd.Trigger @stopPropagation={{@stopPropagation}} class="button text {{if this.isOpen "active"}} {{if @triggerClass @triggerClass}}">{{yield}}</dd.Trigger>
     <dd.Content @animationEnabled={{false}}>
         <Select::Select
             @options={{@options}}
             @selected={{@selected}}
-            @onChange={{this.select}}
+            @onChange={{fn this.select dd}}
             @onCreate={{this.create}}
             @searchEnabled={{@searchEnabled}}
             @createEnabled={{@createEnabled}}

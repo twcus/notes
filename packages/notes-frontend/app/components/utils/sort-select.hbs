@@ -3,9 +3,10 @@
             @options={{this.sortOrderOptions}}
             @selected={{this.selectedSortOrder}}
             @onSelect={{this.selectSortOrder}}
+            @closeOnSelect={{true}}
             @searchEnabled={{false}}
             @matchTriggerWidth={{false}}
-            @triggerClass={{"hide-trigger"}}
+            @triggerClass="no-margin"
             @dropdownClass={{"has-top-border"}}
             @displayProperty="name"
             @stopPropagation=true
@@ -17,6 +18,7 @@
         @selected={{@selectedSortProperty}}
         @onSelect={{@onSelectSortProperty}}
         @searchEnabled={{false}}
+        @closeOnSelect={{true}}
         @matchTriggerWidth={{false}}
         @triggerClass={{"hide-trigger"}}
         @dropdownClass={{"has-top-border"}}

@@ -38,8 +38,11 @@ export default class DropdownSelectComponent extends Component {
     }
 
     @action
-    select(item) {
+    select(dropdown, item) {
         this.args.onSelect(item);
+        if (this.args.closeOnSelect) {
+            dropdown.actions.close();
+        }
     }
 
     @action

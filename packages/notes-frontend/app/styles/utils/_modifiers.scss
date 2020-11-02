@@ -4,8 +4,16 @@
 }
 
 /* Margin */
+.no-margin {
+    margin: 0 !important;
+}
+
 .has-margin-right {
     margin-right: 8px;
+}
+
+.has-side-margins-large {
+    margin: 0 16px !important;
 }
 
 /* Alignment */
