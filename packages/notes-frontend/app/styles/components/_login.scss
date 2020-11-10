@@ -16,6 +16,7 @@
     .card {
         width: 30%;
         max-width: 400px;
+        min-width: 300px;
         align-items: center;
         padding: 48px 24px;
         cursor: default;
@@ -24,6 +25,7 @@
     .login-form {
         display: flex;
         flex-direction: column;
+        width: 75%;
         h2 {
             align-self: center;
             margin-bottom: 36px;
