@@ -2,8 +2,8 @@
     font-weight: 500;
     display: flex;
     flex-direction: column;
-    width: 200px;
-    flex-basis: 200px;
+    width: 150px;
+    flex-basis: 150px;
     flex-shrink: 0;
     flex-grow: 0;
     height: 100%;
@@ -27,6 +27,7 @@
     text-align: center;
     margin: 16px 0 84px 0;
     font-weight: 400;
+    font-size: 1.3rem;
 }
 
 .nav-menu-group {
@@ -42,24 +43,31 @@
         background-color: $primary;
     }
     .nav-menu-link {
-        font-size: 1.2rem;
         color: $white;
         width: 100%;
-        padding: 24px 24px;
+        padding: 16px;
         text-decoration: none;
         border-left: solid 4px transparent;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
 
         &.active {
             border-left-color: $white;
         }
 
-        &:hover,
-        &.active {
+        &:hover {
             background-color: $primary-light;
-
+        }
+        &.active {
+            background-color: darken($primary-light, 10%);
+            &:hover {
+                background-color: $primary-light;
+            }
         }
     }
     svg {
-        margin-right: 16px;
+        font-size: 1.5rem;
+        margin-bottom: 16px;
     }
 }

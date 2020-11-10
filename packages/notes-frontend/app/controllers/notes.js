@@ -48,17 +48,18 @@ export default class NotesController extends Controller {
         }
     }
 
-    @tracked viewMode = this.viewModeOptions[0];
-    @tracked isTaskRunning = this.saveNoteTask.isRunning;
-    @tracked sortProperty = this.sortOptions[0];
     @tracked tagFilters;
     @tracked collectionTags;
     @tracked sortOrder;
     @tracked searchQuery;
     @tracked collectionName;
     @tracked collectionError;
-    @tracked isConfirmingDelete = false;
     @tracked noteForDeletion;
+    @tracked viewMode = this.viewModeOptions[0];
+    @tracked isTaskRunning = this.saveNoteTask.isRunning;
+    @tracked sortProperty = this.sortOptions[0];
+    @tracked isConfirmingDelete = false;
+    @tracked isCreatingCollection = false;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
     @sort('model.tags', 'tagSortKey') sortedTags;
 
@@ -183,6 +184,7 @@ export default class NotesController extends Controller {
         if (collectionValidation.status) {
             this.collectionError = null;
             this.collectionName = null;
+            this.isCreatingCollection = false;
             return collection.save();
         } else {
             collection.destroyRecord();
@@ -208,6 +210,18 @@ export default class NotesController extends Controller {
             return this.noteForDeletion.destroyRecord();
         }
         this.noteForDeletion = null;
+    }
+
+    @action
+    onCollectionOpen() {
+        this.collectionName = null;
+        this.collectionError = null;
+        this.isCreatingCollection = true;
+    }
+
+    @action
+    onCollectionClose() {
+        this.isCreatingCollection = false;
     }
 
     @(task(function *(note) {

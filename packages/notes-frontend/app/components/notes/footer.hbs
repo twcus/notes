@@ -6,7 +6,7 @@
     </div>
     <div class="tag-list">
         {{#each this.sortedTags as |tag|}}
-            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{@onTagRemove}} />
+            <Tags::Tag @tag={{tag}} @onRemove={{@onTagRemove}} />
         {{/each}}
     </div>
     <div class="action-bar">

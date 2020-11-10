@@ -2,8 +2,23 @@
     <h1 class="nav-menu-title"><LinkTo @route="notes">Notes</LinkTo></h1>
     <h2 class="nav-menu-subtitle">{{@subtitle}}</h2>
     <ul class="nav-menu-group">
-        <li class="nav-menu-item"><LinkTo @route="notes" class="nav-menu-link"><FaIcon @icon="file" /><span>Notes</span></LinkTo></li>
-        <li class="nav-menu-item"><LinkTo @route="collections" @current-when="collections collection-notes" class="nav-menu-link"><FaIcon @icon="folder" />Collections</LinkTo></li>
-        <li class="nav-menu-item"><LinkTo @route="tags" class="nav-menu-link"><FaIcon @icon="tag" /><span>Tags</span></LinkTo></li>
+        <li class="nav-menu-item">
+            <LinkTo @route="notes" class="nav-menu-link">
+                <FaIcon @icon="file" />
+                <span>Notes</span>
+            </LinkTo>
+        </li>
+        <li class="nav-menu-item">
+            <LinkTo @route="collections" @current-when="collections collection-notes" class="nav-menu-link">
+                <FaIcon @icon="folder" />
+                <span>Collections</span>
+            </LinkTo>
+        </li>
+        <li class="nav-menu-item">
+            <LinkTo @route="tags" class="nav-menu-link">
+                <FaIcon @icon="tag" />
+                <span>Tags</span>
+            </LinkTo>
+        </li>
     </ul>
 </nav>

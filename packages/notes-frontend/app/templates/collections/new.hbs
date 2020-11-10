@@ -46,7 +46,7 @@
     </div>
     <div class="tag-list">
         {{#each this.model.collection.tags as |tag|}}
-            <span class="tag">{{tag.content}}</span>
+            <Tags::Tag @tag={{tag}} @onRemove={{this.onTagRemove}} />
         {{/each}}
     </div>
     <div class="modal-footer">

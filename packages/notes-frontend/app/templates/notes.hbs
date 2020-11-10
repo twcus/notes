@@ -46,39 +46,17 @@
                     @defaultSortOrder={{this.defaultSortOrder}}
             />
         </div>
-        {{#unless this.isCollection}}
             <div class="toolbar-item">
-                <button class="button outline fill has-side-margins-large"><FaIcon @class="has-margin-right" @icon="bookmark" /><span>New Collection</span></button>
-                <AttachPopover
-                        @animation="shift"
-                        @hideDelay=0
-                        @hideDuration=300
-                        @hideOn="click clickout escapekey"
-                        @interactive={{true}}
-                        @isShown={{false}}
-                        @placement="bottom"
-                        @showDelay=0
-                        @showDuration=300
-                        @showOn="click"
-                        @class="popover-container"
-                        as |popover|
-                >
-                    <span class="title">Save as new collection</span>
-                    {{#if this.collectionError}}
-                        <span class="error">{{this.collectionError}}</span>
-                    {{/if}}
-                    <Input @placeholder="Collection name" aria-label="Search notes" @value={{this.collectionName}} />
-                    <div class="action-bar">
-                        <button class="button text" {{on "click" popover.hide}}>Cancel</button>
-                        <button class="button" {{on "click" (fn this.saveCollection popover.hide)}}>Save</button>
-                    </div>
-                </AttachPopover>
+                {{#unless this.isCollection}}
+                    <button class="button outline fill has-side-margins-large" {{on "click" this.onCollectionOpen}}>
+                        <FaIcon @class="has-margin-right" @icon="bookmark" /><span>New Collection</span>
+                    </button>
+                {{/unless}}
                 <LinkTo @tagName="button" class="is-primary is-bold button has-side-margins-large" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
                     <FaIcon class="has-margin-right" @icon="plus" />
                     <span>New Note</span>
                 </LinkTo>
             </div>
-        {{/unless}}
     </div>
     <div class="tag-list collection-tags">
         {{#each this.collectionTags as |tag|}}
@@ -121,4 +99,45 @@
     >
         Are you sure you want to delete this note?
     </ConfirmModal>
+{{/if}}
+
+{{#if this.isCreatingCollection}}
+    <ModalDialog
+            @containerClass="small"
+            @onClose={{this.onCollectionClose}}
+            @translucentOverlay={{true}}
+            @tetherTarget=".toolbar"
+            @targetAttachment="top center"
+            @targetOffset="100px 0"
+            @attachment="top center"
+    >
+        <div class="modal-header">
+            <h1>Create New Collection</h1>
+            <FaIcon class="close-icon" @icon="times" {{on "click" this.onCollectionClose}} />
+        </div>
+        <div class="modal-body">
+            <div class="form">
+                {{#if this.collectionError}}
+                    <span class="error">
+                        {{this.collectionError}}
+                    </span>
+                {{/if}}
+                <div class="form-field full-width">
+                    <label for="name">Name</label>
+                    <Input name="name" type="text" aria-label="Collection Name" @value={{this.collectionName}} />
+                </div>
+            </div>
+        </div>
+        <div class="tag-list">
+            {{#each this.tagFilters as |tag|}}
+                <Tags::Tag @tag={{tag}} />
+            {{/each}}
+        </div>
+        <div class="modal-footer">
+            <div class="button-container">
+                <button type="button" class="button text" {{on "click" this.onCollectionClose}}>Cancel</button>
+                <button type="button" class="button" {{on "click" this.saveCollection}}>Create Collection</button>
+            </div>
+        </div>
+    </ModalDialog>
 {{/if}}

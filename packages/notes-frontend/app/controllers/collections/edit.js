@@ -41,4 +41,9 @@ export default class CollectionsEditController extends Controller {
         });
         tag.save();
     }
+
+    @action
+    onTagRemove(tag) {
+        this.model.collection.tags.removeObject(tag);
+    }
 }

@@ -13,9 +13,6 @@ export default class CollectionsEditRoute extends Route {
 
     @action
     willTransition() {
-        let collection = this.controller.model.collection;
-        if (collection.hasDirtyAttributes) {
-            collection.rollbackAttributes();
-        }
+        let collection = this.controller.model.collection.reload();
     }
 }
