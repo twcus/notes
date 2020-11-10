@@ -1,6 +1,6 @@
 .toolbar {
-    padding: 8px 32px;
-    background-color: $white;
+    padding: 0 32px;
+    background-color: #61626b;
     flex-shrink: 0;
     box-shadow: 0 1px 2px 0 rgba(66, 66, 66, 0.3), 0 1px 3px 1px rgba(80, 80, 80, 0.15);
     z-index: $topbar-index;
@@ -15,13 +15,47 @@
     .tag-list {
         max-height: 100px;
         overflow: auto;
+        margin-bottom: 8px;
+    }
+    .search-container {
+        background-color: #61626b;
+        border-radius: 2px;
+        &:focus-within,
+        &:hover {
+            border: 0;
+            color: $white;
+            background-color: lighten(#61626b, 15%);
+        }
+        svg {
+            color: $white;
+        }
+        input {
+            color: $white !important;
+
+        }
+        input::placeholder {
+            color: $white;
+            opacity: 0.75;
+        }
+    }
+    .button:not(.tag-remove) {
+        font-size: 0.8rem;
+        color: $white;
+        padding: 8px;
+        border: 0;
+        background-color: inherit;
+        &:focus,
+        &:hover {
+            color: $white;
+            background-color: lighten(#61626b, 15%) !important;
+        }
     }
 }
 
 .toolbar-item {
     display: flex;
     align-items: center;
-    height: 50px;
+    font-size: 0.8rem;
     .button-group {
         display: flex;
         flex-direction: row;

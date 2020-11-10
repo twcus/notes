@@ -1,9 +1,13 @@
 .pell-actionbar {
     position: sticky;
     top: 0;
-    height: 30px;
+    height: 36px;
     background-color: $white;
     border-bottom: 2px solid $white-darker;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 8px;
 }
 
 .pell-button {
@@ -16,9 +20,10 @@
 }
 
 .pell-content {
-    height: calc(100% - 32px);
+    height: calc(100% - 54px); // I don't know why this needs to be 54...
     min-height: 200px;
-    padding: 8px 24px 8px 0;
+    padding: 8px 24px 8px 24px;
+    line-height: 1.5;
     blockquote {
         padding: 16px;
         margin: 16px;

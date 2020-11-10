@@ -28,11 +28,13 @@
             </LinkTo>
         </div>
     </div>
-    <div class="tag-list">
-        {{#each this.tagFilters as |tag|}}
-            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
-        {{/each}}
-    </div>
+    {{#if this.tagFilters.length}}
+        <div class="tag-list">
+            {{#each this.tagFilters as |tag|}}
+                <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
+            {{/each}}
+        </div>
+    {{/if}}
 </div>
 <div class="content">
     {{#if this.searchedCollections.length}}

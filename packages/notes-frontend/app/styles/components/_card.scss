@@ -40,6 +40,9 @@
         height: 100%;
         overflow-y: hidden;
         word-break: break-all;
+        &.pell-content {
+            padding: 0;
+        }
     }
     .card-footer {
         position: relative;

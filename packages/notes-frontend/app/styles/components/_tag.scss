@@ -1,10 +1,11 @@
 .tag-list {
     display: flex;
     flex-wrap: wrap;
-    &.collection-tags .tag {
-        background-color: $grey;
-        color: $white;
-    }
+}
+
+.collection-tags .tag {
+    background-color: #838383;
+    color: $white;
 }
 
 .tag-list-editable {
@@ -32,6 +33,13 @@
     text-align: center;
     line-height: normal;
     &.removeable {
+        .tag-remove {
+            position: absolute;
+            right: 4px;
+            visibility: hidden;
+            padding: 4px;
+            color: $black-light;
+        }
         &:hover {
             .tag-text {
                 text-align: left;
@@ -50,31 +58,6 @@
             }
         }
     }
-    &.is-editable {
-        background-color: $white;
-        border: 1px solid $white-darker;
-        flex-direction: row;
-        button {
-            display: none;
-        }
-        &:hover,
-        &.is-editing {
-            justify-content: flex-start;
-            .tag-edit-input {
-                text-align: left;
-                width: 150px;
-            }
-            button {
-                display: block;
-            }
-        }
-        .tag-edit-input {
-            text-overflow: ellipsis;
-            word-wrap: break-word;
-            white-space: nowrap;
-            overflow: hidden;
-        }
-    }
     .tag-text {
         width: 100%;
         text-align: center;
@@ -86,12 +69,5 @@
         background-color: inherit;
         border: none;
         line-height: inherit;
-    }
-    .tag-remove {
-        position: absolute;
-        right: 4px;
-        visibility: hidden;
-        padding: 4px;
-        color: $black-light;
     }
 }

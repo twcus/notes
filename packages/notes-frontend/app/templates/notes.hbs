@@ -50,7 +50,7 @@
             <div class="toolbar-item">
                 {{#unless this.isCollection}}
                     <button class="button outline fill has-side-margins-large" {{on "click" this.onCollectionOpen}}>
-                        <FaIcon @class="has-margin-right" @icon="bookmark" /><span>New Collection</span>
+                        <FaIcon @class="has-margin-right" @icon="plus" /><span>New Collection</span>
                     </button>
                 {{/unless}}
                 <LinkTo @tagName="button" class="is-primary is-bold button has-side-margins-large" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
@@ -59,16 +59,18 @@
                 </LinkTo>
             </div>
     </div>
-    <div class="tag-list">
-        <div class="tag-list collection-tags">
-            {{#each this.collectionTags as |tag|}}
-                <Tags::Tag @tag={{tag}} />
+    {{#if (or this.collectionTags.length this.tagFilters.length)}}
+        <div class="tag-list">
+            <div class="collection-tags">
+                {{#each this.collectionTags as |tag|}}
+                    <Tags::Tag @tag={{tag}} />
+                {{/each}}
+            </div>
+            {{#each this.tagFilters as |tag|}}
+                <Tags::Tag @tag={{tag}} @onRemove={{this.removeFilteredTag}} />
             {{/each}}
         </div>
-        {{#each this.tagFilters as |tag|}}
-            <Tags::Tag @tag={{tag}} @onRemove={{this.removeFilteredTag}} />
-        {{/each}}
-    </div>
+    {{/if}}
 </div>
 <div class="content">
     {{#if this.firstNoteInOrder}}
