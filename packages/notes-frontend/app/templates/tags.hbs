@@ -7,73 +7,49 @@
             </div>
         </div>
         <div class="toolbar-item">
-            <Select::DropdownSelect
-                @isMultiSelect={{true}}
-                @options={{this.model.tags}}
-                @selected={{this.tagFilters}}
-                @onSelect={{this.updateTagFilters}}
-                @searchEnabled={{true}}
-                @displayProperty="content"
-                @placeholder="Enter tag"
-                @searchField="content"
-                @stopPropagation=true
-                @showCreateOption={{true}}
-            >
-                <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
-            </Select::DropdownSelect>
-        </div>
-        <div class="toolbar-item fixed-width-225">
-            <Utils::SortSelect
-                @sortPropertyOptions={{this.sortOptions}}
-                @selectedSortProperty={{this.sortProperty}}
-                @onSelectSortProperty={{this.selectSortProperty}}
-                @onSelectSortOrder={{this.selectSortOrder}}
-                @defaultSortOrder={{this.defaultSortOrder}}
-            />
-        </div>
-        <div class="toolbar-item">
             <LinkTo @tagName="button" class="is-primary is-bold button" @route="tags.new">
                 <FaIcon class="has-margin-right" @icon="plus" />
                 <span>New Tag</span>
             </LinkTo>
         </div>
     </div>
-    <div class="tag-list">
-        {{#each this.tagFilters as |tag|}}
-            <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
-        {{/each}}
-    </div>
 </div>
 <div class="content">
-    <div class="table-container">
-        <table class="table">
-            <colgroup>
-                <col style="width: 70%">
-                <col style="width: 30%">
-            </colgroup>
-            <thead>
+    {{#if this.searchedTags.length}}
+        <div class="table-container">
+            <table class="table">
+                <colgroup>
+                    <col style="width: 70%">
+                    <col style="width: 30%">
+                </colgroup>
+                <thead>
                 <tr>
                     <th style="text-align: left">Name</th>
                     <th style="text-align: right">Actions</th>
                 </tr>
-            </thead>
-            <tbody>
-                {{#each @model as |tag|}}
-                    {{#unless tag.isNew}}
-                        <tr>
-                            <td>{{tag.content}}</td>
-                            <td>
-                                <div class="action-bar">
-                                    <button type="button" class="button text" {{on "click" (fn this.onEdit tag)}}><FaIcon @icon="edit" /></button>
-                                    <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
-                                </div>
-                            </td>
-                        </tr>
-                    {{/unless}}
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    {{#each this.searchedTags as |tag|}}
+                        {{#unless tag.isNew}}
+                            <tr>
+                                <td>{{tag.content}}</td>
+                                <td>
+                                    <div class="action-bar">
+                                        <button type="button" class="button text" {{on "click" (fn this.onEdit tag)}}><FaIcon @icon="edit" /></button>
+                                        <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {{/unless}}
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    {{else}}
+        <NoResultsMessage>
+            <span>No Tags Found</span>
+        </NoResultsMessage>
+    {{/if}}
 </div>
 
 {{#if this.isConfirmingDelete}}

@@ -17,8 +17,9 @@ export default class NotesRoute extends Route {
 
     setupController(controller, model, _transition) {
         super.setupController(controller, model, _transition);
-        this.controller.tagFilters = [];
-        this.controller.collectionTags = [];
+        controller.tagFilters = [];
+        controller.collectionTags = [];
+        controller.searchQuery = null;
         if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length) {
             this.transitionTo('notes.edit', this.controller.sortedNotes[0].id);
         }

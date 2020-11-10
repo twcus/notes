@@ -5,8 +5,16 @@ import { inject as service } from '@ember/service';
 
 export default class TagsController extends Controller {
     @service notifications;
+    @tracked searchQuery;
     @tracked isConfirmingDelete;
     @tracked tagForDeletion;
+
+    get searchedTags() {
+        if (this.searchQuery) {
+            return this.model.filter(tag => tag.content.includes(this.searchQuery));
+        }
+        return this.model;
+    }
 
     @action
     onDeleteOpen(tag) {

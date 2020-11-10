@@ -8,4 +8,9 @@ export default class TagsRoute extends Route {
     afterModel() {
         this.controllerFor('application').navSubtitle = 'Tags';
     }
+
+    setupController(controller, model, _transition) {
+        super.setupController(controller, model, _transition);
+        controller.searchQuery = null;
+    }
 }

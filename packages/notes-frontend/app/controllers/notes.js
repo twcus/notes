@@ -55,7 +55,6 @@ export default class NotesController extends Controller {
     @tracked sortOrder;
     @tracked searchQuery;
     @tracked collectionName;
-    @tracked collectionError;
     @tracked noteForDeletion;
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;

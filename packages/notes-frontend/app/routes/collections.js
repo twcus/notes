@@ -13,4 +13,10 @@ export default class CollectionsRoute extends Route {
     afterModel() {
         this.controllerFor('application').navSubtitle = 'Collections';
     }
+
+    setupController(controller, model, _transition) {
+        super.setupController(controller, model, _transition);
+        controller.tagFilters = [];
+        controller.searchQuery = null;
+    }
 }
