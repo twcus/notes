@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class CollectionsNewController extends Controller {
-    @tracked errorMessage;
+    @service notifications;
     @tracked selectedTags = [];
 
     @action
@@ -15,16 +16,16 @@ export default class CollectionsNewController extends Controller {
     onSave() {
         let collectionValidation = this.model.collection.validate(this.model.collections.without(this.model.collection))
         if (collectionValidation.status) {
-            this.errorMessage = null;
             return this.model.collection.save()
                 .then(() => {
-                    this.transitionToRoute('collections')
+                    this.notifications.clearAll().success(`Collection "${this.model.collection.name}" was saved.`);
+                    this.transitionToRoute('collections');
                 })
                 .catch(res => {
-                    this.errorMessage = res;
+                    this.notifications.clearAll().error(res);
                 });
         } else {
-            this.errorMessage = collectionValidation.message;
+            this.notifications.clearAll().error(collectionValidation.message);
         }
     }
 

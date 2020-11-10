@@ -1,0 +1,18 @@
+.ember-cli-notifications-notification__container {
+    top: 24px;
+    left: 150px;
+    font-size: 1rem;
+    .c-notification {
+        padding: 8px;
+        .c-notification__icon,
+        .c-notification__close {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+        }
+    }
+    .c-notification__countdown {
+        display: none; // Can't disable the duration animation through the addon apparently
+    }
+}

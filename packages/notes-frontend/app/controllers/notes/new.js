@@ -13,6 +13,7 @@ export default class NotesEditController extends Controller {
     tagSortKey = ['content:asc'];
 
     @service router;
+    @service notifications;
 
     @tracked viewMode;
     @tracked collectionTags;
@@ -35,8 +36,10 @@ export default class NotesEditController extends Controller {
     deleteNote(note) {
         return note.destroyRecord()
             .then(() => {
+                this.notifications.clearAll().success('Note was deleted.');
                 this.transitionToNotes();
-            });
+            })
+            .catch(res => this.notifications.clearAll().error(res));
     }
 
     @action

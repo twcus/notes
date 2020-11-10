@@ -13,11 +13,6 @@
     </div>
     <div class="modal-body">
         <div class="form">
-            {{#if this.errorMessage}}
-                <span class="error">
-                    {{this.errorMessage}}
-                </span>
-            {{/if}}
             <div class="form-field full-width">
                 <label for="name">Name</label>
                 <Input name="name" type="text" aria-label="Collection Name" @value={{this.model.collection.name}} />

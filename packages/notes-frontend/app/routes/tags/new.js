@@ -16,6 +16,5 @@ export default class TagsNewRoute extends Route {
         if (tag.isNew) {
             tag.destroyRecord();
         }
-        this.controller.errorMessage = null;
     }
 }

@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import { isNone } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_TIME = 500;
@@ -10,6 +11,8 @@ const FORCE_TIME = 5000;
 
 export default class NotesEditController extends Controller {
     tagSortKey = ['content:asc'];
+
+    @service notifications;
 
     @tracked viewMode;
     @tracked collectionTags;
@@ -32,8 +35,10 @@ export default class NotesEditController extends Controller {
     deleteNote(note) {
         return note.destroyRecord()
             .then(() => {
+                this.notifications.clearAll().success('Note was deleted.');
                 this.transitionToNotes();
-            });
+            })
+            .catch(res => this.notifications.clearAll().error(res));
     }
 
     @action

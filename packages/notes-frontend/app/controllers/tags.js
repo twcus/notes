@@ -1,8 +1,10 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 
 export default class TagsController extends Controller {
+    @service notifications;
     @tracked isConfirmingDelete;
     @tracked tagForDeletion;
 
@@ -16,7 +18,10 @@ export default class TagsController extends Controller {
     onDeleteClose(shouldDelete) {
         this.isConfirmingDelete = false;
         if (shouldDelete) {
-            return this.tagForDeletion.destroyRecord();
+            return this.tagForDeletion.destroyRecord()
+                .then(() => this.notifications.clearAll().success(`Tag "${this.tagForDeletion.content}" was deleted.`))
+                .catch(res => this.notifications.clearAll().error(res));
+
         }
         this.tagForDeletion = null;
     }

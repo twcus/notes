@@ -17,6 +17,5 @@ export default class CollectionsNewRoute extends Route {
         if (collection.isNew) {
             collection.destroyRecord();
         }
-        this.controller.errorMessage = null;
     }
 }

@@ -3,12 +3,14 @@ import { action } from '@ember/object';
 import { sort } from '@ember/object/computed';
 import { isNone } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
+import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_TIME = 500;
 const FORCE_TIME = 5000;
 
 export default class NotesController extends Controller {
+    @service notifications;
     defaultSortOrder = 'desc';
     viewModeOptions = [
         {
@@ -182,13 +184,15 @@ export default class NotesController extends Controller {
         });
         let collectionValidation = collection.validate(this.model.collections);
         if (collectionValidation.status) {
-            this.collectionError = null;
-            this.collectionName = null;
-            this.isCreatingCollection = false;
-            return collection.save();
+            return collection.save()
+                .then(() => {
+                    this.notifications.clearAll().success(`Collection "${this.collectionName}" was saved.`);
+                    this.collectionName = null;
+                    this.isCreatingCollection = false;
+                });
         } else {
             collection.destroyRecord();
-            this.collectionError = collectionValidation.message;
+            this.notifications.error(collectionValidation.message);
         }
     }
 
@@ -207,7 +211,9 @@ export default class NotesController extends Controller {
     onDeleteClose(shouldDelete) {
         this.isConfirmingDelete = false;
         if (shouldDelete) {
-            return this.noteForDeletion.destroyRecord();
+            return this.noteForDeletion.destroyRecord()
+                .then(() => this.notifications.clearAll().success('Note was deleted.'))
+                .catch(res => this.notifications.clearAll().error(res));
         }
         this.noteForDeletion = null;
     }
@@ -215,7 +221,6 @@ export default class NotesController extends Controller {
     @action
     onCollectionOpen() {
         this.collectionName = null;
-        this.collectionError = null;
         this.isCreatingCollection = true;
     }
 
