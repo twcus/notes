@@ -9,9 +9,10 @@
             @triggerClass="no-margin"
             @dropdownClass={{"has-top-border"}}
             @displayProperty="name"
-            @stopPropagation=true
+            @stopPropagation={{true}}
+            @optionClass="large"
     >
-        <FaIcon @icon={{selectedSortOrder.icon}} />
+        <FaIcon @icon={{this.selectedSortOrder.icon}} />
     </Select::DropdownSelect>
     <Select::DropdownSelect
         @options={{@sortPropertyOptions}}
@@ -23,7 +24,8 @@
         @triggerClass={{"hide-trigger"}}
         @dropdownClass={{"has-top-border"}}
         @displayProperty="name"
-        @stopPropagation=true
+        @stopPropagation={{true}}
+        @optionClass="large"
     >
         <span>{{@selectedSortProperty.name}}</span>
     </Select::DropdownSelect>

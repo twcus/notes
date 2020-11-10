@@ -11,6 +11,7 @@
                     @searchEnabled={{false}}
                     @displayProperty="name"
                     @stopPropagation={{true}}
+                    @optionClass="large"
             >
                 <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
             </Select::DropdownSelect>
@@ -58,12 +59,12 @@
                 </LinkTo>
             </div>
     </div>
-    <div class="tag-list collection-tags">
-        {{#each this.collectionTags as |tag|}}
-            <Tags::Tag @tag={{tag}} />
-        {{/each}}
-    </div>
     <div class="tag-list">
+        <div class="tag-list collection-tags">
+            {{#each this.collectionTags as |tag|}}
+                <Tags::Tag @tag={{tag}} />
+            {{/each}}
+        </div>
         {{#each this.tagFilters as |tag|}}
             <Tags::Tag @tag={{tag}} @onRemove={{this.removeFilteredTag}} />
         {{/each}}

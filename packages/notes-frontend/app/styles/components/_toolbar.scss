@@ -5,6 +5,7 @@
     box-shadow: 0 1px 2px 0 rgba(66, 66, 66, 0.3), 0 1px 3px 1px rgba(80, 80, 80, 0.15);
     z-index: $topbar-index;
     .toolbar-actions {
+        padding: 8px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -14,7 +15,6 @@
     .tag-list {
         max-height: 100px;
         overflow: auto;
-        margin-top: 8px;
     }
 }
 

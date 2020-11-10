@@ -59,6 +59,9 @@
         cursor: pointer;
         background-color: $grey-light;
     }
+    &.large {
+        padding: 16px;
+    }
 }
 
 .select-option-selected-icon {

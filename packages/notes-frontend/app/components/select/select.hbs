@@ -28,7 +28,7 @@
             <ul class="select-options">
                 {{#each this.options as |option|}}
                     {{!-- if selected, add selected class and aria-selected  (helper? utility function?) --}}
-                    <li class="select-option {{if (is-selected @isMultiselect @selected option) "selected"}}"
+                    <li class="select-option {{if (is-selected @isMultiselect @selected option) "selected"}} {{@optionClass}}"
                         {{on "click" (fn this.onChange option)}}
                     >
                         {{yield option}}

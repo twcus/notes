@@ -18,6 +18,7 @@
             @searchFields={{array @searchField}}
             @noSearchResultsMessage={{@searchMessage}}
             @noOptionsMessage={{@emptyMessage}}
+            @optionClass={{@optionClass}}
             as |item|
         >
             <Select::SelectOption @option={{item}} @displayProperty={{@displayProperty}} @selectedIcon="check" />
