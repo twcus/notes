@@ -39,6 +39,10 @@ a {
     &:visited {
         color: #1479d2;
     }
+    &[disabled] {
+        color: $grey !important;
+        cursor: default;
+    }
 }
 
 .content {
