@@ -5,12 +5,13 @@
             <h2>Login</h2>
             <div class="field">
                 <label>Username</label>
-                <Input type="text" />
+                <Input type="text" @value={{this.username}} />
             </div>
             <div class="field">
                 <label>Password</label>
-                <Input type="password" />
+                <Input type="password" @value={{this.password}} />
             </div>
+            <button type="button" class="button primary" {{on "click" this.authenticate}}>Login</button>
         </div>
     </div>
 </div>

@@ -24,7 +24,15 @@ module.exports = function(environment) {
     'ember-cli-notifications': {
         autoClear: true,
         clearDuration: 3000
-    }
+    },
+      'ember-simple-auth-token': {
+        serverTokenEndpoint: '/login',
+          tokenPropertyName: 'token',
+          refreshAccessTokens: false,
+          tokenExpirationInvalidateSession: true,
+          tokenExpireName: 'exp'
+      }
+
   };
 
   if (environment === 'development') {

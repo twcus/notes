@@ -1,5 +1,7 @@
-<Utils::NavMenu @subtitle={{this.navSubtitle}} />
-<main>
+{{#if this.session.isAuthenticated}}
+    <Utils::NavMenu @subtitle={{this.navSubtitle}} @logout={{this.logout}} />
+{{/if}}
+<main class={{if (not this.session.isAuthenticated) "unauthenticated"}}>
     <NotificationContainer @zindex="9999" />
     {{outlet}}
 </main>

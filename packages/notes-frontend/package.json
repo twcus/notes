@@ -58,6 +58,8 @@
     "ember-power-select-with-create": "^0.7.0",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^8.0.2",
+    "ember-simple-auth": "^3.0.1",
+    "ember-simple-auth-token": "^5.2.0",
     "ember-source": "~3.21.1",
     "ember-template-lint": "^2.11.0",
     "ember-tether": "^1.0.0",

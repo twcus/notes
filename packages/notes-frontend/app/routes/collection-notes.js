@@ -1,9 +1,18 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
 import RSVP from 'rsvp';
+import { inject as service } from '@ember/service';
 
 export default class CollectionNotesRoute extends Route {
     controllerName = 'notes';
+
+    @service session;
+
+    beforeModel(transition) {
+        if (!this.session.isAuthenticated) {
+            this.transitionTo('login');
+        }
+    }
 
     model(params) {
         return RSVP.hash({

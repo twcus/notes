@@ -12,6 +12,7 @@
     h1,
     h2 {
         font-weight: 400;
+        cursor: text;
     }
     .card {
         width: 30%;
@@ -35,6 +36,7 @@
             flex-direction: column;
             margin-bottom: 24px;
             label {
+                cursor: text;
                 margin-bottom: 8px;
             }
             input {

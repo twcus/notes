@@ -1,5 +1,4 @@
 import DS from 'ember-data';
+import TokenAdapterMixin from 'ember-simple-auth-token/mixins/token-adapter';
 
-export default class ApplicationAdapter extends DS.JSONAPIAdapter {
-    // host = 'http://localhost:8080';
-}
+export default DS.JSONAPIAdapter.extend(TokenAdapterMixin);

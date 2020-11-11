@@ -21,4 +21,10 @@
             </LinkTo>
         </li>
     </ul>
+    <div class="nav-menu-item logout">
+        <button class="button nav-menu-link" type="button" {{on "click" @logout}}>
+            <FaIcon @icon="sign-out-alt" />
+            <span>Logout</span>
+        </button>
+    </div>
 </nav>
