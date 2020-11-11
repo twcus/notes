@@ -1,4 +1,5 @@
 import fortune from 'fortune';
+import jwt from 'jsonwebtoken';
 
 const { methods } = fortune;
 
@@ -15,7 +16,11 @@ const updateModifiedDate = update => {
 
 const noteInputHook = (context, record, update) => {
     switch (context.request.method) {
-        case methods.create: return updateCreatedDate(record);
+        case methods.create: {
+            // Here is where the JWT would be validated against the user.
+            record = updateCreatedDate(record);
+            return record;
+        }
         case methods.update: {
             if (update.replace && update.content !== record.content) {
                 const { replace: { content, tags } } = update;

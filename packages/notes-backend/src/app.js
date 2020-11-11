@@ -32,6 +32,14 @@ const fortuneOptions = {
 
 const store = fortune(models, fortuneOptions);
 
+// This ensures that only records belonging to the user specified by the JWT are returned.
+// See https://github.com/fortunejs/fortune/issues/317
+const originalRequest = store.request
+store.request = function(contextRequest) {
+    contextRequest.options.match = { user: contextRequest.meta.request.user.userid }
+    return originalRequest.call(this, contextRequest);
+};
+
 const serializerOptions = {
     jsonSpaces: 4
 };
@@ -59,10 +67,10 @@ server.use(validateJWT({
 
 // Use Fortune listener to perform data operations
 server.use((request, response, next) => {
+    // Skip JWT validation for login route.
     if (request.path === '/login') {
         return next();
     }
-
     listener(request, response)
         .catch(error => {
             console.log(error); // eslint-disable-line no-console
@@ -72,10 +80,12 @@ server.use((request, response, next) => {
 const users = [
     {
         username: 'twcus',
-        password: 'admin'
+        password: 'admin',
+        id: 1
     }, {
         username: 'anna',
-        password: 'password123member'
+        password: 'password123member',
+        id: 2
     }
 ];
 
@@ -86,13 +96,14 @@ server.post('/login', (request, response) => {
     const user = users.find(u => { return u.username === username && u.password === password });
     if (user) {
         // Generate an access token
-        const token = jwt.sign({ username: user.username,  role: user.role }, accessTokenSecret);
+        const token = jwt.sign({ username: user.username, userid: user.id }, accessTokenSecret);
 
         response.json({
             token
         });
     } else {
-        response.send('Username or password incorrect.');
+        response.statusCode = 401;
+        response.send('Incorrect username or password.');
     }
 });
 
