@@ -11,7 +11,6 @@ export default class ApplicationController extends Controller {
 
     @action
     logout() {
-        console.log('invalidated!')
         this.session.invalidate();
         this.transitionToRoute('login');
         this.notifications.clearAll().success('You have logged out.');

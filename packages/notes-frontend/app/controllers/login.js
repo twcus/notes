@@ -12,8 +12,13 @@ export default class LoginController extends Controller {
 
     @action
     async authenticate() {
+        if (!this.username || !this.password) {
+            this.notifications.clearAll().error('Username and password are required.');
+            return;
+        }
         try {
             await this.session.authenticate('authenticator:jwt', { username: this.username, password: this.password });
+            this.username = this.password = null;
             this.notifications.clearAll();
             this.transitionToRoute('notes');
         } catch(error) {

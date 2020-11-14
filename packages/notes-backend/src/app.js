@@ -5,7 +5,7 @@ import validateJWT from 'express-jwt';
 import cors from 'cors';
 import * as pg from 'pg';
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv'
+import dotenv, {parse} from 'dotenv'
 import fortune from 'fortune';
 import fortuneHttp from 'fortune-http';
 import jsonApiSerializer from 'fortune-json-api';
@@ -40,7 +40,8 @@ const fortuneOptions = {
 const store = fortune(models, fortuneOptions);
 
 const serializerOptions = {
-    jsonSpaces: 4
+    jsonSpaces: 4,
+    prefix: '/api'
 };
 
 const listenerOptions = {
@@ -56,18 +57,26 @@ const server = express();
 server.use(cors());
 
 // Parses request body as JSON
-server.use(bodyParser.json())
+server.use(bodyParser.json());
+
+// Create link to Angular build directory
+const distDir = __dirname + "/../public/";
+console.log(distDir);
+server.use(express.static(distDir));
+
+// Determine if a route requires authentication to access
+const isUnauthedRoute = request => request.path === '/login' || !request.path.startsWith('/api');
 
 // Validates the JWT
 server.use(validateJWT({
     secret: jwtSecret,
     algorithms: ['HS256']
-}).unless({ path: '/login' }));
+}).unless({ custom: isUnauthedRoute }));
 
 // Use Fortune listener to perform data operations
 server.use((request, response, next) => {
-    // Don't use Fortune for login route
-    if (request.path === '/login') {
+    // Don't use Fortune for routes that don't require authentication
+    if (isUnauthedRoute(request)) {
         return next();
     }
     listener(request, response)

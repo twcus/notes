@@ -4,7 +4,11 @@
   "description": "Web app for note taking",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "cd packages/notes-backend && npm start",
+    "start:ui": "cd packages/notes-fronend && ember s",
+    "start:api": "cd packages/notes-backend && npm start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "ember build --environment=production --output-path=../notes-backend/public"
   },
   "repository": {
     "type": "git",
