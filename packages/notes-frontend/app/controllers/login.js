@@ -17,7 +17,7 @@ export default class LoginController extends Controller {
             this.notifications.clearAll();
             this.transitionToRoute('notes');
         } catch(error) {
-            this.notifications.clearAll().error(error);
+            this.notifications.clearAll().error(error.text);
         }
     }
 }

@@ -1,6 +1,7 @@
 const models = {
     user: {
-        name: String,
+        username: String,
+        password: String,
         createdDate: Date,
         modifiedDate: Date,
         notes: [Array('note'), 'user'],
