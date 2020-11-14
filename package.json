@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "cd packages/notes-backend && npm start",
-    "start:ui": "cd packages/notes-fronend && ember s",
+    "start:ui": "cd packages/notes-frontend && ember s",
     "start:api": "cd packages/notes-backend && npm start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "ember build --environment=production --output-path=../notes-backend/public"
+    "postinstall": "cd packages/notes-frontend && ./node_modules/ember-cli/bin/ember build --environment=production --output-path=../notes-backend/public"
   },
   "repository": {
     "type": "git",
