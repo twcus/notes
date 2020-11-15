@@ -44,7 +44,8 @@
     "fortune-json-api": "^2.1.5",
     "fortune-postgres": "^1.6.10",
     "jsonwebtoken": "^8.5.1",
-    "node-postgres": "^0.6.2"
+    "node-postgres": "^0.6.2",
+    "signale": "^1.4.0"
   },
   "devDependencies": {
     "@ember/edition-utils": "^1.1.1",

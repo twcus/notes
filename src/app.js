@@ -12,44 +12,49 @@ import jsonApiSerializer from 'fortune-json-api';
 import postgresAdapter from 'fortune-postgres';
 import models from './models';
 import hooks from './hooks';
+import logger from './logger';
+import { isUnauthedRoute, logRequest } from './utils';
+
+logger.info('Starting server...');
 
 dotenv.config();
+// Check for required environment variables
+const REQUIRED_VARS = ['JWT_SECRET', 'DATABASE_URL'];
+REQUIRED_VARS.forEach( envvar => {
+    if (!process.env[envvar]) {
+        logger.fatal(`Error: Environment variable ${envvar} must be set.`);
+        throw new Error('Error configuring server.');
+    }
+})
+
+// Set up Postgres connection and Fortune adapter
 const { Pool } = pg;
-
-// TODO Error handling if required env vars are not set
-const jwtSecret = process.env.JWT_SECRET;
-const connectionString = process.env.DATABASE_URL;
-
-const pool = new Pool({ connectionString });
-
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 const postgresAdapterOptions = {
     pool,
     primaryKeyType: 'serial',
     generatePrimaryKey: null
 };
-
 const adapter = [postgresAdapter, postgresAdapterOptions];
 
+// Set up Fortune
 const fortuneOptions = {
     adapter,
     hooks
 };
-
 const store = fortune(models, fortuneOptions);
-
 const serializerOptions = {
     jsonSpaces: 4,
     prefix: '/api'
 };
-
 const listenerOptions = {
     serializers: [
         [ jsonApiSerializer, serializerOptions ]
     ]
 };
-
 const listener = fortuneHttp(store, listenerOptions);
 
+// Set up Express server
 const server = express();
 
 server.use(cors());
@@ -57,16 +62,13 @@ server.use(cors());
 // Parses request body as JSON
 server.use(bodyParser.json());
 
-// Specify Ember build directory
-const emberDir = __dirname + "/public/";
-server.use(express.static(emberDir));
+// Specify UI build directory
+server.use(express.static(__dirname + "/public/"));
 
-// Determine if a route requires authentication to access
-const isUnauthedRoute = request => request.path === '/api/login' || !request.path.startsWith('/api');
 
-// Validates the JWT
+// Validate the JWT
 server.use(validateJWT({
-    secret: jwtSecret,
+    secret: process.env.JWT_SECRET,
     algorithms: ['HS256']
 }).unless({ custom: isUnauthedRoute }));
 
@@ -77,11 +79,14 @@ server.use((request, response, next) => {
         return next();
     }
     listener(request, response)
+        .then(() => logRequest(request, response))
         .catch(error => {
-            console.log(error); // eslint-disable-line no-console
+            logRequest(request, response);
+            logger.error(error);
         });
 });
 
+// Handle login requests
 server.post('/api/login', (request, response) => {
     const { username, password } = request.body;
     if (!username || !password) {
@@ -96,7 +101,8 @@ server.post('/api/login', (request, response) => {
                 .then(result => {
                     if (result) {
                         // Generate a JWT
-                        const token = jwt.sign({ username: user.username,  id: user.id }, jwtSecret, { expiresIn: '1h' });
+                        const token = jwt.sign({ username: user.username,  id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                        logRequest(request, response);
                         return response.json({
                             user: {
                                 username: user.username,
@@ -110,7 +116,20 @@ server.post('/api/login', (request, response) => {
                     }
                 });
         })
-        .catch(() => response.status(401).send('Incorrect username or password.'));
+        .catch(() => {
+            response.status(401).send('Incorrect username or password.');
+            logRequest(request, response);
+        });
+});
+
+server.use((error, request, response, next) => {
+    logRequest(request, response);
+    if (error.name === 'UnauthorizedError') {
+        response.status(401).send('Invalid token.');
+    } else {
+        response.sendStatus(500);
+    }
 });
 
 server.listen(process.env.PORT || 8080);
+logger.success('Server started successfully');
