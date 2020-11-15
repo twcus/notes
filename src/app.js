@@ -65,7 +65,6 @@ server.use(bodyParser.json());
 // Specify UI build directory
 server.use(express.static(__dirname + "/public/"));
 
-
 // Validate the JWT
 server.use(validateJWT({
     secret: process.env.JWT_SECRET,

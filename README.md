@@ -1,5 +1,4 @@
 # Notes App (name pending...)
-Version: 0.0.0
 
 This is a web application for note taking. This app uses a tag-based method of organization,
 rather than a more traditional "notebook" one. With tags, users can quickly filter through notes,
