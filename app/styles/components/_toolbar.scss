@@ -24,7 +24,7 @@
         &:hover {
             border: 0;
             color: $white;
-            background-color: darken(#61626b, 15%);
+            background-color: darken(#61626b, 10%);
         }
         svg {
             color: $white;
@@ -46,7 +46,7 @@
         &:focus,
         &:hover {
             color: $white;
-            background-color: darken(#61626b, 15%) !important;
+            background-color: darken(#61626b, 10%) !important;
         }
     }
 }

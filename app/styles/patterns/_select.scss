@@ -70,12 +70,25 @@
 
 .fa-plus,
 .fa-search,
-.fa-check {
+.fa-check,
+.fa-exclamation {
     font-size: 0.8rem;
 }
 
 .select-search-container {
     position: sticky;
+}
+
+.select-empty-container .select-option {
+    font-style: italic;
+    &:hover {
+        cursor: default;
+        background-color: inherit;
+    }
+    .fa-exclamation {
+        visibility: hidden;
+        margin-right: 8px;
+    }
 }
 
 .ember-power-select-trigger {
