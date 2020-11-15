@@ -41,7 +41,11 @@ export default class CollectionsNewController extends Controller {
             content,
             collections: [this.model.collection]
         });
-        tag.save();
+        tag.save()
+            .then(res => {
+                console.log(this.model.tags)
+                console.log(res);
+            });
     }
 
     @action

@@ -1,7 +1,6 @@
 import Route from '@ember/routing/route';
 import RSVP from 'rsvp';
 import { action } from '@ember/object'
-import { inject as service } from '@ember/service';
 
 export default class CollectionNotesNewRoute extends Route {
     controllerName = 'notes.new';
@@ -31,13 +30,16 @@ export default class CollectionNotesNewRoute extends Route {
     }
 
     @action
-    willTransition() {
+    willTransition(transition) {
         let note = this.controller.model.note;
         if (!note.isDeleted) {
-            if (note && !note.content && !note.tags.length) {
-                this.controller.model.note.destroyRecord();
+            if (note && !note.content && note.tags.length === this.controller.model.collection.tags.length) {
+                note.destroyRecord();
             } else {
-                this.controller.saveNoteTask.perform(note);
+                // The reload below caused a timing issue with the transition, so setting this variable here to determine if after saving
+                // the app should transition to the index or edit route. TODO Reevaluate this logic for both notes and collection-notes.
+                let shouldTransitionToEdit = transition.targetName !== 'collection-notes.index';
+                this.controller.saveNoteTask.perform(note, shouldTransitionToEdit);
                 // Not sure if this is best practice, but couldn't figure out another way to refresh the collection notes,
                 // which weren't refreshing after a new note was created.
                 this.send('reload');

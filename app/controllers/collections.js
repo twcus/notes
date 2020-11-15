@@ -1,14 +1,18 @@
 import Controller from '@ember/controller';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { sort } from '@ember/object/computed';
 import { inject as service } from '@ember/service';
 
 export default class CollectionsController extends Controller {
+    tagSortKey = ['content:asc'];
+
     @service notifications;
     @tracked searchQuery;
     @tracked tagFilters;
     @tracked isConfirmingDelete = false;
     @tracked collectionForDeletion;
+    @sort('model.tags', 'tagSortKey') sortedTags;
 
     get filteredCollections() {
         if (this.tagFilters) {

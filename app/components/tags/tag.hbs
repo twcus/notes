@@ -1,18 +1,6 @@
-<span class="tag {{if @isEditable "card is-editable"}} {{if this.isEditing "is-editing"}} {{if @onRemove "removeable"}}">
-    {{#if @isEditable}}
-        <Input id={{inputId}} @class="tag-edit-input" @value={{@tag.content}} {{on "blur" this.save}} {{on "keydown" this.handleKeydown}} disabled={{true}} />
-        {{!-- There is some kind of weird race condition or something happening when trying to use an inline if helper to set the action for this button click, so
-              I'm going with a full button replacement instead --}}
-        {{#if this.isEditing}}
-            <button class="button tag-edit" {{on "click" this.save}}><FaIcon @icon="check" /></button>
-        {{else}}
-            <button class="button tag-edit" {{on "click" this.edit}}><FaIcon @icon="pen" /></button>
-        {{/if}}
-        <button class="button tag-delete" {{on "click" this.delete}}><FaIcon @icon="trash" /></button>
-    {{else}}
-        <span class="tag-text">{{@tag.content}}</span>
-        {{#if @onRemove}}
-            <button class="button tag-remove" {{on "click" this.remove}}><FaIcon @icon="times" /></button>
-        {{/if}}
+<span class="tag {{if @isCollectionTag "collection-tag"}} {{if @onRemove "removeable"}}">
+    <span class="tag-text">{{@tag.content}}</span>
+    {{#if @onRemove}}
+        <button class="button tag-remove" {{on "click" this.remove}}><FaIcon @icon="times" /></button>
     {{/if}}
 </span>

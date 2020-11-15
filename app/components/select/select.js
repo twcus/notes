@@ -33,7 +33,7 @@ export default class SelectComponent extends Component {
     }
 
     get showNoSearchResultsMessage() {
-        return this.args.searchEnabled && !this.options.length;
+        return this.args.searchEnabled && !this.options.length && this.searchText.length;
     }
 
     get showCreateOption() {

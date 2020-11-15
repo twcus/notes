@@ -6,7 +6,7 @@ export default class NotesNewRoute extends Route {
     model() {
         return RSVP.hash({
             note: this.store.createRecord('note'),
-            tags: this.store.query('tag', { sort: 'content' })
+            tags: this.store.findAll('tag')
         });
     }
 
@@ -21,7 +21,7 @@ export default class NotesNewRoute extends Route {
         let note = this.controller.model.note;
         if (!note.isDeleted) {
             if (note && !note.content && !note.tags.length) {
-                this.controller.model.note.destroyRecord();
+                note.destroyRecord();
             } else {
                 this.controller.saveNoteTask.perform(note);
             }

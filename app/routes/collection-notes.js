@@ -8,7 +8,7 @@ export default class CollectionNotesRoute extends Route {
 
     @service session;
 
-    beforeModel(transition) {
+    beforeModel() {
         if (!this.session.isAuthenticated) {
             this.transitionTo('login');
         }
@@ -27,7 +27,6 @@ export default class CollectionNotesRoute extends Route {
 
     afterModel(model) {
         this.controllerFor('application').navSubtitle = model.collection.name;
-        model.tags = model.tags.reject(t => model.collection.tags.includes(t));
         return model;
     }
 
@@ -40,7 +39,7 @@ export default class CollectionNotesRoute extends Route {
         }
     }
 
-    renderTemplate(controller, model) {
+    renderTemplate(controller) {
         this.render('notes', {
             controller
         })

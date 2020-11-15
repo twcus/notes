@@ -62,7 +62,7 @@ export default class NotesController extends Controller {
     @tracked isConfirmingDelete = false;
     @tracked isCreatingCollection = false;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
-    @sort('model.tags', 'tagSortKey') sortedTags;
+    @sort('allTags', 'tagSortKey') sortedTags;
 
     get allNotes() {
         return this.model.notes;
@@ -102,6 +102,13 @@ export default class NotesController extends Controller {
 
     get baseNotesRoute() {
         return this.isCollection ? 'collection-notes' : 'notes';
+    }
+
+    get allTags() {
+        if (this.isCollection) {
+            return this.model.tags.reject(t => this.model.collection.tags.includes(t));
+        }
+        return this.model.tags;
     }
 
     @action

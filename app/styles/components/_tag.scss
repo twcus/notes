@@ -3,11 +3,6 @@
     flex-wrap: wrap;
 }
 
-.collection-tags .tag {
-    background-color: #838383;
-    color: $white;
-}
-
 .tag-list-editable {
     padding: 32px;
     width: 100%;
@@ -32,6 +27,10 @@
     min-width: 40px;
     text-align: center;
     line-height: normal;
+    &.collection-tag {
+        background-color: #838383;
+        color: $white;
+    }
     &.removeable {
         .tag-remove {
             position: absolute;
@@ -61,13 +60,5 @@
     .tag-text {
         width: 100%;
         text-align: center;
-    }
-    .tag-edit-input {
-        font-size: 1.1rem;
-        padding: 8px;
-        text-align: center;
-        background-color: inherit;
-        border: none;
-        line-height: inherit;
     }
 }
