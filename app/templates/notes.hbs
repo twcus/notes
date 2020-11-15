@@ -25,7 +25,7 @@
         <div class="toolbar-item">
             <Select::DropdownSelect
                     @isMultiselect={{true}}
-                    @options={{this.model.tags}}
+                    @options={{this.sortedTags}}
                     @selected={{this.tagFilters}}
                     @onSelect={{this.updateTagFilters}}
                     @searchEnabled={{true}}
