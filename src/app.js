@@ -67,17 +67,17 @@ server.use(express.static(emberDir));
 const isUnauthedRoute = request => request.path === '/api/login' || !request.path.startsWith('/api');
 
 // Validates the JWT
-server.use(validateJWT({
-    secret: jwtSecret,
-    algorithms: ['HS256']
-}).unless({ custom: isUnauthedRoute }));
+// server.use(validateJWT({
+//     secret: jwtSecret,
+//     algorithms: ['HS256']
+// }).unless({ custom: isUnauthedRoute }));
 
 // Use Fortune listener to perform data operations
 server.use((request, response, next) => {
     // Don't use Fortune for routes that don't require authentication
-    if (isUnauthedRoute(request)) {
-        return next();
-    }
+    // if (isUnauthedRoute(request)) {
+    //     return next();
+    // }
     listener(request, response)
         .catch(error => {
             console.log(error); // eslint-disable-line no-console

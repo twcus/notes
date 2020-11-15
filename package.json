@@ -15,7 +15,7 @@
     "lint:js": "eslint .",
     "start:ember": "ember serve --proxy http://localhost:8080",
     "test:ember": "ember test",
-    "postinstall": "./node_modules/ember-cli/bin/ember build --environment=production --output-path=dist/public"
+    "postinstall": "ember build --environment=production --output-path=dist/public"
   },
   "directories": {
     "doc": "doc",
