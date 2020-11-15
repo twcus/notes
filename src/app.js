@@ -115,4 +115,4 @@ server.post('/api/login', (request, response) => {
         .catch(() => response.status(401).send('Incorrect username or password.'));
 });
 
-server.listen(8080);
+server.listen(process.env.PORT || 8080);
