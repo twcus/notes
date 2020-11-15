@@ -20,7 +20,7 @@ const { Pool } = pg;
 const jwtSecret = process.env.JWT_SECRET;
 
 // TODO Get connection string from env variable
-const connectionString = process.env.PG_CONNECTION;
+const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({ connectionString });
 
