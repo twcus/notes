@@ -1,18 +1,19 @@
 # Notes App (name pending...)
 Version: 0.0.0
 
-Web app for note taking.
+This is a web application for note taking. This app uses a tag-based method of organization,
+rather than a more traditional "notebook" one. With tags, users can quickly filter through notes,
+and save common tag combinations as collections for quick access.
 
 ## Features
 * Take notes using a WYSIWYG editor
-* Create tags and attach them to notes for quick and easy filtering
+* Search through notes by notes
+* Create tags and attach them to notes for easy filtering
 * Save common tag filter combinations as collections for quick access to subsets of notes
 
 ## Getting Started
-This repo contains the UI, API, and database code for the application.
-
 ### Prerequisites
-Install Node 10, ember-cli, Postgres, and sqitch.
+Install [Node v10.x](https://nodejs.org/en/), and [Postgres v11.x](https://www.postgresql.org/).
 
 ### Install Dependencies
 ```
@@ -25,6 +26,15 @@ npm run start:ember
 ```
 
 ### API
+#### Prerequisites
+Create a `.env` file in the root project directory with the required environment variables. For development environments,
+the JWT_SECRET is arbitrary, but the DATABASE_URL must remain as below, unless you manually change the default database setup.
+```
+JWT_SECRET=jwtdevsecret
+DATABASE_URL=postgres://notes_admin:notes_admin@localhost:5432/notes
+```
+
+#### Start
 ```
 npm run start
 ```
@@ -34,38 +44,31 @@ npm run start
 ```
 cd db && ./setup.sh
 ```
-#### Run Migrations
-```
-sqitch deploy
-```
 
-#### Backup and Restore
-This will dump the database into a binary file that can be restored by Postgres. The restore process will drop the database first, so be sure to make another backup before restoring if you might lose data!
-
-```
-pg_dump -Fc -h localhost -U notes_owner -d notes -W > notes.bak-$(date +"%Y.%m.%d.%H.%M.%S")
-pg_restore -c --verbose -h localhost -U notes_owner -W --dbname notes notes.bak-
-```
-
-To backup and restore as plain text:
-
-```
-pg_dump -h localhost -U notes_owner -d notes -W > notes.bak-$(date +"%Y.%m.%d.%H.%M.%S")
-psql notes < notes.bak-
-```
-*Note: Restoring from plain text seems to run into errors. While it might be good to keep a backup in text format around, it is easier to restore from the binary file dump above.*
-
-#### Known Issues
-If the restore fails or does not behave as expected, drop the DB manually and perform the DB setup steps again, then attempt the restore. You might also want to try `sqitch revert` and followed by `sqitch deploy`.
-
-The DB permissions are not properly restored, so you must do that manually right now. The sqitch migration only sets the default permissions for newly created items, but does not cover items that are restored (I don't know why Postgres doesn't restore the permissions...). I need to evaluate how to handle this (either in an automated script, migration, or something else). I probably need to rethink the DB roles and permissions in general. Yay DB management.
-
-```
-grant select, update, insert, delete on all tables in schema notes_schema to notes_user;
-grant select, update on all sequences in schema notes_schema to notes_user;
-```
+*Note: This doesn't currently set up an initial user in the database. This must be done manually.*
 
 ### Test
 Coming Soon™
+
+### Heroku Deployment
+This app is easily deployable with Heroku on a single dyno.
+
+#### Prerequisites
+This section assumes that you already have a [Heroku](https://www.heroku.com/) account,
+have installed [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli),
+and have basic familiarity with Heroku.
+
+You also need to generate a JWT secret key, which can be done in a [number of ways](https://www.google.com/search?q=generate+jwt+secret).
+
+#### Deploy
+```
+heroku login
+heroku create <appname>
+heroku addons:create heroku-postgresql
+heroku config:set NPM_CONFIG_PRODUCTION=false
+heroku config:set JWT_SECRET=<jwt_secret>
+git push heroku master
+heroku open
+```
 
 

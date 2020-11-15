@@ -5,7 +5,7 @@ import validateJWT from 'express-jwt';
 import cors from 'cors';
 import * as pg from 'pg';
 import bcrypt from 'bcrypt';
-import dotenv, {parse} from 'dotenv'
+import dotenv from 'dotenv'
 import fortune from 'fortune';
 import fortuneHttp from 'fortune-http';
 import jsonApiSerializer from 'fortune-json-api';
@@ -16,10 +16,8 @@ import hooks from './hooks';
 dotenv.config();
 const { Pool } = pg;
 
-// TODO Get secret from env variable
+// TODO Error handling if required env vars are not set
 const jwtSecret = process.env.JWT_SECRET;
-
-// TODO Get connection string from env variable
 const connectionString = process.env.DATABASE_URL;
 
 const pool = new Pool({ connectionString });

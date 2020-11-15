@@ -1,31 +1,4 @@
-# Notes Database
-
-The notes backend uses a PostgreSQL database to store its data, and sqitch to maintain database migrations.
-
-## Setup
-
-### Install Postgres
-
-Install it
-
-### Database setup
-
-To setup the notes database, run the shell script.
-
-```
-./setup.sh
-```
-
-This script uses the default Postgres user to create the required roles and database for the notes app.
-
-
-Then run the migrations with sqitch.
-
-```
-sqitch deploy
-```
-
-### Backup and Restore
+# Backup and Restore
 This will dump the database into a binary file that can be restored by Postgres. The restore process will drop the database first, so be sure to make another backup before restoring if you might lose data!
 
 ```
@@ -41,7 +14,7 @@ psql notes < notes.bak-
 ```
 *Note: Restoring from plain text seems to run into errors. While it might be good to keep a backup in text format around, it is easier to restore from the binary file dump above.*
 
-#### Known Issues
+## Known Issues
 If the restore fails or does not behave as expected, drop the DB manually and perform the DB setup steps again, then attempt the restore. You might also want to try `sqitch revert` and followed by `sqitch deploy`.
 
 The DB permissions are not properly restored, so you must do that manually right now. The sqitch migration only sets the default permissions for newly created items, but does not cover items that are restored (I don't know why Postgres doesn't restore the permissions...). I need to evaluate how to handle this (either in an automated script, migration, or something else). I probably need to rethink the DB roles and permissions in general. Yay DB management.
