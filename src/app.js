@@ -59,13 +59,12 @@ server.use(cors());
 // Parses request body as JSON
 server.use(bodyParser.json());
 
-// Create link to Angular build directory
-const distDir = __dirname + "/../public/";
-console.log(distDir);
-server.use(express.static(distDir));
+// Specify Ember build directory
+const emberDir = __dirname + "/public/";
+server.use(express.static(emberDir));
 
 // Determine if a route requires authentication to access
-const isUnauthedRoute = request => request.path === '/login' || !request.path.startsWith('/api');
+const isUnauthedRoute = request => request.path === '/api/login' || !request.path.startsWith('/api');
 
 // Validates the JWT
 server.use(validateJWT({
@@ -85,7 +84,7 @@ server.use((request, response, next) => {
         });
 });
 
-server.post('/login', (request, response) => {
+server.post('/api/login', (request, response) => {
     const { username, password } = request.body;
     if (!username || !password) {
         return response.status(400).send('Username and password are required.');

@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'notes-frontend',
+    modulePrefix: 'notes-app',
     environment,
     rootURL: '/',
     locationType: 'auto',
@@ -26,7 +26,7 @@ module.exports = function(environment) {
         clearDuration: 3000
     },
       'ember-simple-auth-token': {
-        serverTokenEndpoint: '/login',
+        serverTokenEndpoint: '/api/login',
           tokenPropertyName: 'token',
           refreshAccessTokens: false,
           tokenExpirationInvalidateSession: true,
