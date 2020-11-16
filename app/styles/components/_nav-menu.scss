@@ -21,6 +21,14 @@
         text-decoration: none;
         font-weight: 200;
     }
+    svg {
+        width: 60px;
+        height: 60px;
+        fill: $white;
+        &:hover {
+            fill: $grey-light;
+        }
+    }
 }
 
 .nav-menu-subtitle {
