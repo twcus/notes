@@ -70,7 +70,9 @@ export default class NotesEditController extends Controller {
 
     @(task(function *(note, shouldTransitionToEdit = true) {
         // Don't save a new note if it's empty
-        if (!note.content && !note.tags.length && (this.model.collection && note.tags.length === this.model.collection.tags.length)) {
+        const isNoteValid = !this.model.collection && (!!note.content || !!note.tags.length);
+        const isCollectionNoteValid = !!this.model.collection && (!!note.content || this.model.collection.tags.length < note.tags.length);
+        if (!isNoteValid && !isCollectionNoteValid) {
             return;
         }
         yield note.save()

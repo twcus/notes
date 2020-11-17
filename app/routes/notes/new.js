@@ -20,11 +20,16 @@ export default class NotesNewRoute extends Route {
     }
 
     @action
-    willTransition() {
+    willTransition(transition) {
         const note = this.controller.model.note;
         if (!note.isDeleted) {
+            // Don't transition to edit route if the note is empty.
             if (note && !note.content && !note.tags.length) {
-                note.destroyRecord();
+                if (transition.targetName === 'notes.edit') {
+                    transition.abort();
+                } else {
+                    note.destroyRecord();
+                }
             } else {
                 // Keep track of the focused element during the transition.
                 this.editorFocus.setFocusedElement(document.activeElement);
