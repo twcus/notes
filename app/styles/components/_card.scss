@@ -1,12 +1,14 @@
+.grid-container {
+    width: 100%;
+    overflow-y: auto;
+}
+
 .card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     grid-auto-rows: 275px;
     grid-gap: 24px;
-    overflow-y: auto;
-    overflow-x: hidden;
     padding: 32px;
-    width: 100%;
 }
 
 .card {
