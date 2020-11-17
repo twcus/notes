@@ -15,7 +15,7 @@ export default class EditorFocusService extends Service {
     @action
     focusEditor(editorElement) {
         // Don't focus the editor if the user is searching.
-        if (!document.activeElement.tagName.toLowerCase() === 'input') {
+        if (document.activeElement.tagName.toLowerCase() !== 'input') {
             // Using later here because there seems to be a race condition in some instances that prevent the autofocus
             // from working, such as switching view modes
             later(() => {
