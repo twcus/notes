@@ -33,8 +33,13 @@ export default class CollectionNotesNewRoute extends Route {
     willTransition(transition) {
         let note = this.controller.model.note;
         if (!note.isDeleted) {
+            // Don't transition to edit route if the note is empty.
             if (note && !note.content && note.tags.length === this.controller.model.collection.tags.length) {
-                note.destroyRecord();
+                if (transition.targetName === 'collection-notes.edit') {
+                    transition.abort();
+                } else {
+                    note.destroyRecord();
+                }
             } else {
                 // The reload below caused a timing issue with the transition, so setting this variable here to determine if after saving
                 // the app should transition to the index or edit route. TODO Reevaluate this logic for both notes and collection-notes.

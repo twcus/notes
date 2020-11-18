@@ -1,8 +1,11 @@
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default class NotesNewRoute extends Route {
+    @service editorFocus;
+
     model() {
         return RSVP.hash({
             note: this.store.createRecord('note'),
@@ -17,12 +20,19 @@ export default class NotesNewRoute extends Route {
     }
 
     @action
-    willTransition() {
-        let note = this.controller.model.note;
+    willTransition(transition) {
+        const note = this.controller.model.note;
         if (!note.isDeleted) {
+            // Don't transition to edit route if the note is empty.
             if (note && !note.content && !note.tags.length) {
-                note.destroyRecord();
+                if (transition.targetName === 'notes.edit') {
+                    transition.abort();
+                } else {
+                    note.destroyRecord();
+                }
             } else {
+                // Keep track of the focused element during the transition.
+                this.editorFocus.setFocusedElement(document.activeElement);
                 this.controller.saveNoteTask.perform(note);
             }
         }

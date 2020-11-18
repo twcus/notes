@@ -69,6 +69,12 @@ export default class NotesEditController extends Controller {
     }
 
     @(task(function *(note, shouldTransitionToEdit = true) {
+        // Don't save a new note if it's empty
+        const isNoteValid = !this.model.collection && (!!note.content || !!note.tags.length);
+        const isCollectionNoteValid = !!this.model.collection && (!!note.content || this.model.collection.tags.length < note.tags.length);
+        if (!isNoteValid && !isCollectionNoteValid) {
+            return;
+        }
         yield note.save()
             .then(note => {
                 // Don't transition if the user has already navigated away from the notes.new route by the time this callback is reached

@@ -19,7 +19,13 @@
         <div class="toolbar-item">
             <div class="search-container">
                 <FaIcon @icon="search" />
-                <Input type="text" placeholder="Search Notes" aria-label="Search notes" @value={{this.searchQuery}} />
+                <Input
+                    type="text"
+                    placeholder="Search Notes"
+                    aria-label="Search notes"
+                    @value={{this.searchQuery}}
+                    {{on "input" this.searchQueryUpdated}}
+                />
             </div>
         </div>
         <div class="toolbar-item">

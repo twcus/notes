@@ -1,12 +1,15 @@
-<div class="card-grid">
-    {{#each @notes as |note|}}
-        <Notes::Card
-            @note={{note}}
-            @tags={{@tags}}
-            @onDelete={{@onNoteDelete}}
-            @onNoteUpdate={{@onNoteUpdate}}
-            @onTagCreate={{@onTagCreate}}
-            @collection={{@collection}}
-        />
-    {{/each}}
+<div class="grid-container">
+    <div class="card-grid">
+        {{#each @notes as |note|}}
+            <Notes::Card
+                @note={{note}}
+                @tags={{@tags}}
+                @onDelete={{@onNoteDelete}}
+                @onNoteUpdate={{@onNoteUpdate}}
+                @onTagCreate={{@onTagCreate}}
+                @collection={{@collection}}
+            />
+        {{/each}}
+    </div>
 </div>
+

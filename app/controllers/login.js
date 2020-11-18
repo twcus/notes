@@ -11,7 +11,9 @@ export default class LoginController extends Controller {
     @tracked password;
 
     @action
-    async authenticate() {
+    async authenticate(event) {
+        // Must prevent default lest we get very strange login behavior.
+        event.preventDefault();
         if (!this.username || !this.password) {
             this.notifications.clearAll().error('Username and password are required.');
             return;

@@ -4,6 +4,7 @@ import { sort } from '@ember/object/computed';
 import { isNone } from '@ember/utils';
 import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
+import { later } from '@ember/runloop';
 import { task, timeout } from 'ember-concurrency';
 
 const DEBOUNCE_TIME = 500;
@@ -11,6 +12,7 @@ const FORCE_TIME = 5000;
 
 export default class NotesController extends Controller {
     @service notifications;
+    @service router;
     defaultSortOrder = 'desc';
     viewModeOptions = [
         {
@@ -43,11 +45,15 @@ export default class NotesController extends Controller {
     tagSortKey = ['content:asc'];
 
     transitionWithEditorOpen() {
-        if (this.firstNoteInOrder) {
-            this.transitionToRoute(`${this.baseNotesRoute}.edit`, this.firstNoteInOrder.id);
-        } else {
-            this.transitionToNotes();
-        }
+        // This is one of the worst things I've ever done. TODO Make this not bad.
+        // There's a timing issue when searching notes (but not filtering), and the transition doesn't work sometimes. This "fixes" it.
+        later(() => {
+            if (this.firstNoteInOrder) {
+                this.transitionToRoute(`${this.baseNotesRoute}.edit`, this.firstNoteInOrder.id);
+            } else {
+                this.transitionToNotes();
+            }
+        }, 25);
     }
 
     @tracked tagFilters;
@@ -177,6 +183,13 @@ export default class NotesController extends Controller {
     @action
     removeFilteredTag(tag) {
         this.tagFilters.removeObject(tag);
+        if (this.viewMode.isEditorOpen) {
+            this.transitionWithEditorOpen();
+        }
+    }
+
+    @action
+    searchQueryUpdated() {
         if (this.viewMode.isEditorOpen) {
             this.transitionWithEditorOpen();
         }

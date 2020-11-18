@@ -17,7 +17,7 @@
         />
         <div class="actions">
             <Select::DropdownSelect
-                @options={{@tags}}
+                @options={{this.tagOptions}}
                 @selected={{@note.tags}}
                 @onSelect={{@onTagSelect}}
                 @onCreate={{@onTagCreate}}
