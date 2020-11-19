@@ -14,7 +14,7 @@ export default class TagsController extends Controller {
 
     get searchedTags() {
         if (this.searchQuery) {
-            return this.model.filter(tag => tag.content.includes(this.searchQuery));
+            return this.model.filter(tag => tag.searchString.includes(this.searchQuery.toLowerCase()));
         }
         return this.model;
     }

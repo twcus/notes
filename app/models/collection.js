@@ -6,6 +6,10 @@ export default class CollectionModel extends Model {
     @attr('string') name;
     @hasMany('tag', { async: false }) tags;
 
+    get searchString() {
+        return this.name.toLowerCase();
+    }
+
     validate(collections) {
         let result = { status: false }
         if (!this.name) {

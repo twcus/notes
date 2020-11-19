@@ -7,6 +7,10 @@ export default class TagModel extends Model {
     @hasMany('note') notes;
     @hasMany('collection') collections;
 
+    get searchString() {
+        return this.content.toLowerCase();
+    }
+
     validate(tags) {
         let result = { status: false }
         if (!this.content) {

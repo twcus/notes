@@ -26,7 +26,7 @@ export default class CollectionsController extends Controller {
 
     get searchedCollections() {
         if (this.searchQuery) {
-            return this.filteredCollections.filter(collection => collection.name.includes(this.searchQuery))
+            return this.filteredCollections.filter(collection => collection.searchString.includes(this.searchQuery.toLowerCase()))
         }
         return this.filteredCollections;
     }

@@ -88,7 +88,7 @@ export default class NotesController extends Controller {
         if (this.searchQuery) {
             return this.filteredNotes.filter(note => {
                 if (note.content) {
-                    return note.content.includes(this.searchQuery);
+                    return note.searchString.includes(this.searchQuery.toLowerCase());
                 }
                 return false;
             });

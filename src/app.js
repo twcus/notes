@@ -87,7 +87,8 @@ server.use((request, response, next) => {
 
 // Handle login requests
 server.post('/api/login', (request, response) => {
-    const { username, password } = request.body;
+    let { username, password } = request.body;
+    username = username.toLowerCase();
     if (!username || !password) {
         return response.status(400).send('Username and password are required.');
     }
