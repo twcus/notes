@@ -5,6 +5,9 @@ import { inject as service } from '@ember/service';
 
 export default class TagsController extends Controller {
     @service notifications;
+    @service media;
+    @service auth;
+    @service navigation;
     @tracked searchQuery;
     @tracked isConfirmingDelete;
     @tracked tagForDeletion;

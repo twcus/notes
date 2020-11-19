@@ -4,8 +4,9 @@ import { inject as service } from '@ember/service';
 
 export default class CollectionsRoute extends Route {
     @service session;
+    @service navigation;
 
-    beforeModel(transition) {
+    beforeModel() {
         if (!this.session.isAuthenticated) {
             this.transitionTo('login');
         }
@@ -19,7 +20,7 @@ export default class CollectionsRoute extends Route {
     }
 
     afterModel() {
-        this.controllerFor('application').navSubtitle = 'Collections';
+        this.navigation.subtitle = 'Collections';
     }
 
     setupController(controller, model, _transition) {

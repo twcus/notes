@@ -3,8 +3,9 @@ import { inject as service } from '@ember/service';
 
 export default class TagsRoute extends Route {
     @service session;
+    @service navigation;
 
-    beforeModel(transition) {
+    beforeModel() {
         if (!this.session.isAuthenticated) {
             this.transitionTo('login');
         }
@@ -15,7 +16,7 @@ export default class TagsRoute extends Route {
     }
 
     afterModel() {
-        this.controllerFor('application').navSubtitle = 'Tags';
+        this.navigation.subtitle = 'Tags';
     }
 
     setupController(controller, model, _transition) {

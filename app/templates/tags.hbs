@@ -1,68 +1,80 @@
-<div class="toolbar">
-    <div class="toolbar-actions">
-        <div class="toolbar-item">
-            <div class="search-container">
-                <FaIcon @icon="search" />
-                <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
+<MobileMenuWrapper as |mmw|>
+    <mmw.MobileMenu @maxWidth="200" as |mm|>
+        <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
+    </mmw.MobileMenu>
+    <mmw.Content>
+        <div class="toolbar">
+            <div class="toolbar-actions">
+                {{#if (or this.media.isMobile this.media.isTablet)}}
+                    <div class="toolbar-item">
+                        <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                    </div>
+                {{/if}}
+                <div class="toolbar-item">
+                    <div class="search-container">
+                        <FaIcon @icon="search" />
+                        <Input type="text" placeholder="Search" aria-label="Search notes" @value={{this.searchQuery}} />
+                    </div>
+                </div>
+                <div class="toolbar-item">
+                    <LinkTo @tagName="button" class="is-primary is-bold button" @route="tags.new">
+                        <FaIcon class="has-margin-right" @icon="plus" />
+                        <span>New Tag</span>
+                    </LinkTo>
+                </div>
             </div>
         </div>
-        <div class="toolbar-item">
-            <LinkTo @tagName="button" class="is-primary is-bold button" @route="tags.new">
-                <FaIcon class="has-margin-right" @icon="plus" />
-                <span>New Tag</span>
-            </LinkTo>
+        <div class="content">
+            {{#if this.searchedTags.length}}
+                <div class="table-container">
+                    <table class="table">
+                        <colgroup>
+                            <col style="width: 70%">
+                            <col style="width: 30%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th style="text-align: left">Name</th>
+                            <th style="text-align: right">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {{#each this.searchedTags as |tag|}}
+                                {{#unless tag.isNew}}
+                                    <tr>
+                                        <td>{{tag.content}}</td>
+                                        <td>
+                                            <div class="action-bar">
+                                                <button type="button" class="button text" {{on "click" (fn this.onEdit tag)}}><FaIcon @icon="edit" /></button>
+                                                <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{/unless}}
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            {{else}}
+                <NoResultsMessage>
+                    <span>No Tags Found</span>
+                </NoResultsMessage>
+            {{/if}}
         </div>
-    </div>
-</div>
-<div class="content">
-    {{#if this.searchedTags.length}}
-        <div class="table-container">
-            <table class="table">
-                <colgroup>
-                    <col style="width: 70%">
-                    <col style="width: 30%">
-                </colgroup>
-                <thead>
-                <tr>
-                    <th style="text-align: left">Name</th>
-                    <th style="text-align: right">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {{#each this.searchedTags as |tag|}}
-                        {{#unless tag.isNew}}
-                            <tr>
-                                <td>{{tag.content}}</td>
-                                <td>
-                                    <div class="action-bar">
-                                        <button type="button" class="button text" {{on "click" (fn this.onEdit tag)}}><FaIcon @icon="edit" /></button>
-                                        <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen tag)}}><FaIcon @icon="trash" /></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        {{/unless}}
-                    {{/each}}
-                </tbody>
-            </table>
-        </div>
-    {{else}}
-        <NoResultsMessage>
-            <span>No Tags Found</span>
-        </NoResultsMessage>
-    {{/if}}
-</div>
 
-{{#if this.isConfirmingDelete}}
-    <ConfirmModal
-            @class="small"
-            @item={{this.tagForDeletion}}
-            @header="Delete Tag"
-            @buttonLabel="Delete"
-            @onClose={{fn this.onDeleteClose false}}
-            @onConfirm={{fn this.onDeleteClose true}} as |item|
-    >
-        Are you sure you want to delete Tag "{{item.content}}"?
-    </ConfirmModal>
-{{/if}}
+        {{#if this.isConfirmingDelete}}
+            <ConfirmModal
+                    @class="small"
+                    @item={{this.tagForDeletion}}
+                    @header="Delete Tag"
+                    @buttonLabel="Delete"
+                    @onClose={{fn this.onDeleteClose false}}
+                    @onConfirm={{fn this.onDeleteClose true}} as |item|
+            >
+                Are you sure you want to delete Tag "{{item.content}}"?
+            </ConfirmModal>
+        {{/if}}
 
-{{outlet}}
+        {{outlet}}
+    </mmw.Content>
+</MobileMenuWrapper>

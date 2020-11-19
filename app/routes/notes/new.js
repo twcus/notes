@@ -25,7 +25,7 @@ export default class NotesNewRoute extends Route {
         if (!note.isDeleted) {
             // Don't transition to edit route if the note is empty.
             if (note && !note.content && !note.tags.length) {
-                if (transition.targetName === 'notes.edit') {
+                if (transition.targetName === 'notes.edit' && note.id) {
                     transition.abort();
                 } else {
                     note.destroyRecord();

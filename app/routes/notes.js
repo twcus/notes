@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default class NotesRoute extends Route {
     @service session;
+    @service navigation;
 
     beforeModel() {
         if (!this.session.isAuthenticated) {
@@ -21,7 +22,7 @@ export default class NotesRoute extends Route {
     }
 
     afterModel() {
-        this.controllerFor('application').navSubtitle = 'All Notes';
+        this.navigation.subtitle = 'All Notes';
     }
 
     setupController(controller, model, _transition) {

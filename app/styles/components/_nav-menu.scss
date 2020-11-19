@@ -11,6 +11,10 @@
     color: $white;
     background-color: $primary;
     overflow-y: auto;
+
+    &.mobile {
+        width: 100%;
+    }
 }
 
 .nav-menu-title {

@@ -1,101 +1,113 @@
-<div class="toolbar">
-    <div class="toolbar-actions">
-        <div class="toolbar-item">
-            <div class="search-container">
-                <FaIcon @icon="search" />
-                <Input type="text" placeholder="Search" aria-label="Search collections" @value={{this.searchQuery}} />
+<MobileMenuWrapper as |mmw|>
+    <mmw.MobileMenu @maxWidth="200" as |mm|>
+        <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
+    </mmw.MobileMenu>
+    <mmw.Content>
+        <div class="toolbar">
+            <div class="toolbar-actions">
+                {{#if (or this.media.isMobile this.media.isTablet)}}
+                    <div class="toolbar-item">
+                        <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                    </div>
+                {{/if}}
+                <div class="toolbar-item">
+                    <div class="search-container">
+                        <FaIcon @icon="search" />
+                        <Input type="text" placeholder="Search" aria-label="Search collections" @value={{this.searchQuery}} />
+                    </div>
+                </div>
+                <div class="toolbar-item">
+                    <Select::DropdownSelect
+                            @isMultiselect={{true}}
+                            @options={{this.sortedTags}}
+                            @selected={{this.tagFilters}}
+                            @onSelect={{this.updateTagFilters}}
+                            @searchEnabled={{true}}
+                            @emptyMessage="No tags found"
+                            @searchMessage="No tags found"
+                            @displayProperty="content"
+                            @placeholder="Enter tag"
+                            @searchField="content"
+                            @stopPropagation={{true}}
+                    >
+                        <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
+                    </Select::DropdownSelect>
+                </div>
+                <div class="toolbar-item">
+                    <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
+                        <FaIcon class="has-margin-right" @icon="plus" />
+                        <span>New Collection</span>
+                    </LinkTo>
+                </div>
             </div>
-        </div>
-        <div class="toolbar-item">
-            <Select::DropdownSelect
-                    @isMultiselect={{true}}
-                    @options={{this.sortedTags}}
-                    @selected={{this.tagFilters}}
-                    @onSelect={{this.updateTagFilters}}
-                    @searchEnabled={{true}}
-                    @emptyMessage="No tags found"
-                    @searchMessage="No tags found"
-                    @displayProperty="content"
-                    @placeholder="Enter tag"
-                    @searchField="content"
-                    @stopPropagation={{true}}
-            >
-                <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
-            </Select::DropdownSelect>
-        </div>
-        <div class="toolbar-item">
-            <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
-                <FaIcon class="has-margin-right" @icon="plus" />
-                <span>New Collection</span>
-            </LinkTo>
-        </div>
-    </div>
-    {{#if this.tagFilters.length}}
-        <div class="tag-list">
-            {{#each this.tagFilters as |tag|}}
-                <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
-            {{/each}}
-        </div>
-    {{/if}}
-</div>
-<div class="content">
-    {{#if this.searchedCollections.length}}
-        <div class="table-container">
-            <table class="table">
-                <colgroup>
-                    <col style="width: 30%">
-                    <col style="width: 50%">
-                    <col style="width: 10%">
-                </colgroup>
-                <thead>
-                <tr>
-                    <th class="align-left">Name</th>
-                    <th class="align-center">Tags</th>
-                    <th class="align-right">Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                    {{#each this.searchedCollections as |collection|}}
-                        {{#unless collection.isNew}}
-                            <tr>
-                                <td><LinkTo @route="collection-notes" @model={{collection.id}}>{{collection.name}}</LinkTo></td>
-                                <td>
-                                    <div class="tag-list justify-center">
-                                        {{#each collection.tags as |tag|}}
-                                            <span class="tag">{{tag.content}}</span>
-                                        {{/each}}
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="action-bar">
-                                        <button type="button" class="button text" {{on "click" (fn this.onEdit collection)}}><FaIcon @icon="edit" /></button>
-                                        <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen collection)}}><FaIcon @icon="trash" /></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        {{/unless}}
+            {{#if this.tagFilters.length}}
+                <div class="tag-list">
+                    {{#each this.tagFilters as |tag|}}
+                        <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
                     {{/each}}
-                </tbody>
-            </table>
+                </div>
+            {{/if}}
         </div>
-    {{else}}
-        <NoResultsMessage>
-            <span>No Collections Found</span>
-        </NoResultsMessage>
-    {{/if}}
-</div>
+        <div class="content">
+            {{#if this.searchedCollections.length}}
+                <div class="table-container">
+                    <table class="table">
+                        <colgroup>
+                            <col style="width: 30%">
+                            <col style="width: 50%">
+                            <col style="width: 10%">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th class="align-left">Name</th>
+                            <th class="align-center">Tags</th>
+                            <th class="align-right">Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {{#each this.searchedCollections as |collection|}}
+                                {{#unless collection.isNew}}
+                                    <tr>
+                                        <td><LinkTo @route="collection-notes" @model={{collection.id}}>{{collection.name}}</LinkTo></td>
+                                        <td>
+                                            <div class="tag-list justify-center">
+                                                {{#each collection.tags as |tag|}}
+                                                    <span class="tag">{{tag.content}}</span>
+                                                {{/each}}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="action-bar">
+                                                <button type="button" class="button text" {{on "click" (fn this.onEdit collection)}}><FaIcon @icon="edit" /></button>
+                                                <button type="button" class="button text" {{on "click" (fn this.onDeleteOpen collection)}}><FaIcon @icon="trash" /></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {{/unless}}
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            {{else}}
+                <NoResultsMessage>
+                    <span>No Collections Found</span>
+                </NoResultsMessage>
+            {{/if}}
+        </div>
 
-{{#if this.isConfirmingDelete}}
-    <ConfirmModal
-            @class="small"
-            @item={{this.collectionForDeletion}}
-            @header="Delete Collection"
-            @buttonLabel="Delete"
-            @onClose={{fn this.onDeleteClose false}}
-            @onConfirm={{fn this.onDeleteClose true}} as |item|
-    >
-        Are you sure you want to delete Collection "{{item.name}}"?
-    </ConfirmModal>
-{{/if}}
+        {{#if this.isConfirmingDelete}}
+            <ConfirmModal
+                    @class="small"
+                    @item={{this.collectionForDeletion}}
+                    @header="Delete Collection"
+                    @buttonLabel="Delete"
+                    @onClose={{fn this.onDeleteClose false}}
+                    @onConfirm={{fn this.onDeleteClose true}} as |item|
+            >
+                Are you sure you want to delete Collection "{{item.name}}"?
+            </ConfirmModal>
+        {{/if}}
 
-{{outlet}}
+        {{outlet}}
+    </mmw.Content>
+</MobileMenuWrapper>

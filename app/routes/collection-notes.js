@@ -7,6 +7,7 @@ export default class CollectionNotesRoute extends Route {
     controllerName = 'notes';
 
     @service session;
+    @service navigation;
 
     beforeModel() {
         if (!this.session.isAuthenticated) {
@@ -26,7 +27,7 @@ export default class CollectionNotesRoute extends Route {
     }
 
     afterModel(model) {
-        this.controllerFor('application').navSubtitle = model.collection.name;
+        this.navigation.subtitle = model.collection.name;
         return model;
     }
 

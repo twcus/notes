@@ -8,23 +8,14 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        cursor: pointer;
-        padding: 16px;
-        height: 125px;
         border-bottom: 1px solid #d1d1d1;
+        margin: 0 8px;
+        cursor: pointer;
+        padding: 8px;
+        height: 125px;
         text-overflow: ellipsis;
         word-break: break-all;
         overflow: hidden;
-        &:hover,
-        &.active {
-            background-color: $white-darker;
-            .pell-content blockquote {
-                background-color: $grey-light;
-            }
-        }
-        &.new {
-            display: none;
-        }
         .pell-content {
             min-height: unset;
             overflow: hidden;
@@ -37,6 +28,18 @@
         .timestamp {
             color: $grey-dark;
             font-size: 0.8rem;
+        }
+    }
+    .list-item-container {
+        &:hover,
+        &.active {
+            background-color: $white-darker;
+            .pell-content blockquote {
+                background-color: $grey-light;
+            }
+        }
+        &.new {
+            display: none;
         }
     }
 }

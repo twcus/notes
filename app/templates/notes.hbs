@@ -1,147 +1,159 @@
-<div class="toolbar">
-    <div class="toolbar-actions">
-        <div class="toolbar-item">
-            <Select::DropdownSelect
-                    @options={{this.viewModeOptions}}
-                    @selected={{this.viewMode}}
-                    @onOpen={{this.onTagSelectorOpen}}
-                    @onClose={{this.onTagSelectorClose}}
-                    @onSelect={{this.selectViewMode}}
-                    @closeOnSelect={{true}}
-                    @searchEnabled={{false}}
-                    @displayProperty="name"
-                    @stopPropagation={{true}}
-                    @optionClass="large"
-            >
-                <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
-            </Select::DropdownSelect>
-        </div>
-        <div class="toolbar-item">
-            <div class="search-container">
-                <FaIcon @icon="search" />
-                <Input
-                    type="text"
-                    placeholder="Search Notes"
-                    aria-label="Search notes"
-                    @value={{this.searchQuery}}
-                    {{on "input" this.searchQueryUpdated}}
-                />
-            </div>
-        </div>
-        <div class="toolbar-item">
-            <Select::DropdownSelect
-                    @isMultiselect={{true}}
-                    @options={{this.sortedTags}}
-                    @selected={{this.tagFilters}}
-                    @onSelect={{this.updateTagFilters}}
-                    @searchEnabled={{true}}
-                    @emptyMessage="No tags found"
-                    @searchMessage="No tags found"
-                    @displayProperty="content"
-                    @placeholder="Enter tag"
-                    @searchField="content"
-                    @stopPropagation={{true}}
-                    @showCreateOption={{true}}
-            >
-                <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
-            </Select::DropdownSelect>
-        </div>
-        <div class="toolbar-item">
-            <Utils::SortSelect
-                    @sortPropertyOptions={{this.sortOptions}}
-                    @selectedSortProperty={{this.sortProperty}}
-                    @onSelectSortProperty={{this.selectSortProperty}}
-                    @onSelectSortOrder={{this.selectSortOrder}}
-                    @defaultSortOrder={{this.defaultSortOrder}}
-            />
-        </div>
-            <div class="toolbar-item">
-                {{#unless this.isCollection}}
-                    <button class="button outline fill has-side-margins-large" {{on "click" this.onCollectionOpen}}>
-                        <FaIcon @class="has-margin-right" @icon="plus" /><span>New Collection</span>
-                    </button>
-                {{/unless}}
-                <LinkTo @tagName="button" class="is-primary is-bold button has-side-margins-large" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
-                    <FaIcon class="has-margin-right" @icon="plus" />
-                    <span>New Note</span>
-                </LinkTo>
-            </div>
-    </div>
-    {{#if (or this.collectionTags.length this.tagFilters.length)}}
-        <div class="tag-list">
-            {{#each this.collectionTags as |tag|}}
-                <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
-            {{/each}}
-            {{#each this.tagFilters as |tag|}}
-                <Tags::Tag @tag={{tag}} @onRemove={{this.removeFilteredTag}} />
-            {{/each}}
-        </div>
-    {{/if}}
-</div>
-<div class="content">
-    {{#if this.firstNoteInOrder}}
-        {{component
-                (concat "notes/modes/" this.viewMode.component)
-                notes=this.sortedNotes
-                tags=this.sortedTags
-                onNoteDelete=this.onDeleteOpen
-                onNoteUpdate=this.updatedNote
-                onTagCreate=this.createTagAndAddToNote
-                collection=this.model.collection
-        }}
-    {{else}}
-        <NoResultsMessage>
-            <span>No Notes Found</span>
-        </NoResultsMessage>
-    {{/if}}
-    {{outlet}}
-</div>
-
-{{#if this.isConfirmingDelete}}
-    <ConfirmModal
-            @class="small"
-            @item={{this.noteForDeletion}}
-            @header="Delete Collection"
-            @buttonLabel="Delete"
-            @onClose={{fn this.onDeleteClose false}}
-            @onConfirm={{fn this.onDeleteClose true}}
-    >
-        Are you sure you want to delete this note?
-    </ConfirmModal>
-{{/if}}
-
-{{#if this.isCreatingCollection}}
-    <ModalDialog
-            @containerClass="small"
-            @onClose={{this.onCollectionClose}}
-            @translucentOverlay={{true}}
-            @tetherTarget=".toolbar"
-            @targetAttachment="top center"
-            @targetOffset="100px 0"
-            @attachment="top center"
-    >
-        <div class="modal-header">
-            <h1>Create New Collection</h1>
-            <FaIcon class="close-icon" @icon="times" {{on "click" this.onCollectionClose}} />
-        </div>
-        <div class="modal-body">
-            <div class="form">
-                <div class="form-field full-width">
-                    <label for="name">Name</label>
-                    <Input name="name" type="text" aria-label="Collection Name" @value={{this.collectionName}} />
+<MobileMenuWrapper as |mmw|>
+    <mmw.MobileMenu @maxWidth="200" as |mm|>
+        <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
+    </mmw.MobileMenu>
+    <mmw.Content>
+        <div class="toolbar">
+            <div class="toolbar-actions">
+                {{#if (or this.media.isMobile this.media.isTablet)}}
+                    <div class="toolbar-item">
+                        <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                    </div>
+                {{/if}}
+                <div class="toolbar-item">
+                    <Select::DropdownSelect
+                            @options={{this.viewModeOptions}}
+                            @selected={{this.viewMode}}
+                            @onOpen={{this.onTagSelectorOpen}}
+                            @onClose={{this.onTagSelectorClose}}
+                            @onSelect={{this.selectViewMode}}
+                            @closeOnSelect={{true}}
+                            @searchEnabled={{false}}
+                            @displayProperty="name"
+                            @stopPropagation={{true}}
+                            @optionClass="large"
+                    >
+                        <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
+                    </Select::DropdownSelect>
+                </div>
+                <div class="toolbar-item">
+                    <div class="search-container">
+                        <FaIcon @icon="search" />
+                        <Input
+                                type="text"
+                                placeholder="Search Notes"
+                                aria-label="Search notes"
+                                @value={{this.searchQuery}}
+                            {{on "input" this.searchQueryUpdated}}
+                        />
+                    </div>
+                </div>
+                <div class="toolbar-item">
+                    <Select::DropdownSelect
+                            @isMultiselect={{true}}
+                            @options={{this.sortedTags}}
+                            @selected={{this.tagFilters}}
+                            @onSelect={{this.updateTagFilters}}
+                            @searchEnabled={{true}}
+                            @emptyMessage="No tags found"
+                            @searchMessage="No tags found"
+                            @displayProperty="content"
+                            @placeholder="Enter tag"
+                            @searchField="content"
+                            @stopPropagation={{true}}
+                            @showCreateOption={{true}}
+                    >
+                        <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
+                    </Select::DropdownSelect>
+                </div>
+                <div class="toolbar-item">
+                    <Utils::SortSelect
+                            @sortPropertyOptions={{this.sortOptions}}
+                            @selectedSortProperty={{this.sortProperty}}
+                            @onSelectSortProperty={{this.selectSortProperty}}
+                            @onSelectSortOrder={{this.selectSortOrder}}
+                            @defaultSortOrder={{this.defaultSortOrder}}
+                    />
+                </div>
+                <div class="toolbar-item">
+                    {{#unless this.isCollection}}
+                        <button class="button outline fill has-side-margins-large" {{on "click" this.onCollectionOpen}}>
+                            <FaIcon @class="has-margin-right" @icon="plus" /><span>New Collection</span>
+                        </button>
+                    {{/unless}}
+                    <LinkTo @tagName="button" class="is-primary is-bold button has-side-margins-large" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
+                        <FaIcon class="has-margin-right" @icon="plus" />
+                        <span>New Note</span>
+                    </LinkTo>
                 </div>
             </div>
+            {{#if (or this.collectionTags.length this.tagFilters.length)}}
+                <div class="tag-list">
+                    {{#each this.collectionTags as |tag|}}
+                        <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
+                    {{/each}}
+                    {{#each this.tagFilters as |tag|}}
+                        <Tags::Tag @tag={{tag}} @onRemove={{this.removeFilteredTag}} />
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
-        <div class="tag-list">
-            {{#each this.tagFilters as |tag|}}
-                <Tags::Tag @tag={{tag}} />
-            {{/each}}
+        <div class="content">
+            {{#if this.firstNoteInOrder}}
+                {{component
+                        (concat "notes/modes/" this.viewMode.component)
+                        notes=this.sortedNotes
+                        tags=this.sortedTags
+                        onNoteDelete=this.onDeleteOpen
+                        onNoteUpdate=this.updatedNote
+                        onTagCreate=this.createTagAndAddToNote
+                        collection=this.model.collection
+                }}
+            {{else}}
+                <NoResultsMessage>
+                    <span>No Notes Found</span>
+                </NoResultsMessage>
+            {{/if}}
+            {{outlet}}
         </div>
-        <div class="modal-footer">
-            <div class="button-container">
-                <button type="button" class="button text" {{on "click" this.onCollectionClose}}>Cancel</button>
-                <button type="button" class="button" {{on "click" this.saveCollection}}>Create Collection</button>
-            </div>
-        </div>
-    </ModalDialog>
-{{/if}}
+
+        {{#if this.isConfirmingDelete}}
+            <ConfirmModal
+                    @class="small"
+                    @item={{this.noteForDeletion}}
+                    @header="Delete Collection"
+                    @buttonLabel="Delete"
+                    @onClose={{fn this.onDeleteClose false}}
+                    @onConfirm={{fn this.onDeleteClose true}}
+            >
+                Are you sure you want to delete this note?
+            </ConfirmModal>
+        {{/if}}
+
+        {{#if this.isCreatingCollection}}
+            <ModalDialog
+                    @containerClass="small"
+                    @onClose={{this.onCollectionClose}}
+                    @translucentOverlay={{true}}
+                    @tetherTarget=".toolbar"
+                    @targetAttachment="top center"
+                    @targetOffset="100px 0"
+                    @attachment="top center"
+            >
+                <div class="modal-header">
+                    <h1>Create New Collection</h1>
+                    <FaIcon class="close-icon" @icon="times" {{on "click" this.onCollectionClose}} />
+                </div>
+                <div class="modal-body">
+                    <div class="form">
+                        <div class="form-field full-width">
+                            <label for="name">Name</label>
+                            <Input name="name" type="text" aria-label="Collection Name" @value={{this.collectionName}} />
+                        </div>
+                    </div>
+                </div>
+                <div class="tag-list">
+                    {{#each this.tagFilters as |tag|}}
+                        <Tags::Tag @tag={{tag}} />
+                    {{/each}}
+                </div>
+                <div class="modal-footer">
+                    <div class="button-container">
+                        <button type="button" class="button text" {{on "click" this.onCollectionClose}}>Cancel</button>
+                        <button type="button" class="button" {{on "click" this.saveCollection}}>Create Collection</button>
+                    </div>
+                </div>
+            </ModalDialog>
+        {{/if}}
+    </mmw.Content>
+</MobileMenuWrapper>

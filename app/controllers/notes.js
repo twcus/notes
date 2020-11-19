@@ -13,6 +13,9 @@ const FORCE_TIME = 5000;
 export default class NotesController extends Controller {
     @service notifications;
     @service router;
+    @service media;
+    @service auth;
+    @service navigation;
     defaultSortOrder = 'desc';
     viewModeOptions = [
         {

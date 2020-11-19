@@ -1,17 +1,19 @@
 <div class="list-pane">
     {{#each @notes as |note|}}
         <Link @route={{this.editRoute}} @models={{if this.collection (array note.id this.collection.id) (array note.id)}} as |link|>
-            <div class="list-item {{if note.isNew "new"}} {{if link.isActive "active"}}" {{on "click" link.transitionTo}}>
-                <div class="pell-content">
-                    {{{note.content}}}
+            <div class="list-item-container {{if note.isNew "new"}} {{if link.isActive "active"}}" {{on "click" link.transitionTo}}>
+                <div class="list-item">
+                    <div class="pell-content">
+                        {{{note.content}}}
+                    </div>
+                    <Utils::Timestamp
+                            @date={{note.modifiedDate}}
+                            @format="MMM DD YYYY"
+                            @enableDiff=true
+                            @diffPrecision="days"
+                            @diffLimit=7
+                    />
                 </div>
-                <Utils::Timestamp
-                        @date={{@note.modifiedDate}}
-                        @format="MMM DD YYYY"
-                        @enableDiff=true
-                        @diffPrecision="days"
-                        @diffLimit=7
-                />
             </div>
         </Link>
     {{/each}}

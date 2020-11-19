@@ -8,6 +8,9 @@ export default class CollectionsController extends Controller {
     tagSortKey = ['content:asc'];
 
     @service notifications;
+    @service media;
+    @service navigation;
+    @service auth;
     @tracked searchQuery;
     @tracked tagFilters;
     @tracked isConfirmingDelete = false;
