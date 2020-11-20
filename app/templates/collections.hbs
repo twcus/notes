@@ -4,41 +4,45 @@
     </mmw.MobileMenu>
     <mmw.Content>
         <div class="toolbar {{unless this.media.isDesktop "mobile"}}">
-            <div class="toolbar-group left">
-                {{#if (or this.media.isMobile this.media.isTablet)}}
+            <div class="toolbar-actions">
+                <div class="toolbar-group left">
+                    {{#if (or this.media.isMobile this.media.isTablet)}}
+                        <div class="toolbar-item">
+                            <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                        </div>
+                    {{/if}}
                     <div class="toolbar-item">
-                        <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                        <ToolbarSearch
+                                @searchQuery={{this.searchQuery}}
+                                @clearSearch={{this.clearSearch}}
+                        />
                     </div>
-                {{/if}}
-                <div class="toolbar-item">
-                    <ToolbarSearch
-                        @searchQuery={{this.searchQuery}}
-                        @clearSearch={{this.clearSearch}}
-                    />
-                </div>
-                <div class="toolbar-item">
-                    <Select::DropdownSelect
-                            @isMultiselect={{true}}
-                            @options={{this.sortedTags}}
-                            @selected={{this.tagFilters}}
-                            @onSelect={{this.updateTagFilters}}
-                            @searchEnabled={{true}}
-                            @emptyMessage="No tags found"
-                            @searchMessage="No tags found"
-                            @displayProperty="content"
-                            @placeholder="Enter tag"
-                            @searchField="content"
-                            @stopPropagation={{true}}
-                    >
-                        <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
-                    </Select::DropdownSelect>
+                    <div class="toolbar-item">
+                        <Select::DropdownSelect
+                                @isMultiselect={{true}}
+                                @options={{this.sortedTags}}
+                                @selected={{this.tagFilters}}
+                                @onSelect={{this.updateTagFilters}}
+                                @searchEnabled={{true}}
+                                @emptyMessage="No tags found"
+                                @searchMessage="No tags found"
+                                @displayProperty="content"
+                                @placeholder="Enter tag"
+                                @searchField="content"
+                                @stopPropagation={{true}}
+                        >
+                            <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
+                        </Select::DropdownSelect>
+                    </div>
                 </div>
                 {{#if this.media.isDesktop}}
-                    <div class="toolbar-item">
-                        <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
-                            <FaIcon class="has-margin-right" @icon="plus" />
-                            <span>New Collection</span>
-                        </LinkTo>
+                    <div class="toolbar-group right">
+                        <div class="toolbar-item">
+                            <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
+                                <FaIcon class="has-margin-right" @icon="plus" />
+                                <span>New Collection</span>
+                            </LinkTo>
+                        </div>
                     </div>
                 {{/if}}
             </div>

@@ -85,7 +85,7 @@
 }
 
 .logout {
-    margin: auto 0 0 0;
+    margin: auto 0 48px 0; // 48px because it's off screen when mobile address bar is showing...again, dumbest thing I've ever seen.
     .button {
         margin: 0;
     }

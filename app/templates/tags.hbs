@@ -4,24 +4,28 @@
     </mmw.MobileMenu>
     <mmw.Content>
         <div class="toolbar {{unless this.media.isDesktop "mobile"}}">
-            <div class="toolbar-group left">
-                {{#if (or this.media.isMobile this.media.isTablet)}}
+            <div class="toolbar-actions">
+                <div class="toolbar-group left">
+                    {{#if (or this.media.isMobile this.media.isTablet)}}
+                        <div class="toolbar-item">
+                            <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                        </div>
+                    {{/if}}
                     <div class="toolbar-item">
-                        <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                        <ToolbarSearch
+                                @searchQuery={{this.searchQuery}}
+                                @clearSearch={{this.clearSearch}}
+                        />
                     </div>
-                {{/if}}
-                <div class="toolbar-item">
-                    <ToolbarSearch
-                        @searchQuery={{this.searchQuery}}
-                        @clearSearch={{this.clearSearch}}
-                    />
                 </div>
                 {{#if this.media.isDesktop}}
-                    <div class="toolbar-item">
-                        <LinkTo @tagName="button" class="is-primary is-bold button" @route="tags.new">
-                            <FaIcon class="has-margin-right" @icon="plus" />
-                            <span>New Tag</span>
-                        </LinkTo>
+                    <div class="toolbar-group right">
+                        <div class="toolbar-item">
+                            <LinkTo @tagName="button" class="is-primary is-bold button" @route="tags.new">
+                                <FaIcon class="has-margin-right" @icon="plus" />
+                                <span>New Tag</span>
+                            </LinkTo>
+                        </div>
                     </div>
                 {{/if}}
             </div>

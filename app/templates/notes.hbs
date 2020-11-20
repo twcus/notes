@@ -4,84 +4,87 @@
     </mmw.MobileMenu>
     <mmw.Content>
         <div class="toolbar {{unless this.media.isDesktop "mobile"}}">
-            <div class="toolbar-group left">
-                {{#if (or this.media.isMobile this.media.isTablet)}}
-                    <div class="toolbar-item">
-                        <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
-                    </div>
-                {{/if}}
-                <div class="toolbar-item">
-                    <Select::DropdownSelect
-                            @options={{this.viewModeOptions}}
-                            @selected={{this.viewMode}}
-                            @onOpen={{this.onTagSelectorOpen}}
-                            @onClose={{this.onTagSelectorClose}}
-                            @onSelect={{this.selectViewMode}}
-                            @closeOnSelect={{true}}
-                            @searchEnabled={{false}}
-                            @displayProperty="name"
-                            @stopPropagation={{true}}
-                            @optionClass="large"
-                    >
-                        <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
-                    </Select::DropdownSelect>
-                </div>
-                <div class="toolbar-item">
-                    <ToolbarSearch
-                        @searchQuery={{this.searchQuery}}
-                        @searchQueryUpdated={{this.searchQueryUpdated}}
-                        @clearSearch={{this.clearSearch}}
-                    />
-                </div>
-                <div class="toolbar-item">
-                    <Select::DropdownSelect
-                            @isMultiselect={{true}}
-                            @options={{this.sortedTags}}
-                            @selected={{this.tagFilters}}
-                            @onSelect={{this.updateTagFilters}}
-                            @searchEnabled={{true}}
-                            @emptyMessage="No tags found"
-                            @searchMessage="No tags found"
-                            @displayProperty="content"
-                            @placeholder="Enter tag"
-                            @searchField="content"
-                            @stopPropagation={{true}}
-                            @showCreateOption={{true}}
-                    >
-                        <FaIcon @icon="filter" />
-                        {{#if this.media.isDesktop}}
-                            <span class="has-margin-left">Filter</span>
-                        {{/if}}
-                    </Select::DropdownSelect>
-                </div>
-                <div class="toolbar-item">
-                    <Utils::SortSelect
-                            @sortPropertyOptions={{this.sortOptions}}
-                            @selectedSortProperty={{this.sortProperty}}
-                            @onSelectSortProperty={{this.selectSortProperty}}
-                            @onSelectSortOrder={{this.selectSortOrder}}
-                            @defaultSortOrder={{this.defaultSortOrder}}
-                    />
-                </div>
-            </div>
-            <div class="toolbar-group right">
-                <div class="toolbar-item">
-                    {{#unless this.isCollection}}
-                        <button class="button outline fill" {{on "click" this.onCollectionOpen}}>
-                            <FaIcon @icon="folder-plus" />
-                            {{#if this.media.isDesktop}}
-                                <span class="has-margin-left">New Collection</span>
-                            {{/if}}
-                        </button>
-                    {{/unless}}
-                    {{#if this.media.isDesktop}}
-                        <button type="button" class="button" {{on "click" this.transitionToNewNote}}>
-                            <FaIcon @icon="plus" />
-                            <span class="has-margin-left">New Note</span>
-                        </button>
+            <div class="toolbar-actions">
+                <div class="toolbar-group left">
+                    {{#if (or this.media.isMobile this.media.isTablet)}}
+                        <div class="toolbar-item">
+                            <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
+                        </div>
                     {{/if}}
+                    <div class="toolbar-item">
+                        <Select::DropdownSelect
+                                @options={{this.viewModeOptions}}
+                                @selected={{this.viewMode}}
+                                @onOpen={{this.onTagSelectorOpen}}
+                                @onClose={{this.onTagSelectorClose}}
+                                @onSelect={{this.selectViewMode}}
+                                @closeOnSelect={{true}}
+                                @searchEnabled={{false}}
+                                @displayProperty="name"
+                                @stopPropagation={{true}}
+                                @optionClass="large"
+                        >
+                            <FaIcon @icon={{this.viewMode.icon}} @fixedWidth={{true}} />
+                        </Select::DropdownSelect>
+                    </div>
+                    <div class="toolbar-item">
+                        <ToolbarSearch
+                                @searchQuery={{this.searchQuery}}
+                                @searchQueryUpdated={{this.searchQueryUpdated}}
+                                @clearSearch={{this.clearSearch}}
+                        />
+                    </div>
+                    <div class="toolbar-item">
+                        <Select::DropdownSelect
+                                @isMultiselect={{true}}
+                                @options={{this.sortedTags}}
+                                @selected={{this.tagFilters}}
+                                @onSelect={{this.updateTagFilters}}
+                                @searchEnabled={{true}}
+                                @emptyMessage="No tags found"
+                                @searchMessage="No tags found"
+                                @displayProperty="content"
+                                @placeholder="Enter tag"
+                                @searchField="content"
+                                @stopPropagation={{true}}
+                                @showCreateOption={{true}}
+                        >
+                            <FaIcon @icon="filter" />
+                            {{#if this.media.isDesktop}}
+                                <span class="has-margin-left">Filter</span>
+                            {{/if}}
+                        </Select::DropdownSelect>
+                    </div>
+                    <div class="toolbar-item">
+                        <Utils::SortSelect
+                                @sortPropertyOptions={{this.sortOptions}}
+                                @selectedSortProperty={{this.sortProperty}}
+                                @onSelectSortProperty={{this.selectSortProperty}}
+                                @onSelectSortOrder={{this.selectSortOrder}}
+                                @defaultSortOrder={{this.defaultSortOrder}}
+                        />
+                    </div>
+                </div>
+                <div class="toolbar-group right">
+                    <div class="toolbar-item">
+                        {{#unless this.isCollection}}
+                            <button class="button outline fill" {{on "click" this.onCollectionOpen}}>
+                                <FaIcon @icon="folder-plus" />
+                                {{#if this.media.isDesktop}}
+                                    <span class="has-margin-left">New Collection</span>
+                                {{/if}}
+                            </button>
+                        {{/unless}}
+                        {{#if this.media.isDesktop}}
+                            <button type="button" class="button" {{on "click" this.transitionToNewNote}}>
+                                <FaIcon @icon="plus" />
+                                <span class="has-margin-left">New Note</span>
+                            </button>
+                        {{/if}}
+                    </div>
                 </div>
             </div>
+
             {{#if (or this.collectionTags.length this.tagFilters.length)}}
                 <div class="tag-list">
                     {{#each this.collectionTags as |tag|}}
