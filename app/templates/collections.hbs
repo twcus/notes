@@ -3,18 +3,18 @@
         <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
     </mmw.MobileMenu>
     <mmw.Content>
-        <div class="toolbar">
-            <div class="toolbar-actions">
+        <div class="toolbar {{unless this.media.isDesktop "mobile"}}">
+            <div class="toolbar-group left">
                 {{#if (or this.media.isMobile this.media.isTablet)}}
                     <div class="toolbar-item">
                         <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
                     </div>
                 {{/if}}
                 <div class="toolbar-item">
-                    <div class="search-container">
-                        <FaIcon @icon="search" />
-                        <Input type="text" placeholder="Search" aria-label="Search collections" @value={{this.searchQuery}} />
-                    </div>
+                    <ToolbarSearch
+                        @searchQuery={{this.searchQuery}}
+                        @clearSearch={{this.clearSearch}}
+                    />
                 </div>
                 <div class="toolbar-item">
                     <Select::DropdownSelect
@@ -33,12 +33,14 @@
                         <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
                     </Select::DropdownSelect>
                 </div>
-                <div class="toolbar-item">
-                    <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
-                        <FaIcon class="has-margin-right" @icon="plus" />
-                        <span>New Collection</span>
-                    </LinkTo>
-                </div>
+                {{#if this.media.isDesktop}}
+                    <div class="toolbar-item">
+                        <LinkTo @tagName="button" class="is-primary is-bold button" @route="collections.new">
+                            <FaIcon class="has-margin-right" @icon="plus" />
+                            <span>New Collection</span>
+                        </LinkTo>
+                    </div>
+                {{/if}}
             </div>
             {{#if this.tagFilters.length}}
                 <div class="tag-list">
@@ -107,6 +109,14 @@
                 Are you sure you want to delete Collection "{{item.name}}"?
             </ConfirmModal>
         {{/if}}
+
+        {{#unless this.media.isDesktop}}
+            <div class="fab-container">
+                <button type="button" class="button fab" {{on "click" this.transitionToNewCollection}}>
+                    <FaIcon @icon="plus" />
+                </button>
+            </div>
+        {{/unless}}
 
         {{outlet}}
     </mmw.Content>

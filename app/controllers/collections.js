@@ -32,6 +32,16 @@ export default class CollectionsController extends Controller {
     }
 
     @action
+    clearSearch() {
+        this.searchQuery = null;
+    }
+
+    @action
+    transitionToNewCollection() {
+        this.transitionToRoute('collections.new');
+    }
+
+    @action
     updateTagFilters(tag) {
         this.tagFilters.includes(tag) ? this.tagFilters.removeObject(tag) : this.tagFilters.pushObject(tag);
     }

@@ -1,16 +1,24 @@
 .toolbar {
+    display: flex;
     padding: 0 32px;
     background-color: #61626b;
     flex-shrink: 0;
     box-shadow: 0 1px 2px 0 rgba(66, 66, 66, 0.3), 0 1px 3px 1px rgba(80, 80, 80, 0.15);
     z-index: $topbar-index;
-    .toolbar-actions {
+    .toolbar-group {
         padding: 8px 0;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-grow: 1;
-        width: 100%;
+        &.right {
+            margin-left: auto;
+        }
+        &.left {
+            margin-right: auto;
+        }
+    }
+    &.mobile {
+        padding: 0 16px;
     }
     .tag-list {
         max-height: 100px;
@@ -46,7 +54,7 @@
         &:focus,
         &:hover {
             color: $white;
-            background-color: darken(#61626b, 10%) !important;
+            background-color: darken(#61626b, 10%);
         }
     }
 }

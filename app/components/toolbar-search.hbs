@@ -1,0 +1,29 @@
+{{#if this.media.isDesktop}}
+    <div class="search-container">
+        <FaIcon @icon="search" />
+        <Input
+            type="text"
+            placeholder="Search Notes"
+            aria-label="Search notes"
+            @value={{@searchQuery}}
+            {{on "input" this.searchQueryUpdated}}
+        />
+    </div>
+{{else}}
+    {{#if this.isSearchOpen}}
+        <div class="search-container mobile">
+            <button type="button" class="button" {{on "click" this.closeSearch}}><FaIcon @icon="arrow-left" /></button>
+            <Input
+                type="text"
+                placeholder="Search Notes"
+                aria-label="Search Notes"
+                class="toolbar-search"
+                @value={{@searchQuery}}
+                {{on "input" this.searchQueryUpdated}}
+            />
+            <button type="button" class="button" {{on "click" @clearSearch}}><FaIcon @icon="times" /></button>
+        </div>
+    {{else}}
+        <button type="button" class="button" {{on "click" this.openSearch}}><FaIcon @icon="search" /></button>
+    {{/if}}
+{{/if}}

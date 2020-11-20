@@ -27,7 +27,7 @@ export default class NotesController extends Controller {
         },
         {
             name: 'List',
-            icon: 'bars',
+            icon: 'columns',
             component: 'list',
             editorComponent: 'pane',
             isEditorOpen: true
@@ -146,6 +146,11 @@ export default class NotesController extends Controller {
     }
 
     @action
+    transitionToNewNote() {
+        this.transitionToRoute(`${this.baseNotesRoute}.new`);
+    }
+
+    @action
     deleteNote(note) {
         return note.destroyRecord()
             .then(() => {
@@ -196,6 +201,11 @@ export default class NotesController extends Controller {
         if (this.viewMode.isEditorOpen) {
             this.transitionWithEditorOpen();
         }
+    }
+
+    @action
+    clearSearch() {
+        this.searchQuery = null;
     }
 
     @action

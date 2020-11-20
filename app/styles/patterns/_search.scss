@@ -1,10 +1,8 @@
 .search-container {
-    height: 100%;
     display: flex;
     align-items: center;
     background-color: $white;
     border-radius: $base-border-radius;
-    min-width: 150px;
     svg {
         color: $black-light;
         margin-left: 8px;
@@ -12,11 +10,28 @@
     input {
         border: none;
         background-color: inherit;
-        width: 100%;
+        max-width: 100px;
         padding: 8px;
         line-height: 1rem;
         &:focus {
             outline: none;
+        }
+    }
+    &.mobile {
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: #61626b !important;
+        padding: 8px;
+        input {
+            max-width: unset;
+            flex-grow: 1;
+            background-color: #61626b;
+        }
+        button{
+            svg {
+                margin: 0;
+            }
         }
     }
 }

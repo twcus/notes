@@ -20,6 +20,16 @@ export default class TagsController extends Controller {
     }
 
     @action
+    clearSearch() {
+        this.searchQuery = null;
+    }
+
+    @action
+    transitionToNewTag() {
+        this.transitionToRoute('tags.new');
+    }
+
+    @action
     onDeleteOpen(tag) {
         this.isConfirmingDelete = true;
         this.tagForDeletion = tag;

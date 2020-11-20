@@ -3,8 +3,8 @@
         <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
     </mmw.MobileMenu>
     <mmw.Content>
-        <div class="toolbar">
-            <div class="toolbar-actions">
+        <div class="toolbar {{unless this.media.isDesktop "mobile"}}">
+            <div class="toolbar-group left">
                 {{#if (or this.media.isMobile this.media.isTablet)}}
                     <div class="toolbar-item">
                         <mmw.Toggle class="button"><FaIcon @icon="bars" /></mmw.Toggle>
@@ -27,16 +27,11 @@
                     </Select::DropdownSelect>
                 </div>
                 <div class="toolbar-item">
-                    <div class="search-container">
-                        <FaIcon @icon="search" />
-                        <Input
-                                type="text"
-                                placeholder="Search Notes"
-                                aria-label="Search notes"
-                                @value={{this.searchQuery}}
-                            {{on "input" this.searchQueryUpdated}}
-                        />
-                    </div>
+                    <ToolbarSearch
+                        @searchQuery={{this.searchQuery}}
+                        @searchQueryUpdated={{this.searchQueryUpdated}}
+                        @clearSearch={{this.clearSearch}}
+                    />
                 </div>
                 <div class="toolbar-item">
                     <Select::DropdownSelect
@@ -53,7 +48,10 @@
                             @stopPropagation={{true}}
                             @showCreateOption={{true}}
                     >
-                        <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
+                        <FaIcon @icon="filter" />
+                        {{#if this.media.isDesktop}}
+                            <span class="has-margin-left">Filter</span>
+                        {{/if}}
                     </Select::DropdownSelect>
                 </div>
                 <div class="toolbar-item">
@@ -65,16 +63,23 @@
                             @defaultSortOrder={{this.defaultSortOrder}}
                     />
                 </div>
+            </div>
+            <div class="toolbar-group right">
                 <div class="toolbar-item">
                     {{#unless this.isCollection}}
-                        <button class="button outline fill has-side-margins-large" {{on "click" this.onCollectionOpen}}>
-                            <FaIcon @class="has-margin-right" @icon="plus" /><span>New Collection</span>
+                        <button class="button outline fill" {{on "click" this.onCollectionOpen}}>
+                            <FaIcon @icon="folder-plus" />
+                            {{#if this.media.isDesktop}}
+                                <span class="has-margin-left">New Collection</span>
+                            {{/if}}
                         </button>
                     {{/unless}}
-                    <LinkTo @tagName="button" class="is-primary is-bold button has-side-margins-large" @route={{if this.isCollection "collection-notes.new" "notes.new"}}>
-                        <FaIcon class="has-margin-right" @icon="plus" />
-                        <span>New Note</span>
-                    </LinkTo>
+                    {{#if this.media.isDesktop}}
+                        <button type="button" class="button" {{on "click" this.transitionToNewNote}}>
+                            <FaIcon @icon="plus" />
+                            <span class="has-margin-left">New Note</span>
+                        </button>
+                    {{/if}}
                 </div>
             </div>
             {{#if (or this.collectionTags.length this.tagFilters.length)}}
@@ -155,5 +160,13 @@
                 </div>
             </ModalDialog>
         {{/if}}
+
+        {{#unless this.media.isDesktop}}
+            <div class="fab-container">
+                <button type="button" class="button fab" {{on "click" this.transitionToNewNote}}>
+                    <FaIcon @icon="plus" />
+                </button>
+            </div>
+        {{/unless}}
     </mmw.Content>
 </MobileMenuWrapper>

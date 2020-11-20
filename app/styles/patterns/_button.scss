@@ -86,3 +86,21 @@
         }
     }
 }
+
+// Bottom position is 96 because on mobile browsers position absolute/fixed don't seem to work properly as the address bar shows/hides itself on scroll.
+// This is one of the dumbest things I've ever seen but can't find a solution or any reasonable explanation for why it would work like this. Seriously, WTF?
+// https://stackoverflow.com/questions/31031390/preventing-floating-button-to-move-on-mobile-when-browser-address-bar-hides
+.fab-container {
+    position: absolute;
+    bottom: 96px;
+    right: 36px;
+    .fab {
+        border-radius: 36px;
+        width: 64px;
+        height: 64px;
+        svg {
+            font-size: 1.4rem;
+        }
+    }
+}
+
