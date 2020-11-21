@@ -1,12 +1,6 @@
 .tag-list {
     display: flex;
     flex-wrap: wrap;
-
-    &.limit-25 {
-        overflow: auto;
-        max-height: 25%;
-        min-height: 10%;
-    }
 }
 
 .tag-list-editable {
@@ -17,6 +11,11 @@
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-auto-rows: 50px;
     overflow-y: auto;
+}
+
+.container.column .tag-list {
+    overflow: auto;
+    flex-basis: 350px;
 }
 
 .tag {

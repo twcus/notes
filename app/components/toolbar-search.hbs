@@ -1,6 +1,6 @@
 {{#if this.media.isDesktop}}
     <div class="search-container">
-        <FaIcon @icon="search" />
+        <FaIcon @icon="search" @class="{{if @searchQuery "is-accented"}}" />
         <Input
             type="text"
             placeholder="Search Notes"
@@ -24,6 +24,6 @@
             <button type="button" class="button" {{on "click" @clearSearch}}><FaIcon @icon="times" /></button>
         </div>
     {{else}}
-        <button type="button" class="button" {{on "click" this.openSearch}}><FaIcon @icon="search" /></button>
+        <button type="button" class="button {{if @searchQuery "is-accented"}}" {{on "click" this.openSearch}}><FaIcon @icon="search" /></button>
     {{/if}}
 {{/if}}

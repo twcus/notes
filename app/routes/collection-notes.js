@@ -8,6 +8,7 @@ export default class CollectionNotesRoute extends Route {
 
     @service session;
     @service navigation;
+    @service media;
 
     beforeModel() {
         if (!this.session.isAuthenticated) {
@@ -35,7 +36,7 @@ export default class CollectionNotesRoute extends Route {
         super.setupController(controller, model, _transition);
         this.controller.tagFilters = [];
         this.controller.collectionTags = model.collection.tags;
-        if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length) {
+        if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length && this.media.isDesktop) {
             this.transitionTo('collection-notes.edit', this.controller.sortedNotes[0].id);
         }
     }
@@ -48,7 +49,7 @@ export default class CollectionNotesRoute extends Route {
 
     @action
     willTransition(transition) {
-        if (transition.targetName === 'collection-notes.index' && this.controller.viewMode.isEditorOpen) {
+        if (transition.targetName === 'collection-notes.index' && this.controller.viewMode.isEditorOpen && this.media.isDesktop) {
             this.transitionTo('collection-notes.edit', this.controllerFor('notes').sortedNotes[0].id);
         }
     }

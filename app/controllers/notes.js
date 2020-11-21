@@ -70,10 +70,12 @@ export default class NotesController extends Controller {
     @tracked searchQuery;
     @tracked collectionName;
     @tracked noteForDeletion;
+    @tracked noteForTagSelection;
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
     @tracked sortProperty = this.sortOptions[0];
     @tracked isConfirmingDelete = false;
+    @tracked isSelectingTags = false;
     @tracked isCreatingCollection = false;
     @sort('searchedNotes', 'sortPropertyWithOrder') sortedNotes;
     @sort('allTags', 'tagSortKey') sortedTags;
@@ -254,6 +256,16 @@ export default class NotesController extends Controller {
         }
         this.noteForDeletion = null;
     }
+
+    @action
+    onTagSelectorOpen() {
+        this.isSelectingTags = true;
+    }
+
+    @action onTagSelectorClose() {
+        this.isSelectingTags = false;
+    }
+
 
     @action
     onCollectionOpen() {
