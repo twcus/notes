@@ -1,4 +1,4 @@
-<MobileMenuWrapper as |mmw|>
+<MobileMenuWrapper @preventScroll={{false}} as |mmw|>
     <mmw.MobileMenu @maxWidth="200" as |mm|>
         <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
     </mmw.MobileMenu>
