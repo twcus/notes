@@ -13,8 +13,10 @@ export default class CollectionsController extends Controller {
     @service auth;
     @tracked searchQuery;
     @tracked tagFilters;
-    @tracked isConfirmingDelete = false;
     @tracked collectionForDeletion;
+    @tracked collectionForTagSelection;
+    @tracked isConfirmingDelete = false;
+    @tracked isSelectingTags = false;
     @sort('model.tags', 'tagSortKey') sortedTags;
 
     get filteredCollections() {
@@ -66,6 +68,15 @@ export default class CollectionsController extends Controller {
                 .catch(res => this.notifications.clearAll().error(res));
         }
         this.collectionForDeletion = null;
+    }
+
+    @action
+    onTagSelectorOpen() {
+        this.isSelectingTags = true;
+    }
+
+    @action onTagSelectorClose() {
+        this.isSelectingTags = false;
     }
 
     @action

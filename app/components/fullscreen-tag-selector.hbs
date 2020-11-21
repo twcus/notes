@@ -1,5 +1,5 @@
 <ModalDialog
-    @containerClass="large tall"
+    @containerClass="large tall top"
     @translucentOverlay={{true}}
 >
     <div class="modal-header">
@@ -7,16 +7,18 @@
     </div>
     <div class="modal-body">
         <div class="container column">
-            {{#if (or @collectionTags @selected.length)}}
-                <div class="tag-list limit-25 has-margin-bottom">
-                    {{#each @collectionTags as |tag|}}
-                        <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
-                    {{/each}}
-                    {{#each (without @collectionTags @selected) as |tag|}}
-                        <Tags::Tag @tag={{tag}} @onRemove={{@onTagRemove}} />
-                    {{/each}}
-                </div>
-            {{/if}}
+            {{#unless @noTagList}}
+                {{#if (or @collectionTags @selected.length)}}
+                    <div class="tag-list has-margin-bottom">
+                        {{#each @collectionTags as |tag|}}
+                            <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
+                        {{/each}}
+                        {{#each (without @collectionTags @selected) as |tag|}}
+                            <Tags::Tag @tag={{tag}} @onRemove={{@onTagRemove}} />
+                        {{/each}}
+                    </div>
+                {{/if}}
+            {{/unless}}
             <Select::Select
                     @options={{@options}}
                     @selected={{@selected}}

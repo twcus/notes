@@ -5,9 +5,11 @@ import { inject as service } from '@ember/service';
 
 export default class CollectionsEditController extends Controller {
     @service notifications;
+    @service media;
     @service modal;
 
     @tracked selectedTags = [];
+    @tracked isSelectingTags = false;
 
     @action
     onClose() {
@@ -48,5 +50,14 @@ export default class CollectionsEditController extends Controller {
     @action
     onTagRemove(tag) {
         this.model.collection.tags.removeObject(tag);
+    }
+
+    @action
+    onTagSelectorOpen() {
+        this.isSelectingTags = true;
+    }
+
+    @action onTagSelectorClose() {
+        this.isSelectingTags = false;
     }
 }

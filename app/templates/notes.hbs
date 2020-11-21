@@ -15,8 +15,6 @@
                         <Select::DropdownSelect
                                 @options={{this.viewModeOptions}}
                                 @selected={{this.viewMode}}
-                                @onOpen={{this.onTagSelectorOpen}}
-                                @onClose={{this.onTagSelectorClose}}
                                 @onSelect={{this.selectViewMode}}
                                 @closeOnSelect={{true}}
                                 @searchEnabled={{false}}
@@ -35,27 +33,31 @@
                         />
                     </div>
                     <div class="toolbar-item">
-                        <Select::DropdownSelect
-                                @isMultiselect={{true}}
-                                @options={{this.sortedTags}}
-                                @selected={{this.tagFilters}}
-                                @onSelect={{this.updateTagFilters}}
-                                @searchEnabled={{true}}
-                                @emptyMessage="No tags found"
-                                @searchMessage="No tags found"
-                                @displayProperty="content"
-                                @placeholder="Enter tag"
-                                @searchField="content"
-                                @stopPropagation={{true}}
-                                @showCreateOption={{true}}
-                        >
-                            <FaIcon @icon="filter" />
-                            {{#if this.media.isDesktop}}
-                                <span class="has-margin-left">Filter</span>
-                            {{else}}
+                        {{#if this.media.isDesktop}}
+                            <Select::DropdownSelect
+                                    @triggerClass="{{if this.tagFilters.length "is-accented"}}"
+                                    @isMultiselect={{true}}
+                                    @options={{this.sortedTags}}
+                                    @selected={{this.tagFilters}}
+                                    @onSelect={{this.updateTagFilters}}
+                                    @searchEnabled={{true}}
+                                    @emptyMessage="No tags found"
+                                    @searchMessage="No tags found"
+                                    @displayProperty="content"
+                                    @placeholder="Enter tag"
+                                    @searchField="content"
+                                    @stopPropagation={{true}}
+                                    @showCreateOption={{true}}
+                            >
+                                <FaIcon @icon="filter" />
+                                <span class="has-margin-left">Filter ({{this.tagFilters.length}})</span>
+                            </Select::DropdownSelect>
+                        {{else}}
+                            <buttton type="button" class="button text {{if this.tagFilters.length "is-accented"}}" {{on "click" this.onTagSelectorOpen}}>
+                                <FaIcon @icon="filter" />
                                 <span class="has-margin-left">({{this.tagFilters.length}})</span>
-                            {{/if}}
-                        </Select::DropdownSelect>
+                            </buttton>
+                        {{/if}}
                     </div>
                     <div class="toolbar-item">
                         <Utils::SortSelect
@@ -86,8 +88,7 @@
                     </div>
                 </div>
             </div>
-
-            {{#if (or this.collectionTags.length this.tagFilters.length)}}
+            {{#if (and this.media.isDesktop (or this.collectionTags.length this.tagFilters.length))}}
                 <div class="tag-list">
                     {{#each this.collectionTags as |tag|}}
                         <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
@@ -164,6 +165,17 @@
                     </div>
                 </div>
             </ModalDialog>
+        {{/if}}
+
+        {{#if this.isSelectingTags}}
+            <FullscreenTagSelector
+                @options={{this.allTags}}
+                @selected={{this.tagFilters}}
+                @collectionTags={{this.collectionTags}}
+                @onSelect={{this.updateTagFilters}}
+                @searchEnabled={{true}}
+                @onClose={{this.onTagSelectorClose}}
+            />
         {{/if}}
 
         {{#unless this.media.isDesktop}}

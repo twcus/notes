@@ -18,21 +18,29 @@
                         />
                     </div>
                     <div class="toolbar-item">
-                        <Select::DropdownSelect
-                                @isMultiselect={{true}}
-                                @options={{this.sortedTags}}
-                                @selected={{this.tagFilters}}
-                                @onSelect={{this.updateTagFilters}}
-                                @searchEnabled={{true}}
-                                @emptyMessage="No tags found"
-                                @searchMessage="No tags found"
-                                @displayProperty="content"
-                                @placeholder="Enter tag"
-                                @searchField="content"
-                                @stopPropagation={{true}}
-                        >
-                            <FaIcon class="has-margin-right" @icon="filter" /><span>Filter</span>
-                        </Select::DropdownSelect>
+                        {{#if this.media.isDesktop}}
+                            <Select::DropdownSelect
+                                    @triggerClass="{{if this.tagFilters.length "is-accented"}}"
+                                    @isMultiselect={{true}}
+                                    @options={{this.sortedTags}}
+                                    @selected={{this.tagFilters}}
+                                    @onSelect={{this.updateTagFilters}}
+                                    @searchEnabled={{true}}
+                                    @emptyMessage="No tags found"
+                                    @searchMessage="No tags found"
+                                    @displayProperty="content"
+                                    @placeholder="Enter tag"
+                                    @searchField="content"
+                                    @stopPropagation={{true}}
+                            >
+                                <FaIcon class="has-margin-right" @icon="filter" @class="{{if @searchQuery "is-accented"}}" /><span>Filter ({{this.tagFilters.length}})</span>
+                            </Select::DropdownSelect>
+                        {{else}}
+                            <buttton type="button" class="button text {{if this.tagFilters.length "is-accented"}}" {{on "click" this.onTagSelectorOpen}}>
+                                <FaIcon @icon="filter" />
+                                <span class="has-margin-left">({{this.tagFilters.length}})</span>
+                            </buttton>
+                        {{/if}}
                     </div>
                 </div>
                 {{#if this.media.isDesktop}}
@@ -46,7 +54,7 @@
                     </div>
                 {{/if}}
             </div>
-            {{#if this.tagFilters.length}}
+            {{#if (and this.media.isDesktop this.tagFilters.length)}}
                 <div class="tag-list">
                     {{#each this.tagFilters as |tag|}}
                         <Tags::Tag @tag={{tag}} @isEditable={{false}} @onRemove={{this.removeFilteredTag}} />
@@ -112,6 +120,16 @@
             >
                 Are you sure you want to delete Collection "{{item.name}}"?
             </ConfirmModal>
+        {{/if}}
+
+        {{#if this.isSelectingTags}}
+            <FullscreenTagSelector
+                    @options={{this.sortedTags}}
+                    @selected={{this.tagFilters}}
+                    @onSelect={{this.updateTagFilters}}
+                    @searchEnabled={{true}}
+                    @onClose={{this.onTagSelectorClose}}
+            />
         {{/if}}
 
         {{#unless this.media.isDesktop}}
