@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class TagsNewController extends Controller {
     @service notifications;
+    @service modal;
 
     @action
     onClose() {

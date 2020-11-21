@@ -5,6 +5,8 @@ import { inject as service } from '@ember/service';
 
 export default class CollectionsNewController extends Controller {
     @service notifications;
+    @service modal;
+
     @tracked selectedTags = [];
 
     @action

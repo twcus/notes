@@ -1,11 +1,11 @@
 <ModalDialog
-    @containerClass={{@class}}
+    @containerClass={{this.modal.class}}
     @onClose={{@onClose}}
     @translucentOverlay={{true}}
-    @tetherTarget={{this.target}}
-    @targetAttachment={{this.attachment}}
-    @targetOffset={{this.offset}}
-    @attachment={{this.attachment}}
+    @tetherTarget={{this.modal.target}}
+    @targetAttachment={{this.modal.attachment}}
+    @targetOffset={{this.modal.offset}}
+    @attachment={{this.modal.attachment}}
 >
     <div class="modal-header">
         <h1>{{@header}}</h1>

@@ -16,6 +16,8 @@ export default class NotesController extends Controller {
     @service media;
     @service auth;
     @service navigation;
+    @service modal;
+
     defaultSortOrder = 'desc';
     viewModeOptions = [
         {

@@ -132,13 +132,13 @@
 
         {{#if this.isCreatingCollection}}
             <ModalDialog
-                    @containerClass="small"
+                    @containerClass={{this.modal.class}}
                     @onClose={{this.onCollectionClose}}
                     @translucentOverlay={{true}}
-                    @tetherTarget=".toolbar"
-                    @targetAttachment="top center"
-                    @targetOffset="100px 0"
-                    @attachment="top center"
+                    @tetherTarget={{this.modal.target}}
+                    @targetAttachment={{this.modal.attachment}}
+                    @targetOffset={{this.modal.offset}}
+                    @attachment={{this.modal.attachment}}
             >
                 <div class="modal-header">
                     <h1>Create New Collection</h1>

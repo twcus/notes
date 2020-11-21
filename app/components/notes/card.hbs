@@ -3,36 +3,38 @@
         <div class="card-body pell-content">
             {{{@note.content}}}
         </div>
-        <div class="card-footer">
-            <Utils::Timestamp
-                    @date={{@note.modifiedDate}}
-                    @format="MMM DD YYYY"
-                    @enableDiff=true
-                    @diffPrecision="days"
-                    @diffLimit=7
-            />
-            <div class="action-bar">
-                <Select::DropdownSelect
-                        @options={{@tags}}
-                        @selected={{@note.tags}}
-                        @onOpen={{this.onTagSelectorOpen}}
-                        @onClose={{this.onTagSelectorClose}}
-                        @onSelect={{this.selectTag}}
-                        @onCreate={{this.createTag}}
-                        @displayProperty="content"
-                        @searchEnabled={{true}}
-                        @createEnabled={{true}}
-                        @isMultiselect={{true}}
-                        @placeholder="Enter tag"
-                        @searchMessage="No tags found"
-                        @emptyMessage="No tags found"
-                        @searchField="content"
-                        @stopPropagation={{true}}
-                >
-                    <FaIcon @icon="tag" />
-                </Select::DropdownSelect>
-                <button {{on "click" (stop-propagation this.delete)}} class="button text"><FaIcon @icon="trash" /></button>
+        {{#if this.media.isDesktop}}
+            <div class="card-footer">
+                <Utils::Timestamp
+                        @date={{@note.modifiedDate}}
+                        @format="MMM DD YYYY"
+                        @enableDiff=true
+                        @diffPrecision="days"
+                        @diffLimit=7
+                />
+                <div class="action-bar">
+                    <Select::DropdownSelect
+                            @options={{@tags}}
+                            @selected={{@note.tags}}
+                            @onOpen={{this.onTagSelectorOpen}}
+                            @onClose={{this.onTagSelectorClose}}
+                            @onSelect={{this.selectTag}}
+                            @onCreate={{this.createTag}}
+                            @displayProperty="content"
+                            @searchEnabled={{true}}
+                            @createEnabled={{true}}
+                            @isMultiselect={{true}}
+                            @placeholder="Enter tag"
+                            @searchMessage="No tags found"
+                            @emptyMessage="No tags found"
+                            @searchField="content"
+                            @stopPropagation={{true}}
+                    >
+                        <FaIcon @icon="tag" />
+                    </Select::DropdownSelect>
+                    <button {{on "click" (stop-propagation this.delete)}} class="button text"><FaIcon @icon="trash" /></button>
+                </div>
             </div>
-        </div>
+        {{/if}}
     </div>
 </Link>

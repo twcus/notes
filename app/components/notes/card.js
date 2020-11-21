@@ -2,8 +2,11 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { isNone } from '@ember/utils';
+import { inject as service } from '@ember/service';
 
 export default class NoteCardComponent extends Component {
+    @service media;
+
     @tracked isActive = false;
 
     get editRoute() {
