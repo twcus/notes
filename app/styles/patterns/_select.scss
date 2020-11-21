@@ -13,6 +13,10 @@
 }
 
 .select-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
     .select-search-container {
         display: flex;
         align-items: center;
@@ -26,6 +30,11 @@
         }
     }
 
+    .select-options-container {
+        display: flex;
+        overflow: hidden;
+    }
+
     .select-create-container {
         .select-option {
             .fa-plus {
@@ -37,6 +46,8 @@
     .select-options {
         margin: 0;
         padding: 0;
+        overflow-y: auto;
+        width: 100%;
 
         li.select-option {
             list-style: none;

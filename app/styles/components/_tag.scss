@@ -1,6 +1,12 @@
 .tag-list {
     display: flex;
     flex-wrap: wrap;
+
+    &.limit-25 {
+        overflow: auto;
+        max-height: 25%;
+        min-height: 10%;
+    }
 }
 
 .tag-list-editable {

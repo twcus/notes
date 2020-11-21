@@ -1,10 +1,24 @@
-{{component (concat "notes/editors/" this.viewMode.editorComponent)
-    note=this.model.note
-    tags=this.sortedTags
-    collectionTags=this.collectionTags
-    onClose=this.transitionToNotes
-    onDelete=this.deleteNote
-    onNoteUpdate=this.updatedNote
-    onTagCreate=this.createTagAndAddToNote
-    onTagRemove=this.removeTagFromNote
-}}
+{{#if this.media.isDesktop}}
+    {{component (concat "notes/editors/" this.viewMode.editorComponent)
+                note=this.model.note
+                tags=this.sortedTags
+                collectionTags=this.collectionTags
+                onClose=this.transitionToNotes
+                onDelete=this.deleteNote
+                onNoteUpdate=this.updatedNote
+                onTagCreate=this.createTagAndAddToNote
+                onTagRemove=this.removeTagFromNote
+    }}
+{{else}}
+    <Notes::Editors::Fullscreen
+            @note={{this.model.note}}
+            @tags={{this.sortedTags}}
+            @collectionTags={{this.collectionTags}}
+            @onClose={{this.transitionToNotes}}
+            @onDelete={{this.deleteNote}}
+            @onNoteUpdate={{this.updatedNote}}
+            @onTagCreate={{this.createTagAndAddToNote}}
+            @onTagRemove={{this.removeTagFromNote}}
+            @title="Edit Note"
+    />
+{{/if}}

@@ -1,7 +1,7 @@
 {{#if (and this.session.isAuthenticated this.media.isDesktop)}}
     <Utils::NavMenu @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
 {{/if}}
-<main class={{unless this.session.isAuthenticated "unauthenticated"}}>
+<main class={{if (or (not this.session.isAuthenticated) (not this.media.isDesktop)) "no-leftbar"}}>
     <NotificationContainer @zindex="9999" />
     {{outlet}}
 </main>

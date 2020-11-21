@@ -2,10 +2,10 @@
     @containerClass={{@class}}
     @onClose={{@onClose}}
     @translucentOverlay={{true}}
-    @tetherTarget=".toolbar"
-    @targetAttachment="top center"
-    @targetOffset="100px 0"
-    @attachment="top center"
+    @tetherTarget={{this.target}}
+    @targetAttachment={{this.attachment}}
+    @targetOffset={{this.offset}}
+    @attachment={{this.attachment}}
 >
     <div class="modal-header">
         <h1>{{@header}}</h1>

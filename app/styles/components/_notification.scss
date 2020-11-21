@@ -17,8 +17,8 @@
     }
 }
 
-main.unauthenticated {
+main.no-leftbar {
     .ember-cli-notifications-notification__container {
-        left: 0; // This centers the notification with the page. Probably a better way to do this but this is good for now.
+        left: 0; // This centers the notification with the page when there is no left navbar.
     }
 }

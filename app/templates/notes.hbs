@@ -52,6 +52,8 @@
                             <FaIcon @icon="filter" />
                             {{#if this.media.isDesktop}}
                                 <span class="has-margin-left">Filter</span>
+                            {{else}}
+                                <span class="has-margin-left">({{this.tagFilters.length}})</span>
                             {{/if}}
                         </Select::DropdownSelect>
                     </div>

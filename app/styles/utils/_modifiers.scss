@@ -3,6 +3,10 @@
     font-weight: 600;
 }
 
+.is-regular {
+    font-size: 1rem !important;
+}
+
 /* Border */
 .border-bottom {
     border-bottom: 1px solid #d1d1d1;
@@ -14,11 +18,15 @@
 }
 
 .has-margin-right {
-    margin-right: 8px;
+    margin-right: 8px !important;
 }
 
 .has-margin-left {
-    margin-left: 8px;
+    margin-left: 8px !important;
+}
+
+.has-margin-bottom {
+    margin-bottom: 8px !important;
 }
 
 .has-side-margins-large {

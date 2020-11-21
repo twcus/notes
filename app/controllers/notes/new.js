@@ -14,6 +14,7 @@ export default class NotesEditController extends Controller {
 
     @service router;
     @service notifications;
+    @service media;
 
     @tracked viewMode;
     @tracked collectionTags;

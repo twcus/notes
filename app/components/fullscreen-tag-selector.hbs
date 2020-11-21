@@ -1,0 +1,45 @@
+<ModalDialog
+    @containerClass="large tall"
+    @translucentOverlay={{true}}
+>
+    <div class="modal-header">
+        <h1>Select Tags</h1>
+    </div>
+    <div class="modal-body">
+        <div class="container column">
+            {{#if (or @collectionTags @selected.length)}}
+                <div class="tag-list limit-25 has-margin-bottom">
+                    {{#each @collectionTags as |tag|}}
+                        <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
+                    {{/each}}
+                    {{#each (without @collectionTags @selected) as |tag|}}
+                        <Tags::Tag @tag={{tag}} @onRemove={{@onTagRemove}} />
+                    {{/each}}
+                </div>
+            {{/if}}
+            <Select::Select
+                    @options={{@options}}
+                    @selected={{@selected}}
+                    @onChange={{@onSelect}}
+                    @onCreate={{@onCreate}}
+                    @searchEnabled={{@searchEnabled}}
+                    @createEnabled={{@createEnabled}}
+                    @clearSearchOnCreate={{true}}
+                    @isMultiselect={{true}}
+                    @searchPlaceholder="Search Tags"
+                    @searchFields={{array "content"}}
+                    @noSearchResultsMessage="No tags found"
+                    @noOptionsMessage="No tags found"
+                    as |item|
+            >
+                <Select::SelectOption @option={{item}} @displayProperty="content" @selectedIcon="check" />
+            </Select::Select>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <div class="button-container">
+            <button type="button" class="button text" {{on "click" @onClose}}>Done</button>
+        </div>
+    </div>
+</ModalDialog>
