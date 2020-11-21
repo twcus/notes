@@ -1,4 +1,4 @@
-<div class="list-pane">
+<div class="list-pane {{unless this.media.isDesktop "full-width"}}">
     {{#each @notes as |note|}}
         <Link @route={{this.editRoute}} @models={{if this.collection (array note.id this.collection.id) (array note.id)}} as |link|>
             <div class="list-item-container {{if note.isNew "new"}} {{if link.isActive "active"}}" {{on "click" link.transitionTo}}>

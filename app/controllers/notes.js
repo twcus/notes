@@ -48,6 +48,9 @@ export default class NotesController extends Controller {
     tagSortKey = ['content:asc'];
 
     transitionWithEditorOpen() {
+        if (!this.media.isDesktop) {
+            return this.transitionToNotes();
+        }
         // This is one of the worst things I've ever done. TODO Make this not bad.
         // There's a timing issue when searching notes (but not filtering), and the transition doesn't work sometimes. This "fixes" it.
         later(() => {

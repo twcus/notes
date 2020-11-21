@@ -4,6 +4,30 @@
     overflow-y: auto;
     border-right: 1px solid #d1d1d1;
     flex-shrink: 0; // without this, the list disappears/shrinks when opening the editor, not sure why
+    &.full-width {
+        flex-basis: unset;
+        .list-item-container {
+            background-color: $white;
+            &:hover,
+            &.active {
+                background-color: $white-dark;
+                .pell-content blockquote {
+                    background-color: $grey-light;
+                }
+            }
+        }
+        .list-item {
+            background-color: $white;
+            margin: 0 24px;
+            .pell-content blockquote {
+                background-color: $white-dark;
+                border-left: 4px solid $primary;
+            }
+            &:hover {
+                background-color: $white-dark;
+            }
+        }
+    }
     .list-item {
         display: flex;
         flex-direction: column;
@@ -24,6 +48,9 @@
             blockquote {
                 background-color: $white-darker;
             }
+        }
+        .timestamp-container {
+            text-align: right;
         }
         .timestamp {
             color: $grey-dark;
@@ -52,16 +79,20 @@
     background-color: $white;
     overflow-x: hidden;
     overflow-wrap: break-word;
+    overflow: hidden;
     .pane-body {
         height: 100%;
         overflow-y: auto;
+    }
+    .pell-content {
+        padding: 0 24px;
     }
     // I don't know why these next 3 blocks are necessary, but the formatting of the footer in pane mode
     // got messed up somewhere along the way.
     .tag-list {
         padding: 0 16px;
     }
-    .timestamp {
+    .timestamp-container {
         padding: 0 0 16px 16px;
     }
     .actions {

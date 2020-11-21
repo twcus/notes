@@ -5,6 +5,7 @@ import RSVP from 'rsvp';
 
 export default class NotesNewRoute extends Route {
     @service editorFocus;
+    @service media;
 
     model() {
         return RSVP.hash({
@@ -22,6 +23,7 @@ export default class NotesNewRoute extends Route {
     @action
     willTransition(transition) {
         const note = this.controller.model.note;
+        const notesController = this.controllerFor('notes');
         if (!note.isDeleted) {
             // Don't transition to edit route if the note is empty.
             if (note && !note.content && !note.tags.length) {
@@ -29,6 +31,9 @@ export default class NotesNewRoute extends Route {
                     transition.abort();
                 } else {
                     note.destroyRecord();
+                    if (transition.targetName === 'notes.index' && notesController.viewMode.isEditorOpen && notesController.firstNoteInOrder && this.media.isDesktop) {
+                        this.transitionTo('notes.edit', notesController.firstNoteInOrder.id);
+                    }
                 }
             } else {
                 // Keep track of the focused element during the transition.

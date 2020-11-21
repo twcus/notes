@@ -3,14 +3,16 @@
         <button type="button" class="button text no-margin" {{on "click" @onClose}}><FaIcon @icon="arrow-left" /></button>
         <h1 class="align-center is-regular">
             {{@title}}
-            <Utils::Timestamp
-                @date={{@note.modifiedDate}}
-                @format="MMM DD YYYY"
-                @enableDiff={{true}}
-                @diffPrecision="days"
-                @diffLimit={{7}}
-                @prefix="Last updated"
-            />
+            {{#unless @note.isNew}}
+                <Utils::Timestamp
+                        @date={{@note.modifiedDate}}
+                        @format="MMM DD YYYY"
+                        @enableDiff={{true}}
+                        @diffPrecision="days"
+                        @diffLimit={{7}}
+                        @prefix="Last updated"
+                />
+            {{/unless}}
         </h1>
         <div class="modal-header-actions">
             <button type="button" class="button text no-margin" {{on "click" this.onDeleteOpen}}><FaIcon @icon="trash" /></button>

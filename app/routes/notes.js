@@ -6,6 +6,7 @@ import { inject as service } from '@ember/service';
 export default class NotesRoute extends Route {
     @service session;
     @service navigation;
+    @service media;
 
     beforeModel() {
         if (!this.session.isAuthenticated) {
@@ -30,7 +31,7 @@ export default class NotesRoute extends Route {
         controller.tagFilters = [];
         controller.collectionTags = [];
         controller.searchQuery = null;
-        if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length) {
+        if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length && this.media.isDesktop) {
             this.transitionTo('notes.edit', this.controller.sortedNotes[0].id);
         }
     }
