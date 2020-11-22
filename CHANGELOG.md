@@ -1,5 +1,11 @@
 # Changelog
 
+### 1.2.0
+11/21/2020
+* Responsive UI to support mobile devices
+* Search query for notes, collections, and tags is now case-insensitive
+* Usernames are now case-insensitive
+
 ### 1.1.0
 11/17/2020
 * Support for code blocks in text editor
