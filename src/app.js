@@ -62,6 +62,16 @@ server.use(cors());
 // Parses request body as JSON
 server.use(bodyParser.json());
 
+// Redirect to HTTPS in production
+server.use((request, response, next) => {
+    if (request.secure || process.env.NODE_ENVIRONMENT !== 'production') {
+        next();
+    } else {
+        response.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
+        response.redirect(301, `https://${request.headers.host}${request.url}`);
+    }
+});
+
 // Specify UI build directory
 server.use(express.static(__dirname + "/public/"));
 
