@@ -68,14 +68,16 @@ server.use((request, response, next) => {
     logger.info(`HOST ${request.headers.host}`);
     logger.info(`URL ${request.url}`);
     logger.info(`is secure ${request.secure}`);
+    logger.info(`FORWARDED-PROTO ${request.header('x-forwarded-proto')}`);
     logger.info(`CONDITIONAL ${request.secure || process.env.NODE_ENV !== 'production'}`);
-    if (request.secure || process.env.NODE_ENV !== 'production') {
-        logger.info('NOT REDIRECTING');
-        next();
-    } else {
-        logger.info('WE ARE REDIRECTING!!!');
+    if (request.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
+        logger.info('REDIRECTING');
         response.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
         response.redirect(301, `https://${request.headers.host}${request.url}`);
+    } else {
+        logger.info('NOT REDIRECTING');
+        next();
+
     }
 });
 
