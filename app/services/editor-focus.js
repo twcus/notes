@@ -1,12 +1,16 @@
 import Service from '@ember/service';
 import { action } from '@ember/object';
 import { later } from '@ember/runloop';
+import { inject as service } from '@ember/service';
 
 /**
  * This service is to manage the auto-focusing of the note editor during transitions.
  */
 export default class EditorFocusService extends Service {
     focusedElement = '';
+
+    @service media;
+    @service router;
 
     setFocusedElement(element) {
         this.focusedElement = element;
@@ -15,7 +19,7 @@ export default class EditorFocusService extends Service {
     @action
     focusEditor(editorElement) {
         // Don't focus the editor if the user is searching.
-        if (document.activeElement.tagName.toLowerCase() !== 'input') {
+        if ((this.media.isDesktop || this.router.isActive('notes.new') || this.router.isActive('collection-notes.new')) && document.activeElement.tagName.toLowerCase() !== 'input') {
             // Using later here because there seems to be a race condition in some instances that prevent the autofocus
             // from working, such as switching view modes
             later(() => {
@@ -43,7 +47,7 @@ export default class EditorFocusService extends Service {
                         textRange.select();
                     }
                 }
-            }, 50);
+            }, 150);
         }
     }
 }

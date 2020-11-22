@@ -30,26 +30,6 @@
         overflow: auto;
         margin-bottom: 8px;
     }
-    .search-container {
-        background-color: #61626b;
-        border-radius: 2px;
-        &:focus-within,
-        &:hover {
-            border: 0;
-            color: $white;
-            background-color: darken(#61626b, 10%);
-        }
-        svg {
-            color: $white;
-        }
-        input {
-            color: $white !important;
-        }
-        input::placeholder {
-            color: $white;
-            opacity: 0.75;
-        }
-    }
     .button:not(.tag-remove) {
         font-size: 0.8rem;
         color: $white;

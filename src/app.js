@@ -98,12 +98,12 @@ server.use((request, response, next) => {
 // Handle login requests
 server.post('/api/login', (request, response) => {
     let { username, password } = request.body;
-    username = username.toLowerCase();
+    username = username.toLowerCase().trim();
     if (!username || !password) {
         return response.status(400).send('Username and password are required.');
     }
     // Query PG for user
-    pool.query('select * from "user" where username = $1', [username])
+    pool.query('SELECT * FROM "user" WHERE LOWER(username) = $1', [username])
         .then(users => {
             const user = users.rows[0];
             // Compare password hash if user is found

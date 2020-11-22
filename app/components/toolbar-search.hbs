@@ -1,5 +1,5 @@
 {{#if this.media.isDesktop}}
-    <div class="search-container">
+    <div class="search-container {{if @searchQuery.length "active"}}">
         <FaIcon @icon="search" @class="{{if @searchQuery "is-accented"}}" />
         <Input
             type="text"
@@ -8,6 +8,7 @@
             @value={{@searchQuery}}
             {{on "input" this.searchQueryUpdated}}
         />
+        <button type="button" class="button no-margin" {{on "click" @clearSearch}}><FaIcon @class="no-margin" @icon="times" /></button>
     </div>
 {{else}}
     {{#if this.isSearchOpen}}

@@ -80,9 +80,9 @@ export default class NotesEditController extends Controller {
             .then(note => {
                 // Don't transition if the user has already navigated away from the notes.new route by the time this callback is reached
                 if (this.router.isActive('notes.new')) {
-                    this.transitionToRoute('notes.edit', note.id);
+                    this.replaceRoute('notes.edit', note.id);
                 } else if (this.router.isActive('collection-notes.new') && shouldTransitionToEdit) {
-                    this.transitionToRoute('collection-notes.edit', note.id);
+                    this.replaceRoute('collection-notes.edit', note.id);
                 }
             });
     }).keepLatest()) saveNoteTask;

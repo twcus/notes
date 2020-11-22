@@ -3,8 +3,17 @@
     align-items: center;
     background-color: $white;
     border-radius: $base-border-radius;
+    background-color: #61626b;
+    border-radius: 2px;
+    &:focus-within,
+    &:hover,
+    &.active {
+        border: 0;
+        color: $white;
+        background-color: darken(#61626b, 10%);
+    }
     svg {
-        color: $black-light;
+        color: $white;
         margin-left: 8px;
     }
     input {
@@ -12,10 +21,15 @@
         background-color: inherit;
         max-width: 100px;
         padding: 8px;
+        color: $white !important;
         line-height: 1rem;
         &:focus {
             outline: none;
         }
+    }
+    input::placeholder {
+        color: $white;
+        opacity: 0.75;
     }
     &.mobile {
         position: absolute;

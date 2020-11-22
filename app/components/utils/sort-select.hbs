@@ -12,7 +12,7 @@
             @stopPropagation={{true}}
             @optionClass="large"
     >
-        <FaIcon @icon={{this.selectedSortOrder.icon}} />
+        <span><FaIcon @icon={{this.selectedSortOrder.icon}} /></span>
     </Select::DropdownSelect>
     <Select::DropdownSelect
         @options={{@sortPropertyOptions}}
@@ -21,7 +21,7 @@
         @searchEnabled={{false}}
         @closeOnSelect={{true}}
         @matchTriggerWidth={{false}}
-        @triggerClass={{"hide-trigger"}}
+        @triggerClass="no-margin"
         @dropdownClass={{"has-top-border"}}
         @displayProperty="name"
         @stopPropagation={{true}}

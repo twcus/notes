@@ -1,4 +1,4 @@
-<MobileMenuWrapper @preventScroll={{false}} as |mmw|>
+<MobileMenuWrapper @preventScroll={{false}} @openDetectionWidth={{200}} as |mmw|>
     <mmw.MobileMenu @maxWidth="200" as |mm|>
         <Utils::NavMenu class="mobile" @subtitle={{this.navigation.subtitle}} @logout={{this.auth.logout}} />
     </mmw.MobileMenu>
@@ -122,7 +122,7 @@
             <ConfirmModal
                     @class="small"
                     @item={{this.noteForDeletion}}
-                    @header="Delete Collection"
+                    @header="Delete Note"
                     @buttonLabel="Delete"
                     @onClose={{fn this.onDeleteClose false}}
                     @onConfirm={{fn this.onDeleteClose true}}
