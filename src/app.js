@@ -65,6 +65,10 @@ server.use(bodyParser.json());
 // Redirect to HTTPS in production
 server.use((request, response, next) => {
     logger.info(`NODE_ENV ${process.env.NODE_ENV}`);
+    logger.info(`HOST ${request.headers.host}`);
+    logger.info(`URL ${request.url}`);
+    logger.info(`is secure ${request.secure}`);
+    logger.info(`CONDITIONAL ${request.secure || process.env.NODE_ENV !== 'production'}`);
     if (request.secure || process.env.NODE_ENV !== 'production') {
         logger.info('NOT REDIRECTING');
         next();
