@@ -64,7 +64,8 @@ server.use(bodyParser.json());
 
 // Redirect to HTTPS in production
 server.use((request, response, next) => {
-    if (request.secure || process.env.NODE_ENVIRONMENT !== 'production') {
+    if (request.secure || process.env.NODE_ENV !== 'production') {
+        logger.info(`NODE_ENV ${process.env.NODE_ENV}`);
         next();
     } else {
         response.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
