@@ -7,22 +7,37 @@
         @targetOffset={{this.modal.offset}}
         @attachment={{this.modal.attachment}}
 >
-    <div class="modal-header">
-        <h1>Edit Tag "{{@model.tag.content}}"</h1>
-        <FaIcon class="close-icon" @icon="times" {{on "click" this.onClose}} />
-    </div>
-    <div class="modal-body">
-        <div class="form">
-            <div class="form-field full-width">
-                <label for="name">Tag</label>
-                <Input name="name" type="text" aria-label="Tag Content" @value={{this.model.tag.content}} />
+    {{#if this.isDeleting}}
+        <div class="modal-body">
+            <span>Are you sure you want to delete tag "{{this.model.tag.content}}"?</span>
+        </div>
+        <div class="modal-footer">
+            <div class="button-container">
+                <button type="button" class="button text" {{on "click" this.onDeleteCancel}}>Cancel</button>
+                <button type="button" class="button" {{on "click" this.onDelete}}>Delete</button>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <div class="button-container">
-            <button type="button" class="button text" {{on "click" this.onClose}}>Cancel</button>
-            <button type="button" class="button" {{on "click" this.onSave}}>Save Tag</button>
+    {{else}}
+        <div class="modal-header">
+            <h1>Edit Tag "{{@model.tag.content}}"</h1>
+            <FaIcon class="close-icon" @icon="times" {{on "click" this.onClose}} />
         </div>
-    </div>
+        <div class="modal-body">
+            <div class="form">
+                <div class="form-field full-width">
+                    <label for="name">Tag</label>
+                    <Input name="name" type="text" aria-label="Tag Content" @value={{this.model.tag.content}} />
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="button-container">
+                <button type="button" class="button text" {{on "click" this.onClose}}>Cancel</button>
+                <button type="button" class="button" {{on "click" this.onSave}}>Save Tag</button>
+            </div>
+            <div class="button-container">
+                <button type="button" class="button text red" {{on "click" this.onDeleteOpen}}>Delete Tag</button>
+            </div>
+        </div>
+    {{/if}}
 </ModalDialog>

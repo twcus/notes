@@ -204,6 +204,11 @@ export default class NotesController extends Controller {
     }
 
     @action
+    deselectFilters() {
+        this.tagFilters = [];
+    }
+
+    @action
     searchQueryUpdated() {
         if (this.viewMode.isEditorOpen) {
             this.transitionWithEditorOpen();
@@ -265,7 +270,6 @@ export default class NotesController extends Controller {
     @action onTagSelectorClose() {
         this.isSelectingTags = false;
     }
-
 
     @action
     onCollectionOpen() {

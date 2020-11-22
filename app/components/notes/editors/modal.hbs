@@ -6,33 +6,32 @@
     @targetOffset="100px 0"
     @attachment="top center"
 >
-    <div class="modal-body" {{on "keydown" this.handleKeydown}}>
-        {{#if @saveTask.last.error}}
+    {{#if this.isConfirmingDelete}}
+        <div class="modal-body">
+            <span>Are you sure you want to delete this note?</span>
+        </div>
+        <div class="modal-footer">
+            <div class="button-container">
+                <button type="button" class="button text" {{on "click" this.onDeleteClose}}>Cancel</button>
+                <button type="button" class="button" {{on "click" this.delete}}>Delete</button>
+            </div>
+        </div>
+    {{else}}
+        <div class="modal-body" {{on "keydown" this.handleKeydown}}>
+            {{#if @saveTask.last.error}}
             {{!-- TODO real error handling --}}
-            {{@saveTask.last.error}}
-        {{/if}}
-        <Utils::TextEditor @content={{@note.content}} @onChange={{this.updatedNote}} />
-    </div>
-    <Notes::Footer
-        @note={{@note}}
-        @tags={{@tags}}
-        @collectionTags={{@collectionTags}}
-        @onTagSelect={{this.selectTag}}
-        @onTagCreate={{this.createTag}}
-        @onNoteDelete={{this.onDeleteOpen}}
-        @onTagRemove={{this.removeTagFromNote}}
-    />
+                {{@saveTask.last.error}}
+            {{/if}}
+            <Utils::TextEditor @content={{@note.content}} @onChange={{this.updatedNote}} />
+        </div>
+        <Notes::Footer
+                @note={{@note}}
+                @tags={{@tags}}
+                @collectionTags={{@collectionTags}}
+                @onTagSelect={{this.selectTag}}
+                @onTagCreate={{this.createTag}}
+                @onNoteDelete={{this.onDeleteOpen}}
+                @onTagRemove={{this.removeTagFromNote}}
+        />
+    {{/if}}
 </ModalDialog>
-
-{{#if this.isConfirmingDelete}}
-    <ConfirmModal
-            @class="small"
-            @item={{this.noteForDeletion}}
-            @header="Delete Note"
-            @buttonLabel="Delete"
-            @onClose={{fn this.onDeleteClose false}}
-            @onConfirm={{fn this.onDeleteClose true}}
-    >
-        Are you sure you want to delete this note?
-    </ConfirmModal>
-{{/if}}

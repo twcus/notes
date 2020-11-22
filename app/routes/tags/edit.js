@@ -12,8 +12,9 @@ export default class TagsEditRoute extends Route {
 
     @action
     willTransition() {
+        this.controller.isDeleting = false;
         let tag = this.controller.model.tag;
-        if (tag.hasDirtyAttributes) {
+        if (!tag.isDeleted && tag.hasDirtyAttributes) {
             tag.rollbackAttributes();
         }
     }

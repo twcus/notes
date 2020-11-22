@@ -58,4 +58,9 @@ export default class SelectComponent extends Component {
             this.searchText = '';
         }
     }
+
+    @action
+    onClear() {
+        this.searchText = '';
+    }
 }

@@ -13,6 +13,9 @@ export default class CollectionsEditRoute extends Route {
 
     @action
     willTransition() {
-        let collection = this.controller.model.collection.reload();
+        this.controller.isDeleting = false;
+        if (!this.controller.model.collection.isDeleted) {
+            this.controller.model.collection.reload();
+        }
     }
 }

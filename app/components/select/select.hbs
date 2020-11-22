@@ -3,6 +3,9 @@
         <div class="select-search-container">
             <FaIcon @icon="search" />
             <Input aria-label="Search" @type="text" @value={{this.searchText}} placeholder={{@searchPlaceholder}} />
+            <button type="button" class="button text {{unless this.searchText.length "is-hidden"}}" {{on "click" this.onClear}}>
+                <FaIcon @icon="times" />
+            </button>
         </div>
         {{#if this.showCreateOption}}
             <div class="select-create-container">
@@ -21,6 +24,11 @@
     {{#if this.showNoOptionsMessage}}
         <div class="select-empty-container">
             <span class="select-option"><FaIcon @icon="exclamation" />{{@noOptionsMessage}}</span>
+        </div>
+    {{/if}}
+    {{#if (and @deselectAll (not this.searchText))}}
+        <div class="select-clear-container">
+            <span class="select-option" {{on "click" @deselectAll}}><FaIcon @icon="times" /><em>{{@deselectAllMessage}}</em></span>
         </div>
     {{/if}}
     {{#if this.options.length}}

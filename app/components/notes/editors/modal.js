@@ -54,16 +54,12 @@ export default class NotesEditorsModalComponent extends Component {
     }
 
     @action
-    onDeleteOpen(note) {
+    onDeleteOpen() {
         this.isConfirmingDelete = true;
-        this.noteForDeletion = note;
     }
 
     @action
-    onDeleteClose(shouldDelete) {
+    onDeleteClose() {
         this.isConfirmingDelete = false;
-        if (shouldDelete) {
-            return this.args.onDelete(this.args.note);
-        }
     }
 }

@@ -19,54 +19,69 @@
             @targetOffset={{this.modal.offset}}
             @attachment={{this.modal.attachment}}
     >
-        <div class="modal-header">
-            <h1>Edit Collection "{{this.model.collection.name}}"</h1>
-            <FaIcon class="close-icon" @icon="times" {{on "click" this.onClose}} />
-        </div>
-        <div class="modal-body">
-            <div class="form">
-                <div class="form-field full-width">
-                    <label for="name">Name</label>
-                    <Input name="name" type="text" aria-label="Collection Name" @value={{this.model.collection.name}} />
-                </div>
-                <div class="form-field">
-                    {{#if this.media.isDesktop}}
-                        <Select::DropdownSelect
-                                @isMultiSelect={{true}}
-                                @options={{this.model.tags}}
-                                @selected={{this.model.collection.tags}}
-                                @onSelect={{this.selectTag}}
-                                @onCreate={{this.createTag}}
-                                @searchEnabled={{true}}
-                                @createEnabled={{true}}
-                                @displayProperty="content"
-                                @isMultiselect={{true}}
-                                @placeholder="Enter tag"
-                                @searchMessage="No tags found"
-                                @emptyMessage="No tags found"
-                                @searchField="content"
-                                @stopPropagation={{true}}
-                        >
-                            <span class="select-trigger">Select Tags <FaIcon @icon="tag" /></span>
-                        </Select::DropdownSelect>
-                    {{else}}
-                        <button type="button" class="button text" {{on "click" this.onTagSelectorOpen}}>
-                            <span class="select-trigger">Select Tags <FaIcon @icon="tag" /></span>
-                        </button>
-                    {{/if}}
+        {{#if this.isDeleting}}
+            <div class="modal-body">
+                <span>Are you sure you want to delete collection "{{this.model.collection.name}}"?</span>
+            </div>
+            <div class="modal-footer">
+                <div class="button-container">
+                    <button type="button" class="button text" {{on "click" this.onDeleteCancel}}>Cancel</button>
+                    <button type="button" class="button" {{on "click" this.onDelete}}>Delete</button>
                 </div>
             </div>
-        </div>
-        <div class="tag-list">
-            {{#each this.model.collection.tags as |tag|}}
-                <Tags::Tag @tag={{tag}} @onRemove={{if this.media.isDesktop this.onTagRemove}} />
-            {{/each}}
-        </div>
-        <div class="modal-footer">
-            <div class="button-container">
-                <button type="button" class="button text" {{on "click" this.onClose}}>Cancel</button>
-                <button type="button" class="button" {{on "click" this.onSave}}>Save Collection</button>
+        {{else}}
+            <div class="modal-header">
+                <h1>Edit Collection "{{this.model.collection.name}}"</h1>
+                <FaIcon class="close-icon" @icon="times" {{on "click" this.onClose}} />
             </div>
-        </div>
+            <div class="modal-body">
+                <div class="form">
+                    <div class="form-field full-width">
+                        <label for="name">Name</label>
+                        <Input name="name" type="text" aria-label="Collection Name" @value={{this.model.collection.name}} />
+                    </div>
+                    <div class="form-field">
+                        {{#if this.media.isDesktop}}
+                            <Select::DropdownSelect
+                                    @isMultiSelect={{true}}
+                                    @options={{this.model.tags}}
+                                    @selected={{this.model.collection.tags}}
+                                    @onSelect={{this.selectTag}}
+                                    @onCreate={{this.createTag}}
+                                    @searchEnabled={{true}}
+                                    @createEnabled={{true}}
+                                    @displayProperty="content"
+                                    @isMultiselect={{true}}
+                                    @placeholder="Enter tag"
+                                    @searchMessage="No tags found"
+                                    @emptyMessage="No tags found"
+                                    @searchField="content"
+                                    @stopPropagation={{true}}
+                            >
+                                <span class="select-trigger">Select Tags <FaIcon @icon="tag" /></span>
+                            </Select::DropdownSelect>
+                        {{else}}
+                            <button type="button" class="button text" {{on "click" this.onTagSelectorOpen}}>
+                                <span class="select-trigger">Select Tags <FaIcon @icon="tag" /></span>
+                            </button>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+            <div class="tag-list">
+                {{#each this.model.collection.tags as |tag|}}
+                    <Tags::Tag @tag={{tag}} @onRemove={{if this.media.isDesktop this.onTagRemove}} />
+                {{/each}}
+            </div>
+            <div class="modal-footer">
+                <div class="button-container">
+                    <button type="button" class="button text" {{on "click" this.onClose}}>Cancel</button>
+                    <button type="button" class="button" {{on "click" this.onSave}}>Save Collection</button>
+                </div>
+                <div class="button-container">
+                    <button type="button" class="button text red" {{on "click" this.onDeleteOpen}}>Delete Collection</button>
+                </div>
+            </div>
+        {{/if}}
     </ModalDialog>
 {{/if}}

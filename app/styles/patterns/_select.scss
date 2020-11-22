@@ -28,6 +28,12 @@
             border: none;
             line-height: normal;
         }
+        .fa-search {
+            margin-right: 4px;
+        }
+        button {
+            padding: 4px;
+        }
     }
 
     .select-options-container {
@@ -38,8 +44,20 @@
     .select-create-container {
         .select-option {
             .fa-plus {
-                margin-right: 8px;
+                margin-right: 12px;
             }
+        }
+    }
+
+    .select-clear-container {
+        display: flex;
+        font-size: 0.8rem;
+        width: 100%;
+        .select-option {
+            width: 100%;
+        }
+        svg {
+            margin-right: 16px;
         }
     }
 
@@ -98,7 +116,7 @@
     }
     .fa-exclamation {
         visibility: hidden;
-        margin-right: 8px;
+        margin-right: 12px;
     }
 }
 
@@ -140,7 +158,7 @@
     .fa-search {
         color: $grey-dark;
         font-size: 0.8rem;
-        margin-right: 8px;
+        margin-right: 12px;
     }
 
     .fa-times {
@@ -173,11 +191,11 @@
 .select-option-selected-icon {
     font-size: 0.8rem;
     color: $grey-dark;
-    margin-right: 8px;
+    margin-right: 12px;
 }
 
 .select-option-icon {
-    margin-right: 8px;
+    margin-right: 12px;
     color: $black-light;
     font-size: 1rem;
 }
@@ -195,14 +213,14 @@
         .select-option-selected-icon {
             visibility: visible;
             color: $grey-dark;
-            margin-right: 8px;
+            margin-right: 12px;
         }
     }
 
     &[aria-selected=false] {
         .select-option-selected-icon {
             visibility: hidden;
-            margin-right: 8px;
+            margin-right: 12px;
         }
     }
 }

@@ -10,6 +10,7 @@ export default class CollectionsEditController extends Controller {
 
     @tracked selectedTags = [];
     @tracked isSelectingTags = false;
+    @tracked isDeleting = false;
 
     @action
     onClose() {
@@ -57,7 +58,31 @@ export default class CollectionsEditController extends Controller {
         this.isSelectingTags = true;
     }
 
-    @action onTagSelectorClose() {
+    @action
+    onTagSelectorClose() {
         this.isSelectingTags = false;
+    }
+
+    @action
+    onDelete() {
+        const collectionName = this.model.collection.name;
+        return this.model.collection.destroyRecord()
+            .then(() => {
+                this.notifications.clearAll().success(`Collection "${collectionName} was deleted.`);
+                this.transitionToRoute('collections');
+            })
+            .catch(() => {
+                this.notifications.clearAll().error('Failed to delete collection.');
+            });
+    }
+
+    @action
+    onDeleteOpen() {
+        this.isDeleting = true;
+    }
+
+    @action
+    onDeleteCancel() {
+        this.isDeleting = false;
     }
 }

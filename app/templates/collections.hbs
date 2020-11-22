@@ -25,6 +25,8 @@
                                     @options={{this.sortedTags}}
                                     @selected={{this.tagFilters}}
                                     @onSelect={{this.updateTagFilters}}
+                                    @deselectAll={{this.deselectFilters}}
+                                    @deselectAllMessage="Deselect all"
                                     @searchEnabled={{true}}
                                     @emptyMessage="No tags found"
                                     @searchMessage="No tags found"
@@ -128,6 +130,8 @@
                     @selected={{this.tagFilters}}
                     @onSelect={{this.updateTagFilters}}
                     @searchEnabled={{true}}
+                    @deselectAll={{this.deselectFilters}}
+                    @deselectAllMessage="Deselect all"
                     @onClose={{this.onTagSelectorClose}}
             />
         {{/if}}

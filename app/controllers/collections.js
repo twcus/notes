@@ -54,6 +54,11 @@ export default class CollectionsController extends Controller {
     }
 
     @action
+    deselectFilters() {
+        this.tagFilters = [];
+    }
+
+    @action
     onDeleteOpen(collection) {
         this.isConfirmingDelete = true;
         this.collectionForDeletion = collection;

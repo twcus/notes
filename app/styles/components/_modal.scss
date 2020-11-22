@@ -16,7 +16,7 @@
     z-index: $modal-index;
     line-height: normal;
     &.small {
-        width: 40%;
+        width: 50%;
     }
     &.large {
         width: 80%;
@@ -70,6 +70,10 @@
 }
 
 .modal-footer {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 36px;
     .button-container {
         display: flex;

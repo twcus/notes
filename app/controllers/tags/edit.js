@@ -1,10 +1,13 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
+import { tracked } from "@glimmer/tracking";
 
 export default class TagsEditController extends Controller {
     @service notifications;
     @service modal;
+
+    @tracked isDeleting = false;
 
     @action
     onClose() {
@@ -26,5 +29,28 @@ export default class TagsEditController extends Controller {
         } else {
             this.notifications.clearAll().error(tagValidation.message);
         }
+    }
+
+    @action
+    onDelete() {
+        const tagContent = this.model.tag.content;
+        return this.model.tag.destroyRecord()
+            .then(() => {
+                this.notifications.clearAll().success(`Tag "${tagContent} was deleted.`);
+                this.transitionToRoute('tags');
+            })
+            .catch(() => {
+                this.notifications.clearAll().error('Failed to delete tag.');
+            });
+    }
+
+    @action
+    onDeleteOpen() {
+        this.isDeleting = true;
+    }
+
+    @action
+    onDeleteCancel() {
+        this.isDeleting = false;
     }
 }
