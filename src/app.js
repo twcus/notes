@@ -62,22 +62,13 @@ server.use(cors());
 // Parses request body as JSON
 server.use(bodyParser.json());
 
-// Redirect to HTTPS in production
+// Always redirect to HTTPS in production
 server.use((request, response, next) => {
-    logger.info(`NODE_ENV ${process.env.NODE_ENV}`);
-    logger.info(`HOST ${request.headers.host}`);
-    logger.info(`URL ${request.url}`);
-    logger.info(`is secure ${request.secure}`);
-    logger.info(`FORWARDED-PROTO ${request.header('x-forwarded-proto')}`);
-    logger.info(`CONDITIONAL ${request.secure || process.env.NODE_ENV !== 'production'}`);
     if (request.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
-        logger.info('REDIRECTING');
         response.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
         response.redirect(301, `https://${request.headers.host}${request.url}`);
     } else {
-        logger.info('NOT REDIRECTING');
         next();
-
     }
 });
 
