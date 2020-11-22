@@ -66,7 +66,7 @@ server.use(bodyParser.json());
 server.use((request, response, next) => {
     // For Heroku deployments, request.secure will always be false, so must use the x-forwarded-header proto to determine
     // if the request is HTTPS. It might be different for other cloud hosts, something to keep in mind.
-    if (request.header('x-forwarded-proto') !== 'https' || !request.secure && process.env.NODE_ENV === 'production') {
+    if (request.header('x-forwarded-proto') !== 'https' && process.env.NODE_ENV === 'production') {
         response.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
         response.redirect(301, `https://${request.headers.host}${request.url}`);
     } else {
