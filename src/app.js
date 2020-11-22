@@ -64,10 +64,12 @@ server.use(bodyParser.json());
 
 // Redirect to HTTPS in production
 server.use((request, response, next) => {
+    logger.info(`NODE_ENV ${process.env.NODE_ENV}`);
     if (request.secure || process.env.NODE_ENV !== 'production') {
-        logger.info(`NODE_ENV ${process.env.NODE_ENV}`);
+        logger.info('NOT REDIRECTING');
         next();
     } else {
+        logger.info('WE ARE REDIRECTING!!!');
         response.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains')
         response.redirect(301, `https://${request.headers.host}${request.url}`);
     }
