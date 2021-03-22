@@ -113,7 +113,7 @@ server.post('/api/login', (request, response) => {
                 .then(result => {
                     if (result) {
                         // Generate a JWT
-                        const token = jwt.sign({ username: user.username,  id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                        const token = jwt.sign({ username: user.username,  id: user.id }, process.env.JWT_SECRET, { expiresIn: '8h' });
                         logRequest(request, response);
                         return response.json({
                             user: {

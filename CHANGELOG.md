@@ -20,7 +20,7 @@
 * Support for code blocks in text editor
 * Small styling enhancements
 * Fixed UI bugs around autosaving new notes, note editor autofocus, and searing in pane view mode
-* Fixed bug that caused the login form to not work on first try
+* Fixed a bug that caused the login form to not work on first try
 
 ### 1.0.0
 11/15/2020
