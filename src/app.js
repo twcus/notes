@@ -108,6 +108,12 @@ server.post('/api/login', (request, response) => {
     pool.query('SELECT * FROM "user" WHERE LOWER(username) = $1', [username])
         .then(users => {
             const user = users.rows[0];
+            console.log('AFTER QUERY!!');
+            console.log(user.username)
+            console.log(password);
+            console.log(user.password);
+            console.log(bcrypt.compareSync(password, user.password))
+            console.log('entering promise...');
             // Compare password hash if user is found
             return bcrypt.compare(password, user.password)
                 .then(result => {
@@ -134,6 +140,8 @@ server.post('/api/login', (request, response) => {
                 });
         })
         .catch(() => {
+            console.log('IN CATCH');
+            console.log(password);
             response.status(401).send('Incorrect username or password.');
             logRequest(request, response);
         });
