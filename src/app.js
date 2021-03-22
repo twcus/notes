@@ -112,6 +112,8 @@ server.post('/api/login', (request, response) => {
             return bcrypt.compare(password, user.password)
                 .then(result => {
                     if (result) {
+                        console.log(password);
+                        console.log(user.password);
                         // Generate a JWT
                         const token = jwt.sign({ username: user.username,  id: user.id }, process.env.JWT_SECRET, { expiresIn: '8h' });
                         logRequest(request, response);
@@ -123,6 +125,9 @@ server.post('/api/login', (request, response) => {
                             token
                         });
                     } else {
+                        console.log('RESULT FAILED!!!');
+                        console.log(password);
+                        console.log(user.password);
                         // TODO Better error handling
                         throw new Error();
                     }
