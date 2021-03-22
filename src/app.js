@@ -139,7 +139,8 @@ server.post('/api/login', (request, response) => {
                     }
                 });
         })
-        .catch(() => {
+        .catch((e) => {
+            console.log(e);
             console.log('IN CATCH');
             console.log(password);
             response.status(401).send('Incorrect username or password.');
