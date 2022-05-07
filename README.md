@@ -12,16 +12,16 @@ and save common tag combinations as collections for quick access.
 
 ## Getting Started
 ### Prerequisites
-Install [Node v10.x](https://nodejs.org/en/), and [Postgres v11.x](https://www.postgresql.org/).
+Install [Node v10.x](https://nodejs.org/en/), [Postgres v11.x](https://www.postgresql.org/), and [Yarn](https://yarnpkg.com/).
 
 ### Install Dependencies
 ```
-npm install
+yarn
 ```
 
 ### UI
 ```
-npm run start:ember
+yarn start:ember
 ```
 
 ### API
@@ -35,7 +35,7 @@ DATABASE_URL=postgres://notes_admin:notes_admin@localhost:5432/notes
 
 #### Start
 ```
-npm run start
+yarn start
 ```
 
 ### Database

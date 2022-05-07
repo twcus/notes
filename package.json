@@ -4,7 +4,7 @@
   "description": "Web app for note taking",
   "main": "dist/app.js",
   "scripts": {
-    "start:server": "npm run build:server && node dist/app.js",
+    "start:server": "yarn run build:server && node dist/app.js",
     "build:server": "babel --presets es2015 -d dist/ src",
     "start:ui": "ember serve --proxy http://localhost:8080",
     "build:ui": "ember build --environment=production --output-path=dist/public",
@@ -13,7 +13,7 @@
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
-    "heroku-postbuild": "npm run build:ui"
+    "heroku-postbuild": "yarn run build:ui"
   },
   "directories": {
     "test": "tests"
@@ -28,7 +28,7 @@
     "url": "https://gitlab.com/twcus/notes-app/issues"
   },
   "engines": {
-    "node": "10.x"
+    "node": "16.x"
   },
   "homepage": "https://gitlab.com/twcus/notes-app#README",
   "dependencies": {
