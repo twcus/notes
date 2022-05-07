@@ -105,15 +105,13 @@ server.post('/api/login', (request, response) => {
         return response.status(400).send('Username and password are required.');
     }
     // Query PG for user
-    pool.query('SELECT * FROM "user" WHERE LOWER(username) = $1', [username])
+    pool.query('SELECT * FROM "account" WHERE LOWER(username) = $1', [username])
         .then(users => {
             const user = users.rows[0];
             // Compare password hash if user is found
             return bcrypt.compare(password, user.password)
                 .then(result => {
                     if (result) {
-                        console.log(password);
-                        console.log(user.password);
                         // Generate a JWT
                         const token = jwt.sign({ username: user.username,  id: user.id }, process.env.JWT_SECRET, { expiresIn: '8h' });
                         logRequest(request, response);
@@ -125,15 +123,13 @@ server.post('/api/login', (request, response) => {
                             token
                         });
                     } else {
-                        console.log('RESULT FAILED!!!');
-                        console.log(password);
-                        console.log(user.password);
                         // TODO Better error handling
                         throw new Error();
                     }
                 });
         })
-        .catch(() => {
+        .catch(err => {
+            logger.error(err);
             response.status(401).send('Incorrect username or password.');
             logRequest(request, response);
         });
