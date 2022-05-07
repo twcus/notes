@@ -69,5 +69,3 @@ heroku config:set JWT_SECRET=<jwt_secret>
 git push heroku master
 heroku open
 ```
-
-
