@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default class CollectionsEditController extends Controller {
     @service router;
+    @service store;
     @service notifications;
     @service media;
     @service modal;

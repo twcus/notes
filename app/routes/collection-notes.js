@@ -7,6 +7,7 @@ export default class CollectionNotesRoute extends Route {
     controllerName = 'notes';
 
     @service session;
+    @service store;
     @service router;
     @service navigation;
     @service media;

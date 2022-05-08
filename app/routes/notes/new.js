@@ -5,6 +5,7 @@ import RSVP from 'rsvp';
 
 export default class NotesNewRoute extends Route {
     @service router;
+    @service store;
     @service editorFocus;
     @service media;
 

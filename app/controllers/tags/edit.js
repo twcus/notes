@@ -5,6 +5,7 @@ import { tracked } from "@glimmer/tracking";
 
 export default class TagsEditController extends Controller {
     @service router;
+    @service store;
     @service notifications;
     @service modal;
 

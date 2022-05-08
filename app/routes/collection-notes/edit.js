@@ -7,6 +7,7 @@ export default class CollectionNoteEditRoute extends Route {
     controllerName = 'notes.edit';
 
     @service router;
+    @service store;
     
     model(params) {
         return RSVP.hash({

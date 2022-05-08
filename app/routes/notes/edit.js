@@ -5,6 +5,7 @@ import { inject as service } from '@ember/service';
 
 export default class NotesEditRoute extends Route {
     @service router;
+    @service store;
     @service media;
 
     model(params) {

@@ -13,6 +13,7 @@ export default class NotesEditController extends Controller {
     tagSortKey = ['content:asc'];
 
     @service router;
+    @service store;
     @service notifications;
     @service media;
 

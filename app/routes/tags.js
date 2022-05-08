@@ -3,6 +3,7 @@ import { inject as service } from '@ember/service';
 
 export default class TagsRoute extends Route {
     @service session;
+    @service store;
     @service router;
     @service navigation;
 
