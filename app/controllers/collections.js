@@ -7,6 +7,7 @@ import { inject as service } from '@ember/service';
 export default class CollectionsController extends Controller {
     tagSortKey = ['content:asc'];
 
+    @service router;
     @service notifications;
     @service media;
     @service navigation;
@@ -40,7 +41,7 @@ export default class CollectionsController extends Controller {
 
     @action
     transitionToNewCollection() {
-        this.transitionToRoute('collections.new');
+        this.router.transitionTo('collections.new');
     }
 
     @action
@@ -86,6 +87,6 @@ export default class CollectionsController extends Controller {
 
     @action
     onEdit(collection) {
-        this.transitionToRoute('collections.edit', collection.id);
+        this.router.transitionTo('collections.edit', collection.id);
     }
 }

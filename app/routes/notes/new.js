@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default class NotesNewRoute extends Route {
+    @service router;
     @service editorFocus;
     @service media;
 
@@ -32,7 +33,7 @@ export default class NotesNewRoute extends Route {
                 } else {
                     note.destroyRecord();
                     if (transition.targetName === 'notes.index' && notesController.viewMode.isEditorOpen && notesController.firstNoteInOrder && this.media.isDesktop) {
-                        this.transitionTo('notes.edit', notesController.firstNoteInOrder.id);
+                        this.router.transitionTo('notes.edit', notesController.firstNoteInOrder.id);
                     }
                 }
             } else {

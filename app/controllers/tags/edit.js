@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 import { tracked } from "@glimmer/tracking";
 
 export default class TagsEditController extends Controller {
+    @service router;
     @service notifications;
     @service modal;
 
@@ -11,7 +12,7 @@ export default class TagsEditController extends Controller {
 
     @action
     onClose() {
-        this.transitionToRoute('tags');
+        this.router.transitionTo('tags');
     }
 
     @action
@@ -21,7 +22,7 @@ export default class TagsEditController extends Controller {
             return this.model.tag.save()
                 .then(() => {
                     this.notifications.clearAll().success(`Collection "${this.model.tag.content}" was saved.`);
-                    this.transitionToRoute('tags');
+                    this.router.transitionTo('tags');
                 })
                 .catch(res => {
                     this.notifications.clearAll().error(res);
@@ -37,7 +38,7 @@ export default class TagsEditController extends Controller {
         return this.model.tag.destroyRecord()
             .then(() => {
                 this.notifications.clearAll().success(`Tag "${tagContent} was deleted.`);
-                this.transitionToRoute('tags');
+                this.router.transitionTo('tags');
             })
             .catch(() => {
                 this.notifications.clearAll().error('Failed to delete tag.');

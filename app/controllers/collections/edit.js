@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class CollectionsEditController extends Controller {
+    @service router;
     @service notifications;
     @service media;
     @service modal;
@@ -14,7 +15,7 @@ export default class CollectionsEditController extends Controller {
 
     @action
     onClose() {
-        this.transitionToRoute('collections');
+        this.router.transitionTo('collections');
     }
 
     @action
@@ -24,7 +25,7 @@ export default class CollectionsEditController extends Controller {
             return this.model.collection.save()
                 .then(() => {
                     this.notifications.clearAll().success(`Collection "${this.model.collection.name}" was saved.`);
-                    this.transitionToRoute('collections')
+                    this.router.transitionTo('collections')
                 })
                 .catch(res => {
                     this.notifications.clearAll().error(res);
@@ -69,7 +70,7 @@ export default class CollectionsEditController extends Controller {
         return this.model.collection.destroyRecord()
             .then(() => {
                 this.notifications.clearAll().success(`Collection "${collectionName} was deleted.`);
-                this.transitionToRoute('collections');
+                this.router.transitionTo('collections');
             })
             .catch(() => {
                 this.notifications.clearAll().error('Failed to delete collection.');

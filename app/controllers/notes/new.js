@@ -30,7 +30,7 @@ export default class NotesEditController extends Controller {
 
     @action
     transitionToNotes() {
-        this.transitionToRoute(this.baseNotesRoute);
+        this.router.transitionTo(this.baseNotesRoute);
     }
 
     @action
