@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.4.0
+* Upgraded Ember to 3.28
+* Increased JWT timeout
+* Updated database models
+
 ### 1.3.0
 11/22/2020
 * HTTP to HTTPS redirection in production environments
