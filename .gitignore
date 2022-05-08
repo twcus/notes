@@ -20,6 +20,7 @@ packages/notes-backend/public/
 /.env*
 /.pnp*
 /.sass-cache
+/.eslintcache
 /connect.lock
 /coverage/
 /libpeerconnection.log

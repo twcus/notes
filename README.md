@@ -12,16 +12,11 @@ and save common tag combinations as collections for quick access.
 
 ## Getting Started
 ### Prerequisites
-Install [Node v10.x](https://nodejs.org/en/), and [Postgres v11.x](https://www.postgresql.org/).
+Install [Node v10.x](https://nodejs.org/en/), [Postgres v11.x](https://www.postgresql.org/), and [Yarn](https://yarnpkg.com/).
 
 ### Install Dependencies
 ```
-npm install
-```
-
-### UI
-```
-npm run start:ember
+yarn
 ```
 
 ### API
@@ -33,18 +28,23 @@ JWT_SECRET=jwtdevsecret
 DATABASE_URL=postgres://notes_admin:notes_admin@localhost:5432/notes
 ```
 
-#### Start
-```
-npm run start
-```
 
 ### Database
 #### Setup Postgres DB and User
 ```
 cd db && ./setup.sh
 ```
-
 *Note: This doesn't currently set up an initial user in the database. This must be done manually.*
+
+#### API
+```
+yarn start:api
+```
+
+### UI
+```
+yarn start:ember
+```
 
 ### Test
 Coming Soon™
@@ -69,5 +69,3 @@ heroku config:set JWT_SECRET=<jwt_secret>
 git push heroku master
 heroku open
 ```
-
-

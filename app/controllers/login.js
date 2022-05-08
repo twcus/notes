@@ -5,6 +5,7 @@ import { action } from "@ember/object";
 
 export default class LoginController extends Controller {
     @service session;
+    @service router;
     @service notifications;
 
     @tracked username;
@@ -22,9 +23,9 @@ export default class LoginController extends Controller {
             await this.session.authenticate('authenticator:jwt', { username: this.username, password: this.password });
             this.username = this.password = null;
             this.notifications.clearAll();
-            this.transitionToRoute('notes');
+            this.router.transitionTo('notes');
         } catch(error) {
-            this.notifications.clearAll().error(error.text);
+            this.notifications.clearAll().error(error);
         }
     }
 }

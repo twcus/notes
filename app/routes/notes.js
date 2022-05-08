@@ -5,12 +5,14 @@ import { inject as service } from '@ember/service';
 
 export default class NotesRoute extends Route {
     @service session;
+    @service store;
+    @service router;
     @service navigation;
     @service media;
 
     beforeModel() {
         if (!this.session.isAuthenticated) {
-            this.transitionTo('login');
+            this.router.transitionTo('login');
         }
     }
 
@@ -32,14 +34,14 @@ export default class NotesRoute extends Route {
         controller.collectionTags = [];
         controller.searchQuery = null;
         if (this.controller.viewMode.isEditorOpen && this.controller.sortedNotes.length && this.media.isDesktop) {
-            this.transitionTo('notes.edit', this.controller.sortedNotes[0].id);
+            this.router.transitionTo('notes.edit', this.controller.sortedNotes[0].id);
         }
     }
 
     @action
     willTransition(transition) {
         if (transition.targetName === 'notes.index' && this.controller.viewMode.isEditorOpen) {
-            this.transitionTo('notes.edit', this.controllerFor('notes').sortedNotes[0].id);
+            this.router.transitionTo('notes.edit', this.controllerFor('notes').sortedNotes[0].id);
         }
     }
 }

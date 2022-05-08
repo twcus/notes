@@ -57,7 +57,7 @@ export default class NotesController extends Controller {
         // There's a timing issue when searching notes (but not filtering), and the transition doesn't work sometimes. This "fixes" it.
         later(() => {
             if (this.firstNoteInOrder) {
-                this.transitionToRoute(`${this.baseNotesRoute}.edit`, this.firstNoteInOrder.id);
+                this.router.transitionTo(`${this.baseNotesRoute}.edit`, this.firstNoteInOrder.id);
             } else {
                 this.transitionToNotes();
             }
@@ -149,12 +149,12 @@ export default class NotesController extends Controller {
 
     @action
     transitionToNotes() {
-        this.transitionToRoute(this.baseNotesRoute);
+        this.router.transitionTo(this.baseNotesRoute);
     }
 
     @action
     transitionToNewNote() {
-        this.transitionToRoute(`${this.baseNotesRoute}.new`);
+        this.router.transitionTo(`${this.baseNotesRoute}.new`);
     }
 
     @action

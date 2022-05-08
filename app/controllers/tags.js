@@ -4,6 +4,7 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class TagsController extends Controller {
+    @service router;
     @service notifications;
     @service media;
     @service auth;
@@ -26,7 +27,7 @@ export default class TagsController extends Controller {
 
     @action
     transitionToNewTag() {
-        this.transitionToRoute('tags.new');
+        this.router.transitionTo('tags.new');
     }
 
     @action
@@ -49,6 +50,6 @@ export default class TagsController extends Controller {
 
     @action
     onEdit(tag) {
-        this.transitionToRoute('tags.edit', tag.id);
+        this.router.transitionTo('tags.edit', tag.id);
     }
 }

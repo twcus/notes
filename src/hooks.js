@@ -4,12 +4,12 @@ const { methods } = fortune;
 
 const updateCreatedDate = record => {
     let date = new Date();
-    record.createdDate = record.modifiedDate = date;
+    record.created_date = record.modified_date = date;
     return record;
 };
 
 const updateModifiedDate = update => {
-    update.replace.modifiedDate = new Date();
+    update.replace.modified_date = new Date();
     return update;
 };
 

@@ -13,6 +13,7 @@ export default class NotesEditController extends Controller {
     tagSortKey = ['content:asc'];
 
     @service router;
+    @service store;
     @service notifications;
     @service media;
 
@@ -30,7 +31,7 @@ export default class NotesEditController extends Controller {
 
     @action
     transitionToNotes() {
-        this.transitionToRoute(this.baseNotesRoute);
+        this.router.transitionTo(this.baseNotesRoute);
     }
 
     @action

@@ -4,6 +4,8 @@ import { tracked } from '@glimmer/tracking';
 import { inject as service } from '@ember/service';
 
 export default class CollectionsNewController extends Controller {
+    @service router;
+    @service store;
     @service notifications;
     @service modal;
 
@@ -11,7 +13,7 @@ export default class CollectionsNewController extends Controller {
 
     @action
     onClose() {
-        this.transitionToRoute('collections');
+        this.router.transitionTo('collections');
     }
 
     @action
@@ -21,7 +23,7 @@ export default class CollectionsNewController extends Controller {
             return this.model.collection.save()
                 .then(() => {
                     this.notifications.clearAll().success(`Collection "${this.model.collection.name}" was saved.`);
-                    this.transitionToRoute('collections');
+                    this.router.transitionTo('collections');
                 })
                 .catch(res => {
                     this.notifications.clearAll().error(res);
