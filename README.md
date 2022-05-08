@@ -19,11 +19,6 @@ Install [Node v10.x](https://nodejs.org/en/), [Postgres v11.x](https://www.postg
 yarn
 ```
 
-### UI
-```
-yarn start:ember
-```
-
 ### API
 #### Prerequisites
 Create a `.env` file in the root project directory with the required environment variables. For development environments,
@@ -33,18 +28,23 @@ JWT_SECRET=jwtdevsecret
 DATABASE_URL=postgres://notes_admin:notes_admin@localhost:5432/notes
 ```
 
-#### Start
-```
-yarn start
-```
 
 ### Database
 #### Setup Postgres DB and User
 ```
 cd db && ./setup.sh
 ```
-
 *Note: This doesn't currently set up an initial user in the database. This must be done manually.*
+
+#### API
+```
+yarn start:api
+```
+
+### UI
+```
+yarn start:ember
+```
 
 ### Test
 Coming Soon™
