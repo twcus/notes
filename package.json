@@ -31,7 +31,7 @@
     "url": "https://gitlab.com/twcus/notes-app/issues"
   },
   "engines": {
-    "node": "12.* || 14.* || >= 16"
+    "node": "12.* || 14.* || 16.x"
   },
   "homepage": "https://gitlab.com/twcus/notes-app#README",
   "dependencies": {
