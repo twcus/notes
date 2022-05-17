@@ -10,7 +10,7 @@
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <Input type="password" @value={{this.password}} />
+                    <Input @type="password" @value={{this.password}} />
                 </div>
                 <button type="submit" class="button primary" {{on "click" this.authenticate}}>Login</button>
             </form>
