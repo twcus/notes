@@ -1,10 +1,9 @@
 .search-container {
     display: flex;
     align-items: center;
-    background-color: $white;
-    border-radius: $base-border-radius;
     background-color: #61626b;
-    border-radius: 2px;
+    border-radius: 4px;
+    padding: 2px 8px;
     &:focus-within,
     &:hover,
     &.active {

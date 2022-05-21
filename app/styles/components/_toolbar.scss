@@ -33,9 +33,10 @@
     .button:not(.tag-remove) {
         font-size: 0.8rem;
         color: $white;
-        padding: 8px;
+        padding: 8px 16px;
         border: 0;
         background-color: inherit;
+        border-radius: 4px;
         &:focus,
         &:hover {
             color: $white;
