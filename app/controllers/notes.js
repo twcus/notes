@@ -19,6 +19,8 @@ export default class NotesController extends Controller {
     @service modal;
 
     defaultSortOrder = 'desc';
+    defaultSortProperty = 'modifiedDate';
+
     viewModeOptions = [
         {
             name: 'Card',
@@ -66,14 +68,13 @@ export default class NotesController extends Controller {
 
     @tracked tagFilters;
     @tracked collectionTags;
-    @tracked sortOrder;
+    @tracked selectedSort;
     @tracked searchQuery;
     @tracked collectionName;
     @tracked noteForDeletion;
     @tracked noteForTagSelection;
     @tracked viewMode = this.viewModeOptions[0];
     @tracked isTaskRunning = this.saveNoteTask.isRunning;
-    @tracked sortProperty = this.sortOptions[0];
     @tracked isConfirmingDelete = false;
     @tracked isSelectingTags = false;
     @tracked isCreatingCollection = false;
@@ -104,8 +105,10 @@ export default class NotesController extends Controller {
     }
 
     get sortPropertyWithOrder() {
-        let order = this.sortOrder ? this.sortOrder.order : this.defaultSortOrder;
-        return [`${this.sortProperty.property}:${order}`];
+        if (this.selectedSort) {
+            return [`${this.selectedSort.property}:${this.selectedSort.order}`]
+        }
+        return [`${this.defaultSortProperty}:${this.defaultSortOrder}`];
     }
 
     get firstNoteInOrder() {
@@ -128,13 +131,8 @@ export default class NotesController extends Controller {
     }
 
     @action
-    selectSortProperty(property) {
-        this.sortProperty = property;
-    }
-
-    @action
-    selectSortOrder(order) {
-        this.sortOrder = order;
+    selectSort(sortPropertyWithOrder) {
+        this.selectedSort = sortPropertyWithOrder;
     }
 
     @action

@@ -64,10 +64,10 @@
                     <div class="toolbar-item">
                         <Utils::SortSelect
                                 @sortPropertyOptions={{this.sortOptions}}
-                                @selectedSortProperty={{this.sortProperty}}
-                                @onSelectSortProperty={{this.selectSortProperty}}
-                                @onSelectSortOrder={{this.selectSortOrder}}
+                                @selectedSortOption={{this.sortPropertyWithOrder}}
+                                @onSelectSort={{this.selectSort}}
                                 @defaultSortOrder={{this.defaultSortOrder}}
+                                @defaultSortProperty={{this.defaultSortProperty}}
                         />
                     </div>
                 </div>
