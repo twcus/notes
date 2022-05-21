@@ -1,6 +1,6 @@
-<span class="tag {{if @isCollectionTag "collection-tag"}} {{if @onRemove "removeable"}}">
+<div class="tag {{if @isCollectionTag "collection-tag"}} {{if @onRemove "removeable"}}">
     <span class="tag-text">{{@tag.content}}</span>
     {{#if @onRemove}}
-        <button class="button tag-remove" {{on "click" this.remove}}><FaIcon @icon="times" /></button>
+        <button class="button tag-remove" {{on "click" (stop-propagation (fn @onRemove @tag))}}><FaIcon @icon="times" /></button>
     {{/if}}
-</span>
+</div>

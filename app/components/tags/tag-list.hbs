@@ -1,0 +1,11 @@
+<div class="tag-list">
+    {{#each this.visibleCollectionTags as |tag|}}
+        <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} @onRemove={{@onRemove}} />
+    {{/each}}
+    {{#each this.visibleNoteTags as |tag|}}
+        <Tags::Tag @tag={{tag}} @onRemove={{@onRemove}} />
+    {{/each}}
+    {{#if this.numExcessTags}}
+        <div class="see-all" {{on "click" (stop-propagation @onSeeAll)}}>+{{this.numExcessTags}}</div>
+    {{/if}}
+</div>

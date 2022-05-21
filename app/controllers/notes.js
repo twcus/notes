@@ -182,7 +182,7 @@ export default class NotesController extends Controller {
     }
 
     @action
-    removeTagFromNote(tag, note) {
+    removeTagFromNote(note, tag) {
         note.tags.removeObject(tag);
         return note.save();
     }
