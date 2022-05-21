@@ -3,7 +3,12 @@
         <div class="card-body pell-content">
             {{{@note.content}}}
         </div>
-        <Tags::TagList @collectionTags={{@collection.tags}} @tags={{@note.tags}} @onRemove={{fn @onTagRemove @note}} />
+        <Tags::TagList
+            @collectionTags={{@collection.tags}}
+            @tags={{@note.tags}}
+            @onRemove={{fn @onTagRemove @note}}
+            @maxVisibleTags="4"
+        />
         {{#if this.media.isDesktop}}
             <div class="card-footer">
                 <Utils::Timestamp

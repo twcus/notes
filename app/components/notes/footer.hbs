@@ -1,12 +1,10 @@
 <div class="note-footer">
-    <div class="tag-list">
-        {{#each @collectionTags as |tag|}}
-            <Tags::Tag @tag={{tag}} @isCollectionTag={{true}} />
-        {{/each}}
-        {{#each this.sortedTags as |tag|}}
-            <Tags::Tag @tag={{tag}} @onRemove={{@onTagRemove}} />
-        {{/each}}
-    </div>
+    <Tags::TagList
+        @collectionTags={{@collectionTags}}
+        @tags={{this.sortedTags}}
+        @onRemove={{fn @onTagRemove}}
+        @maxVisibleTags={{@maxVisibleTags}}
+    />
     <div class="action-bar">
         <Utils::Timestamp
             @date={{@note.modifiedDate}}

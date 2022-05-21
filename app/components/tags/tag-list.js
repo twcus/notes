@@ -1,8 +1,10 @@
 import Component from '@glimmer/component';
 
-const MAX_VISIBLE_TAGS = 4;
-
 export default class TagListComponent extends Component {
+    get maxVisibleTags() {
+        return this.args.maxVisibleTags || this.collectionTags.length + this.noteTags.length;
+    }
+
     get collectionTags() {
         return this.args.collectionTags || [];
     }
@@ -18,15 +20,15 @@ export default class TagListComponent extends Component {
     }
 
     get visibleCollectionTags() {
-        return this.collectionTags.slice(0, MAX_VISIBLE_TAGS);
+        return this.collectionTags.slice(0, this.maxVisibleTags);
     }
 
     get visibleNoteTags() {
         const visibleCollectionTagsLength = this.visibleCollectionTags.length;
-        if (visibleCollectionTagsLength >= 4) {
+        if (visibleCollectionTagsLength >= this.maxVisibleTags) {
             return [];
         }
-        return this.noteTags.slice(visibleCollectionTagsLength, MAX_VISIBLE_TAGS);
+        return this.noteTags.slice(0, this.maxVisibleTags - visibleCollectionTagsLength);
     }
 
     get numExcessTags() {
