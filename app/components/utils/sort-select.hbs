@@ -1,32 +1,16 @@
-<div class="button-group">
-    <Select::DropdownSelect
-            @options={{this.sortOrderOptions}}
-            @selected={{this.selectedSortOrder}}
-            @onSelect={{this.selectSortOrder}}
-            @closeOnSelect={{true}}
-            @searchEnabled={{false}}
-            @matchTriggerWidth={{false}}
-            @triggerClass="no-margin"
-            @dropdownClass={{"has-top-border"}}
-            @displayProperty="name"
-            @stopPropagation={{true}}
-            @optionClass="large"
-    >
-        <span><FaIcon @icon={{this.selectedSortOrder.icon}} /></span>
-    </Select::DropdownSelect>
-    <Select::DropdownSelect
-        @options={{@sortPropertyOptions}}
-        @selected={{@selectedSortProperty}}
-        @onSelect={{@onSelectSortProperty}}
-        @searchEnabled={{false}}
-        @closeOnSelect={{true}}
-        @matchTriggerWidth={{false}}
-        @triggerClass="no-margin"
-        @dropdownClass={{"has-top-border"}}
-        @displayProperty="name"
-        @stopPropagation={{true}}
-        @optionClass="large"
-    >
-        <span>{{@selectedSortProperty.name}}</span>
-    </Select::DropdownSelect>
-</div>
+<Select::DropdownSelect
+    @options={{this.sortOptions}}
+    @selected={{this.selectedSortOption}}
+    @onSelect={{this.selectSortOption}}
+    @searchEnabled={{false}}
+    @closeOnSelect={{true}}
+    @matchTriggerWidth={{false}}
+    @triggerClass="no-margin"
+    @dropdownClass={{"has-top-border"}}
+    @displayProperty="name"
+    @stopPropagation={{true}}
+    @optionClass="large"
+>
+    <span><FaIcon @icon={{this.selectedSortOption.icon}} /></span>
+    <span class="has-margin-left">{{this.selectedSortOption.name}}</span>
+</Select::DropdownSelect>

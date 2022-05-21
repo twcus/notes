@@ -5,22 +5,25 @@ import { action } from '@ember/object';
 export default class UtilsSortSelectComponent extends Component {
     sortOrderOptions = [
         {
-            name: 'Ascending',
             order: 'asc',
             icon: 'arrow-up'
         },
         {
-            name : 'Descending',
             order: 'desc',
             icon: 'arrow-down'
         }
     ];
 
-    @tracked selectedSortOrder = this.sortOrderOptions.findBy('order', this.args.defaultSortOrder);
+    @tracked selectedSortOption = this.sortOptions.find(option => option.property === this.args.defaultSortProperty && this.args.defaultSortOrder);
+
+    get sortOptions() {
+        const sortProperties = this.args.sortPropertyOptions || [];
+        return sortProperties.reduce((agg, property) => agg.concat(this.sortOrderOptions.map(order => ({ ...order, ...property }))), [])
+    }
 
     @action
-    selectSortOrder(order) {
-        this.selectedSortOrder = order;
-        this.args.onSelectSortOrder(order);
+    selectSortOption(selectedOption) {
+        this.selectedSortOption = selectedOption;
+        this.args.onSelectSort(selectedOption);
     }
 }
